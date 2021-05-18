@@ -2,12 +2,19 @@
 ## Feature List
 ## Splash/Landing
 ## Auth
+
 MVP1 Create (hosting) a Game Jam
+
 MVP2 Creating Teams
+
 *MVP3	Profile
+
 *MVP4	Searching funcationality
+
 *MVP5	Project organization
+
 *MVP6 Matchhmaking / ELO system for teams and gamejams
+
 Live chat? Google maps API?
 
 
