@@ -1,3 +1,6 @@
+
+# Scorecard link: https://docs.google.com/spreadsheets/d/1czLzGUK_rm-JN1-PRrOPJOqdnEM18gBEojSAAnyZeL8/edit#gid=1030287311
+
 #App Academy Group Project
 ## Feature List
 Splash/Landing
