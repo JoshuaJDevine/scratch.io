@@ -46,7 +46,7 @@ Teams have many gamejams
 Gamejams have many teams
 
 Games have one team
-Games have on jam
+Games have one jam
 ----------------------
 Users
   - Profile Table?
@@ -80,3 +80,33 @@ BASIC FUNCTIONALITY
 OTHER FUNCTIONALITY
 
 Managing 'GameJames'
+
+
+------------------------------------------
+# Questions: 
+1. Can a team host a game jam?
+2. Can a game be tied to a user instead of a team?
+3. Can a game not be tied to a game jam?
+4. With teams being persistent, should a Listing table be created for team formation?
+
+# Ideas
+## 1. GameJam
+* A page for displaying upcoming game jams
+* A search page that can displays game jams by title, date range, tags
+* Each game jam will have an info page
+* Columns: startDate, duration, description (as markdown? aws?), hostId (hostIdUser, hostIdTeam?)
+
+## 2. Team
+* Team info page
+* Display games created, team members, description, website url
+
+## 3. User
+* User info page
+* Display games created, teams a member of, bio, website url, skills
+
+## 4. Game
+* Game info page
+* Display game jam it belongs to, the creator (team or user?), description (as markdown?), media (images, youtube links)
+
+## 5. Listing
+* Display team members, skills needed, skills fulfilled
