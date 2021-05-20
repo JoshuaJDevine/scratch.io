@@ -91,6 +91,7 @@ Managing 'GameJames'
 2. Can a game be tied to a user instead of a team?
 3. Can a game not be tied to a game jam?
 4. With teams being persistent, should a Listing table be created for team formation?
+5. Remind me (James) to talk about edit/form idea to minimize front end components.
 
 # Ideas
 ## 1. GameJam
