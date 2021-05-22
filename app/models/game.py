@@ -12,17 +12,16 @@ class Game(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False, unique=True)
-    blurb = db.Column(db.Text(1028))
-    avatarUrl = db.Column(db.Text(1028))
-    githubUrl = db.Column(db.Text(1028))
-    websiteUrl = db.Column(db.Text(1028))
+    blurb = db.Column(db.String(255))
+    avatarUrl = db.Column(db.String(255))
+    githubUrl = db.Column(db.String(255))
+    websiteUrl = db.Column(db.String(255))
     # gameJams = db.relationship('Gamejam', secondary=ItemDetail, backref='Game')
 
     def to_dict(self):
         return {
             "id": self.id,
-            "gameJamId": self.username,
-            "name": self.email,
+            "name": self.name,
             "blurb": self.blurb,
             "avatarUrl": self.avatarUrl,
             "githubUrl": self.githubUrl,

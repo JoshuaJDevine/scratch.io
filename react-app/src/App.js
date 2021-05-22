@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./store/session";
+import { games } from "./store/game"
 
 function App() {
   const user = useSelector(state => state.session.user)
@@ -17,6 +18,7 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
+      await dispatch(games());
       setLoaded(true);
     })();
   }, []);
