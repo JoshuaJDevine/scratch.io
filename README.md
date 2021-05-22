@@ -1,116 +1,98 @@
+# Flask React Project
 
-# Scorecard link: https://docs.google.com/spreadsheets/d/1czLzGUK_rm-JN1-PRrOPJOqdnEM18gBEojSAAnyZeL8/edit#gid=1030287311
+This is the backend for the Flask React project.
 
-#App Academy Group Project
-## Feature List
-Splash/Landing
+## Getting started
 
-Auth
+1. Clone this repository (only this branch)
 
-MVP1 Create (hosting) a Game Jam
+   ```bash
+   git clone https://github.com/appacademy-starters/python-project-starter.git
+   ```
 
-MVP2 Creating Teams
+2. Install dependencies
 
-*MVP3	Profile
+      ```bash
+      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
+      ```
 
-*MVP4	Searching funcationality
+3. Create a **.env** file based on the example with proper settings for your
+   development environment
+4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
 
-*MVP5	Project organization
+5. Get into your pipenv, migrate your database, seed your database, and run your flask app
 
-*MVP6 Matchhmaking / ELO system for teams and gamejams
+   ```bash
+   pipenv shell
+   ```
 
-Live chat? Google maps API?
+   ```bash
+   flask db upgrade
+   ```
 
+   ```bash
+   flask seed all
+   ```
 
+   ```bash
+   flask run
+   ```
 
+6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
+***
+*IMPORTANT!*
+   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
+   You can do this by running:
 
+   ```bash
+   pipenv lock -r > requirements.txt
+   ```
 
+*ALSO IMPORTANT!*
+   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
+   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
+***
 
-[WIP]
-Form a team for this game jam
-Find a team for this game jam
+## Deploy to Heroku
 
-User A signs up
-User A host a gamejam
-User A create a team "Team17"
+1. Create a new project on Heroku
+2. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
+3. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
+4. Run
 
-User B can view all gamejams
-User B can view all teams
-User B could request access to "Team17"
+   ```bash
+   heroku login
+   ```
 
-User A will be notified and verifiy/deny the request to join the team
+5. Login to the heroku container registry
 
-[WIP]SCHEMA
-Teams have many Users
-Users have many Teams
+   ```bash
+   heroku container:login
+   ```
 
-Teams have many gamejams
-Gamejams have many teams
+6. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
+   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
+7. Push your docker container to heroku from the root directory of your project.
+   This will build the dockerfile and push the image to your heroku container registry
 
-Games have one team
-Games have one jam
-----------------------
-Users
-  - Profile Table?
-Gamejams
-Teams
-Games
+   ```bash
+   heroku container:push web -a {NAME_OF_HEROKU_APP}
+   ```
 
+8. Release your docker container to heroku
 
+   ```bash
+   heroku container:release web -a {NAME_OF_HEROKU_APP}
+   ```
 
+9. set up your database:
 
+   ```bash
+   heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
+   heroku run -a {NAME_OF_HEROKU_APP} flask seed all
+   ```
 
+10. Under Settings find "Config Vars" and add any additional/secret .env variables.
 
-
-------------------------------------------
-[WIP]
-
-BASIC FUNCTIONALITY
-
-***[Signup] Marketplace of talent --> One User
-
-***[Hosting] a 'gamejam' --> One User
-
-***[Form teams] --> Many Users
-
-***[Teams associate with a gamejam] --> Many Teams
-
-**Profile page for users (examples of stuff they have done and gamejams participated and submissions or other content submitted
-
-*Project page for the teams project
-
-OTHER FUNCTIONALITY
-
-Managing 'GameJames'
-
-
-------------------------------------------
-# Questions: 
-1. Can a team host a game jam?
-2. Can a game be tied to a user instead of a team?
-3. Can a game not be tied to a game jam?
-4. With teams being persistent, should a Listing table be created for team formation?
-5. Remind me (James) to talk about edit/form idea to minimize front end components.
-
-# Ideas
-## 1. GameJam
-* A page for displaying upcoming game jams
-* A search page that can displays game jams by title, date range, tags
-* Each game jam will have an info page
-* Columns: startDate, duration, description (as markdown? aws?), hostId (hostIdUser, hostIdTeam?)
-
-## 2. Team
-* Team info page
-* Display games created, team members, description, website url
-
-## 3. User
-* User info page
-* Display games created, teams a member of, bio, website url, skills
-
-## 4. Game
-* Game info page
-* Display game jam it belongs to, the creator (team or user?), description (as markdown?), media (images, youtube links)
-
-## 5. Listing
-* Display team members, skills needed, skills fulfilled
+11. profit
