@@ -8,7 +8,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./store/session";
-import { games } from "./store/game"
+import { GetGames, PostGame, GetGame, DeleteGame, UpdateGame } from "./store/game"
 
 function App() {
   const user = useSelector(state => state.session.user)
@@ -18,7 +18,15 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
-      await dispatch(games());
+
+      //TODO Delete this after merging routes
+      // Simple Tests for game routes
+      // await dispatch(GetGames()); //PASSING
+      // await dispatch(PostGame("testGame")) //PASSING
+      // await dispatch(GetGame(10)) //PASSING
+      // await  dispatch(DeleteGame(12)) //PASSING
+      // await  dispatch(UpdateGame(14, "MyTestUpdate")) //PASSING
+
       setLoaded(true);
     })();
   }, []);
