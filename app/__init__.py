@@ -8,7 +8,9 @@ from flask_login import LoginManager
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
+from .api.skills_routes import skills_routes
 from .api.teams_routes import teams_routes
+
 
 from .seeds import seed_commands
 
@@ -34,7 +36,9 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
+app.register_blueprint(skills_routes, url_prefix="/api/skills")
 app.register_blueprint(teams_routes, url_prefix='/api/teams')
+
 
 db.init_app(app)
 Migrate(app, db)
@@ -44,7 +48,7 @@ CORS(app)
 
 # Since we are deploying with Docker and Flask,
 # we won't be using a buildpack when we deploy to Heroku.
-# Therefore, we need to make sure that in production any 
+# Therefore, we need to make sure that in production any
 # request made over http is redirected to https.
 # Well.........
 

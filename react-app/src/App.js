@@ -8,7 +8,9 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./store/session";
+import { getAllSkills, skills } from "./store/skills"
 import { GetTeams, PostTeam, GetTeam, UpdateTeam, DeleteTeam } from "./store/team"
+
 
 function App() {
   const user = useSelector(state => state.session.user)
@@ -17,6 +19,7 @@ function App() {
 
   useEffect(() => {
     (async() => {
+      await dispatch(getAllSkills());
       await dispatch(authenticate());
       setLoaded(true);
     })();
