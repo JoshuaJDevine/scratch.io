@@ -19,7 +19,7 @@ class Team(db.Model):
     )
     gameJams = db.relationship(
         'GameJam',
-        secondary=teams_game,
+        secondary=teams_gamejams,
         back_populates='teams'
     )
 
