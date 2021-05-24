@@ -26,3 +26,7 @@ def seed_game_jams():
             endDate=datetime.datetime(2021, 1, 11 + random(1, 9))
         ))
         db.session.commit()
+
+def undo_game_jams():
+    db.session.execute('TRUNCATE game_jams RESTART IDENTITY CASCADE;')
+    db.session.commit()
