@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import session from "./session"
 import games from "./game"
 import skillsReducer from "./skills";
-import teams from "./teams"; //CHECK SYNTAX
+import teams from "./team"; //CHECK SYNTAX
 
 const rootReducer = combineReducers({
     session,

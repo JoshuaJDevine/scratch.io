@@ -133,5 +133,7 @@ export default function reducer(state=initialState, action) {
             return { teams: action.payload }
         case DELETE_TEAM:
             return { teams: action.payload }
+        default:
+            return state
     }
 }
