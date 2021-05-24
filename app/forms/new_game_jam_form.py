@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, TextField, DateField, SubmitField
 from wtforms.validators import DataRequired
 
-class GameJameForm(FlaskForm):
+class GameJamForm(FlaskForm):
     name = StringField("name", validators=[DataRequired()])
     theme = StringField("theme", validators=[DataRequired()])
     blurb = StringField("blurb", validators=[DataRequired()])

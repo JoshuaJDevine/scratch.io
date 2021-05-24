@@ -11,6 +11,7 @@ import { authenticate } from "./store/session";
 import { GetGames, PostGame, GetGame, DeleteGame, UpdateGame } from "./store/game"
 import { getAllSkills, skills } from "./store/skills"
 import { GetTeams, PostTeam, GetTeam, UpdateTeam, DeleteTeam } from "./store/team"
+import { getGameJams, getGameJam, postGameJam, patchGameJam, deleteGameJam } from "./store/game_jam";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
       // await dispatch(GetGame(10))
       // await  dispatch(DeleteGame(12))
       // await  dispatch(UpdateGame(14, "MyTestUpdate"))
+      await dispatch(getGameJams());
 
       setLoaded(true);
     })();

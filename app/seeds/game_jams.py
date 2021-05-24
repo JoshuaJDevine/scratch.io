@@ -22,10 +22,10 @@ def seed_game_jams():
             website="test.website.com",
             github="github.com",
             userLimit=1000,
-            startDate=datetime.datetime(2021, 1, 1 + random(1, 9)),
-            endDate=datetime.datetime(2021, 1, 11 + random(1, 9))
+            startDate=datetime.datetime(2021, 1, 1 + random.randint(1, 9)),
+            endDate=datetime.datetime(2021, 1, 11 + random.randint(1, 9))
         ))
-        db.session.commit()
+    db.session.commit()
 
 def undo_game_jams():
     db.session.execute('TRUNCATE game_jams RESTART IDENTITY CASCADE;')

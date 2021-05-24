@@ -4,12 +4,14 @@ import session from "./session"
 import games from "./game"
 import skillsReducer from "./skills";
 import teams from "./team"; //CHECK SYNTAX
+import gameJamReducer from "./game_jam";
 
 const rootReducer = combineReducers({
     session,
     skillsReducer,
     games,
-    teams
+    teams,
+    gameJams: gameJamReducer
 });
 
 

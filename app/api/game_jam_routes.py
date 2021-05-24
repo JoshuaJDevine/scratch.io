@@ -11,7 +11,7 @@ def get_game_jams():
     return {"game_jams": [game_jam.to_dict() for game_jam in game_jams]}
 
 # GET game jam data for a single game jam.
-@bp.route('/gamejams/<int:id>')
+@bp.route('/<int:id>')
 def get_game_jam(id):
     game_jam = GameJam.query.get(id)
     return game_jam.to_dict()
@@ -41,7 +41,7 @@ def post_game_jam():
 
 
 # PATCH a game jam.
-@bp.route('/gamejams/<int:id>', methods=['PATCH'])
+@bp.route('/<int:id>', methods=['PATCH'])
 def patch_game_jam(id):
     form = GameJamForm()
     form['csrf_token'].data = request.cookies['crsf_token']
@@ -56,7 +56,7 @@ def patch_game_jam(id):
 
 
 # DELETE a game jam.
-@bp.route('/gamejams/<int:id>', methods=['DELETE'])
+@bp.route('/<int:id>', methods=['DELETE'])
 def delete_game_jam(id):
     game_jam_to_delete = GameJam.query.get(id)
     db.session.delete(game_jam_to_delete)
