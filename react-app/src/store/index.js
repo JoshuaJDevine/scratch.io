@@ -1,11 +1,15 @@
 import {createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import session from "./session"
+import games from "./game"
 import skillsReducer from "./skills";
+import teams from "./teams"; //CHECK SYNTAX
 
 const rootReducer = combineReducers({
     session,
-    skillsReducer
+    skillsReducer,
+    games,
+    teams
 });
 
 
