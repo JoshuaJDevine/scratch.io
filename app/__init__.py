@@ -9,12 +9,16 @@ from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.skills_routes import skills_routes
+from .api.teams_routes import teams_routes
+
 
 from .seeds import seed_commands
 
 from .config import Config
 
 app = Flask(__name__)
+
+
 
 # Setup login manager
 login = LoginManager(app)
@@ -33,6 +37,9 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(skills_routes, url_prefix="/api/skills")
+app.register_blueprint(teams_routes, url_prefix='/api/teams')
+
+
 db.init_app(app)
 Migrate(app, db)
 
