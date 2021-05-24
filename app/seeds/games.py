@@ -1,4 +1,4 @@
-from app.models import db, Game
+from app.models import db, Game, User
 
 # Adds a demo user, you can add other users here if you want
 def seed_games():

@@ -1,4 +1,5 @@
 from .db import db
+from sqlalchemy.ext.declarative import declarative_base
 
 # User_Game = db.Table('users_games',
 #                        db.Column('id', db.Integer, primary_key=True),
@@ -7,16 +8,7 @@ from .db import db
 
 users_games = db.Table(
     "users_games",
-    db.Column(
-        "userId",
-        db.Integer,
-        db.ForeignKey("users.id"),
-        primary_key=True
-    ),
-    db.Column(
-        'gameId',
-        db.Integer,
-        db.ForeignKey("games.id"),
-        primary_key=True
-    )
+    db.Column('id', db.Integer, primary_key=True),
+    db.Column("userId", db.Integer, db.ForeignKey("users.id")),
+    db.Column("gameId", db.Integer, db.ForeignKey("games.id"))
 )

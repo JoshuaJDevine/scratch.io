@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import Game, db
+from app.models import Game, User, db
 from app.forms import NewGameForm
 
 
@@ -19,7 +19,13 @@ def validation_errors_to_error_messages(validation_errors):
 @game_routes.route('/')
 def games():
     games = Game.query.all()
-    return {"games": [game.to_dict() for game in games]}
+
+    # Obj = {}
+    # users_games = [game.users for game in games]
+    # for i in users_games[0]:
+    #     Obj["username"] = i.username
+
+    return {"games": [game.to_dict_users() for game in games]}
 
 
 # POST /api/games/  ---------  Create game

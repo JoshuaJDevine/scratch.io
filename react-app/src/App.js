@@ -16,6 +16,7 @@ import { getGameJams, getGameJam, postGameJam, patchGameJam, deleteGameJam } fro
 
 function App() {
   const user = useSelector(state => state.session.user)
+  const games = useSelector(state => state.session.games)
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
@@ -28,6 +29,7 @@ function App() {
       // await dispatch(getTeams());
       // await dispatch(getAllSkills());
       await dispatch(GetGames());
+
       // await dispatch(PostGame("testGame"))
       // await dispatch(GetGame(10))
       // await  dispatch(DeleteGame(12))
