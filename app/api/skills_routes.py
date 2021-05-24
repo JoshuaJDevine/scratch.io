@@ -1,7 +1,7 @@
-from flask import Blueprint, jsonify, session, request
+from flask import Blueprint
 
 # app.models imports go here:
-from app.models import Skill, db
+from app.models import Skill
 
 skills_routes = Blueprint('skills', __name__)
 
