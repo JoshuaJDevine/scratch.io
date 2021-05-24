@@ -1,4 +1,7 @@
 from .db import db
+from .users_games import users_games
+
+
 # from .users_games import User_Game
 
 # ItemDetail = db.Table('games_gamejams',
@@ -18,8 +21,11 @@ class Game(db.Model):
     avatarUrl = db.Column(db.String(255))
     githubUrl = db.Column(db.String(255))
     websiteUrl = db.Column(db.String(255))
-    users = db.relationship('User', secondary="users_games", back_populates='games')
-
+    users = db.relationship(
+        "User",
+        secondary=users_games,
+        back_populates="games"
+    )
     def to_dict(self):
         return {
             "id": self.id,
@@ -27,5 +33,16 @@ class Game(db.Model):
             "blurb": self.blurb,
             "avatarUrl": self.avatarUrl,
             "githubUrl": self.githubUrl,
-            "websiteUrl": self.websiteUrl
+            "websiteUrl": self.websiteUrl,
+        }
+
+    def to_dict_users(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "blurb": self.blurb,
+            "avatarUrl": self.avatarUrl,
+            "githubUrl": self.githubUrl,
+            "websiteUrl": self.websiteUrl,
+            "users": [user.to_dict() for user in self.users]
         }
