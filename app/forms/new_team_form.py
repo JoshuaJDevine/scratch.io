@@ -1,7 +1,5 @@
-from re import S
 from flask_wtf import FlaskForm
 from wtforms import StringField, BooleanField, TextAreaField
-from wtforms import validators
 from wtforms.validators import DataRequired
 from app.models import Team
 
