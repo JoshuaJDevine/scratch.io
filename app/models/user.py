@@ -1,6 +1,9 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .users_games import User_Game
+
+
 
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
@@ -9,7 +12,7 @@ class User(db.Model, UserMixin):
   username = db.Column(db.String(40), nullable = False, unique = True)
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
-
+  games = db.relationship('Game', secondary=User_Game, backref="User")
 
   @property
   def password(self):
