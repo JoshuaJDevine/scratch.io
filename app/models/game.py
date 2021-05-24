@@ -1,5 +1,5 @@
 from .db import db
-from .users_games import User_Game
+# from .users_games import User_Game
 
 # ItemDetail = db.Table('games_gamejams',
 #                       db.Column('id', db.Integer, primary_key=True),
@@ -18,7 +18,7 @@ class Game(db.Model):
     avatarUrl = db.Column(db.String(255))
     githubUrl = db.Column(db.String(255))
     websiteUrl = db.Column(db.String(255))
-    users = db.relationship('User', secondary=User_Game, backref='Game')
+    users = db.relationship('User', secondary="users_games", back_populates='games')
 
     def to_dict(self):
         return {

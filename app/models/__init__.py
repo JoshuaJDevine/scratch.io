@@ -1,4 +1,5 @@
 from .db import db
+from .users_games import users_games
 from .user import User
 from .game import Game
 from .skill import Skill

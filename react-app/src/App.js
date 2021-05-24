@@ -26,7 +26,7 @@ function App() {
       // await dispatch(getTeam(1));
       // await dispatch(getTeams());
       // await dispatch(getAllSkills());
-      // await dispatch(GetGames());
+      await dispatch(GetGames());
       // await dispatch(PostGame("testGame"))
       // await dispatch(GetGame(10))
       // await  dispatch(DeleteGame(12))
