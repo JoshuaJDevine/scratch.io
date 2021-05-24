@@ -11,6 +11,7 @@ from .api.auth_routes import auth_routes
 from .api.game_routes import game_routes
 from .api.skills_routes import skills_routes
 from .api.teams_routes import teams_routes
+from .api.game_jam_routes import bp as game_jam_routes
 
 from .seeds import seed_commands
 
@@ -39,6 +40,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(game_routes, url_prefix='/api/games'),
 app.register_blueprint(skills_routes, url_prefix="/api/skills")
 app.register_blueprint(teams_routes, url_prefix='/api/teams')
+app.register_blueprint(game_jam_routes, url_prefix='/api/gamejams')
 
 
 db.init_app(app)
