@@ -16,7 +16,7 @@ def validation_errors_to_error_messages(validation_errors):
 @skills_routes.route("/")
 def skills():
     skills = Skill.query.all()
-    return {"skills": [skill.to_dict() for skill in skills]}
+    return {"skills": [skill.to_dict_users() for skill in skills]}
 
 @skills_routes.route('<int:id>')
 def skill(id):

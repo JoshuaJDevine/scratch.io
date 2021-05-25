@@ -1,5 +1,6 @@
 from enum import unique
 from .db import db
+from .skills_teams import skills_teams
 
 class Team(db.Model):
     __tablename__ = 'teams'
@@ -12,6 +13,12 @@ class Team(db.Model):
     github = db.Column(db.String)
     recruiting = db.Column(db.Boolean)
 
+    skills = db.relationship(
+        "Skill",
+        secondary=skills_teams,
+        back_populates="teams"
+    )
+
     def to_dict(self):
         return {
             "id": self.id,
@@ -21,4 +28,17 @@ class Team(db.Model):
             "website": self.website,
             "github": self.github,
             "recruiting": self.recruiting
+        }
+
+
+    def to_dict_skills(self):
+         return {
+            "id": self.id,
+            "name": self.name,
+            "blurb": self.blurb,
+            "avatar": self.avatar,
+            "website": self.website,
+            "github": self.github,
+            "recruiting": self.recruiting,
+            "skills": [skill.to_dict() for skill in self.skills]
         }
