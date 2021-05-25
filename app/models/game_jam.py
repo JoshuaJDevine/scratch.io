@@ -1,6 +1,7 @@
 from .teams_gamejams import teams_gamejams
-from .db import db
 from .games_gamejams import games_gamejams
+from .tags_gamejams import tags_gamejams
+from .db import db
 
 class GameJam(db.Model):
     __tablename__ = "gamejams"
@@ -25,9 +26,23 @@ class GameJam(db.Model):
         secondary=teams_gamejams,
         back_populates='gamejams'
     )
+    tags = db.relationship(
+        "Tag",
+        secondary=tags_gamejams,
+        back_populates='gamejams'
+    )
 
-    def to_dict(self):
-        return {
+    def get_joined_games(self):
+        return [game.to_dict() for game in self.games]
+    
+    def get_joined_teams(self):
+        return [team.to_dict() for team in self.teams]
+
+    def get_joined_tags(self):
+        return [tag.to_dict() for tag in self.tags]
+
+    def to_dict(self, teams=False, games=False, tags=False):
+        dct = {
             "id": self.id,
             "name": self.name,
             "theme": self.theme,
@@ -40,32 +55,14 @@ class GameJam(db.Model):
             "endDate": self.endDate,
         }
 
-    def to_dict_games(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "theme": self.theme,
-            "blurb": self.blurb,
-            "avatar": self.avatar,
-            "website": self.website,
-            "github": self.github,
-            "userLimit": self.userLimit,
-            "startDate": self.startDate,
-            "endDate": self.endDate,
-            "games": [game.to_dict() for game in self.games]
-        }
+        if teams:
+            dct["teams"] = self.get_joined_teams()
 
-    def to_dict_teams(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "theme": self.theme,
-            "blurb": self.blurb,
-            "avatar": self.avatar,
-            "website": self.website,
-            "github": self.github,
-            "userLimit": self.userLimit,
-            "startDate": self.startDate,
-            "endDate": self.endDate,
-            "team": [team.to_dict() for team in self.teams]
-        }
+        if games:
+            dct["games"] = self.get_joined_games()
+
+        if tags:
+            dct["tags"] = self.get_joined_tags()
+
+        return dct
+    

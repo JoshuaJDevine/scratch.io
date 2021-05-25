@@ -12,7 +12,7 @@ def get_game_jams():
         .filter(GameJam.name.ilike(f"%{args['searchTerm']}%")) \
         .limit(int(args['resultLimit'])) \
         .all()
-    return {"game_jams": [game_jam.to_dict_teams() for game_jam in game_jams]}
+    return {"game_jams": [game_jam.to_dict(teams=True) for game_jam in game_jams]}
 
 # GET game jam data for a single game jam.
 @bp.route('/<int:id>')

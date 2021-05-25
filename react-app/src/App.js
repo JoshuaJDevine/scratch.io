@@ -43,9 +43,7 @@ function App() {
       // await  dispatch(UpdateGame(14, "MyTestUpdate"))
 
       await dispatch(getGameJams({
-        searchTerm: "ni",
-        resultLimit: 5,
-        genre: 'action'
+        
       }));
 
       setLoaded(true);
