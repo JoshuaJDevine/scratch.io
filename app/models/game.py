@@ -1,6 +1,6 @@
 from .db import db
 from .users_games import users_games
-
+from .games_gamejams import games_gamejams
 
 # from .users_games import User_Game
 
@@ -24,6 +24,11 @@ class Game(db.Model):
     users = db.relationship(
         "User",
         secondary=users_games,
+        back_populates="games"
+    )
+    gamejams = db.relationship(
+        "GameJam",
+        secondary=games_gamejams,
         back_populates="games"
     )
     def to_dict(self):
