@@ -17,7 +17,7 @@ class Team(db.Model):
         secondary=users_teams,
         back_populates='teams'
     )
-    gameJams = db.relationship(
+    gamejams = db.relationship(
         'GameJam',
         secondary=teams_gamejams,
         back_populates='teams'
@@ -55,5 +55,5 @@ class Team(db.Model):
             "website": self.website,
             "github": self.github,
             "recruiting": self.recruiting,
-            "gameJams": [gameJam.to_dict() for gameJam in self.gameJams]
+            "gamejams": [gamejam.to_dict() for gamejam in self.gamejams]
         }

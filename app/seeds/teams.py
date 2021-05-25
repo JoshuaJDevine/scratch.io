@@ -2,7 +2,6 @@ from app.models import db, Team
 
 
 def seed_teams():
-    print('++++++++ BIG AND NOTICABLE ++++++++++')
     teamList = ["The Wellermen", "The Deamon Demons", "Appitite for Abstractioin"]
     for x in teamList:
         newTeam = Team(name=x,

@@ -26,15 +26,16 @@ function App() {
 
       //Examples of api thinks
       // await dispatch(getTeam(1));
-      // await dispatch(getTeams());
+      // await dispatch(GetTeams());
       // await dispatch(getAllSkills());
-      await dispatch(GetGames());
+      // await dispatch(GetGames());
 
       // await dispatch(PostGame("testGame"))
       // await dispatch(GetGame(10))
       // await  dispatch(DeleteGame(12))
       // await  dispatch(UpdateGame(14, "MyTestUpdate"))
-      await dispatch(getGameJams());
+    
+      // await dispatch(getGameJams());
 
       setLoaded(true);
     })();
