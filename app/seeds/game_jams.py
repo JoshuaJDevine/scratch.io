@@ -28,5 +28,5 @@ def seed_game_jams():
     db.session.commit()
 
 def undo_game_jams():
-    db.session.execute('TRUNCATE game_jams RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE gamejams RESTART IDENTITY CASCADE;')
     db.session.commit()

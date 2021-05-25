@@ -1,7 +1,7 @@
 from .users_teams import users_teams
 from .teams_gamejams import teams_gamejams
-from .db import db
 from .skills_teams import skills_teams
+from .db import db
 
 class Team(db.Model):
     __tablename__ = 'teams'
@@ -30,8 +30,17 @@ class Team(db.Model):
         back_populates="teams"
     )
 
-    def to_dict(self):
-        return {
+    def get_joined_users(self):
+        return [user.to_dict() for user in self.users]
+
+    def get_joined_gamejams(self):
+        return [gamejam.to_dict() for gamejam in self.gamejams]
+
+    def get_joined_skills(self):
+        return [skill.to_dict() for skill in self.skills]
+
+    def to_dict(self, users=False, gamejams=False, skills=False):
+        dct = {
             "id": self.id,
             "name": self.name,
             "blurb": self.blurb,
@@ -41,36 +50,47 @@ class Team(db.Model):
             "recruiting": self.recruiting
         }
 
+        if users:
+            dct["users"] = self.get_joined_users()
+
+        if gamejams:
+            dct["gamejams"] = self.get_joined_gamejams()
+
+        if skills:
+            dct["skills"] = self.get_joined_skills()
+
+        return dct
 
 
-    def to_dict_skills(self):
-        return {
-          "id": self.id,
-          "username": self.username,
-          "email": self.email,
-          "skills": [skill.to_dict() for skill in self.skills]
-    }
 
-    def to_dict_users(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "blurb": self.blurb,
-            "avatar": self.avatar,
-            "website": self.website,
-            "github": self.github,
-            "recruiting": self.recruiting,
-            "users": [user.to_dict() for user in self.users]
-        }
+    # def to_dict_skills(self):
+    #     return {
+    #       "id": self.id,
+    #       "username": self.username,
+    #       "email": self.email,
+    #       "skills": [skill.to_dict() for skill in self.skills]
+    #     }
 
-    def to_dict_gamejams(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "blurb": self.blurb,
-            "avatar": self.avatar,
-            "website": self.website,
-            "github": self.github,
-            "recruiting": self.recruiting,
-            "gamejams": [gamejam.to_dict() for gamejam in self.gamejams]
-        }
+    # def to_dict_users(self):
+    #     return {
+    #         "id": self.id,
+    #         "name": self.name,
+    #         "blurb": self.blurb,
+    #         "avatar": self.avatar,
+    #         "website": self.website,
+    #         "github": self.github,
+    #         "recruiting": self.recruiting,
+    #         "users": [user.to_dict() for user in self.users]
+    #     }
+
+    # def to_dict_gamejams(self):
+    #     return {
+    #         "id": self.id,
+    #         "name": self.name,
+    #         "blurb": self.blurb,
+    #         "avatar": self.avatar,
+    #         "website": self.website,
+    #         "github": self.github,
+    #         "recruiting": self.recruiting,
+    #         "gamejams": [gamejam.to_dict() for gamejam in self.gamejams]
+    #     }
