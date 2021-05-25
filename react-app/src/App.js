@@ -17,6 +17,7 @@ import SampleModal from "./components/chakra_lib/sample-modal"
 import StubPage from "./components/chakra_lib/stub-page";
 import StubSteamMockup from "./components/chakra_lib/stub-steam-mockup";
 import SampleNavBar from "./components/chakra_lib/navbar-sample";
+import AnimatedGrid from "./components/chakra_lib/test-anime-grid"
 
 
 
@@ -76,6 +77,9 @@ function App() {
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path="/anime">
+            <AnimatedGrid />
         </Route>
         <ProtectedRoute path="/users" exact={true} >
           <UsersList/>

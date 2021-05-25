@@ -8,7 +8,7 @@ export default function SampleNavBar(){
 
 
     return(
-        <Box bg="black" w="100%" h="10%" spacing={4} p={4} color="white">
+        <Box bg="black" w="100%" h="60px" mb="10px" spacing={4} p={4} color="white" >
             <Flex color="white">
               <Square size="100x">
                 <Stack direction="row" spacing={4} align="center">
