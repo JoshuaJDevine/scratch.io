@@ -1,5 +1,6 @@
 from .users_games import users_games
 from .skills_users import skills_users
+from .users_teams import users_teams
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -29,6 +30,12 @@ class User(db.Model, UserMixin):
   )
 
   
+  teams = db.relationship(
+    "Team",
+    secondary=users_teams,
+    back_populates='users'
+  )
+
 
   @property
   def password(self):
@@ -59,10 +66,18 @@ class User(db.Model, UserMixin):
       "games": [game.to_dict() for game in self.games]
     }
 
+
   def to_dict_skills(self):
     return {
       "id": self.id,
       "username": self.username,
       "email": self.email,
       "skills": [skill.to_dict() for skill in self.skills]
+    }
+  def to_dict_teams(self):
+    return {
+        "id": self.id,
+        "username": self.username,
+        "email": self.email,
+        "team": [team.to_dict() for team in self.teams]
     }
