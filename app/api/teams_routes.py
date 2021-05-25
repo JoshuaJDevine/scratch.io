@@ -10,7 +10,7 @@ teams_routes = Blueprint('teams', __name__)
 @teams_routes.route('/')
 def teams():
     teams = Team.query.all()
-    return {"teams": [team.to_dict_users() for team in teams]}
+    return {"teams": [team.to_dict() for team in teams]}
 
 ############################ GET ONE TEAM ###############################
 @teams_routes.route('/<int:id>')

@@ -25,8 +25,8 @@ function App() {
       await dispatch(authenticate());
 
       //Examples of api thinks
-      // await dispatch(getTeam(1));
-      // await dispatch(GetTeams());
+      // await dispatch(GetTeam(1));
+      await dispatch(GetTeams());
       // await dispatch(getAllSkills());
       // await dispatch(GetGames());
 
