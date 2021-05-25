@@ -13,9 +13,11 @@ import { getAllSkills, skills } from "./store/skills"
 import { GetTeams, PostTeam, GetTeam, UpdateTeam, DeleteTeam } from "./store/team"
 import { getGameJams, getGameJam, postGameJam, patchGameJam, deleteGameJam } from "./store/game_jam";
 import SampleForm from "./components/chakra_lib/sample-form";
+import SampleModal from "./components/chakra_lib/sample-modal"
 import StubPage from "./components/chakra_lib/stub-page";
 import StubSteamMockup from "./components/chakra_lib/stub-steam-mockup";
 import SampleNavBar from "./components/chakra_lib/navbar-sample";
+
 
 
 function App() {
@@ -45,7 +47,7 @@ function App() {
       // await dispatch(GetGame(10))
       // await  dispatch(DeleteGame(12))
       // await  dispatch(UpdateGame(14, "MyTestUpdate"))
-    
+
       await dispatch(getGameJams());
 
       setLoaded(true);
@@ -66,6 +68,8 @@ function App() {
         <Route path="/sample-form" exact={true}>
           <SampleForm />
         </Route>
+        <Route path="/sample-modal">
+            <SampleModal />
         <Route path="/stub-page" exact={true}>
           <StubPage />
         </Route>
