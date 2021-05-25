@@ -14,6 +14,10 @@ import { GetTeams, PostTeam, GetTeam, UpdateTeam, DeleteTeam } from "./store/tea
 import { getGameJams, getGameJam, postGameJam, patchGameJam, deleteGameJam } from "./store/game_jam";
 import SampleForm from "./components/chakra_lib/sample-form";
 import SampleModal from "./components/chakra_lib/sample-modal"
+import StubPage from "./components/chakra_lib/stub-page";
+import StubSteamMockup from "./components/chakra_lib/stub-steam-mockup";
+import SampleNavBar from "./components/chakra_lib/navbar-sample";
+
 
 
 function App() {
@@ -56,7 +60,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <SampleNavBar />
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm />
@@ -66,6 +70,11 @@ function App() {
         </Route>
         <Route path="/sample-modal">
             <SampleModal />
+        <Route path="/stub-page" exact={true}>
+          <StubPage />
+        </Route>
+        <Route path="/stub-steam-mockup" exact={true}>
+          <StubSteamMockup />
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
