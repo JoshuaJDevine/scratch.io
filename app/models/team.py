@@ -43,7 +43,7 @@ class Team(db.Model):
 
 
 
-      def to_dict_skills(self):
+    def to_dict_skills(self):
         return {
           "id": self.id,
           "username": self.username,

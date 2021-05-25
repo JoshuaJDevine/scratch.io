@@ -28,7 +28,7 @@ function App() {
 
       // await dispatch(getTeam(1));
       // await dispatch(getTeams());
-      await dispatch(getAllSkills());
+      // await dispatch(getAllSkills());
       await dispatch(GetGames());
 
       // await dispatch(GetTeam(1));
@@ -41,8 +41,12 @@ function App() {
       // await dispatch(GetGame(10))
       // await  dispatch(DeleteGame(12))
       // await  dispatch(UpdateGame(14, "MyTestUpdate"))
-    
-      await dispatch(getGameJams());
+
+      await dispatch(getGameJams({
+        searchTerm: "ni",
+        resultLimit: 5,
+        genre: 'action'
+      }));
 
       setLoaded(true);
     })();

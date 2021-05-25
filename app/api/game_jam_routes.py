@@ -7,7 +7,11 @@ bp = Blueprint('gamejams', __name__)
 # GET all game jams.
 @bp.route('/')
 def get_game_jams():
-    game_jams = GameJam.query.all()
+    args = request.args
+    game_jams = GameJam.query \
+        .filter(GameJam.name.ilike(f"%{args['searchTerm']}%")) \
+        .limit(int(args['resultLimit'])) \
+        .all()
     return {"game_jams": [game_jam.to_dict_teams() for game_jam in game_jams]}
 
 # GET game jam data for a single game jam.
