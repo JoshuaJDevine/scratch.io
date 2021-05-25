@@ -13,6 +13,7 @@ import { getAllSkills, skills } from "./store/skills"
 import { GetTeams, PostTeam, GetTeam, UpdateTeam, DeleteTeam } from "./store/team"
 import { getGameJams, getGameJam, postGameJam, patchGameJam, deleteGameJam } from "./store/game_jam";
 import SampleForm from "./components/chakra_lib/sample-form";
+import SampleModal from "./components/chakra_lib/sample-modal"
 
 
 function App() {
@@ -42,7 +43,7 @@ function App() {
       // await dispatch(GetGame(10))
       // await  dispatch(DeleteGame(12))
       // await  dispatch(UpdateGame(14, "MyTestUpdate"))
-    
+
       await dispatch(getGameJams());
 
       setLoaded(true);
@@ -62,6 +63,9 @@ function App() {
         </Route>
         <Route path="/sample-form" exact={true}>
           <SampleForm />
+        </Route>
+        <Route path="/sample-modal">
+            <SampleModal />
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
