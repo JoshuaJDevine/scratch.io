@@ -13,6 +13,9 @@ import { getAllSkills, skills } from "./store/skills"
 import { GetTeams, PostTeam, GetTeam, UpdateTeam, DeleteTeam } from "./store/team"
 import { getGameJams, getGameJam, postGameJam, patchGameJam, deleteGameJam } from "./store/game_jam";
 import SampleForm from "./components/chakra_lib/sample-form";
+import StubPage from "./components/chakra_lib/stub-page";
+import StubSteamMockup from "./components/chakra_lib/stub-steam-mockup";
+import SampleNavBar from "./components/chakra_lib/navbar-sample";
 
 
 function App() {
@@ -55,13 +58,19 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <SampleNavBar />
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
         <Route path="/sample-form" exact={true}>
           <SampleForm />
+        </Route>
+        <Route path="/stub-page" exact={true}>
+          <StubPage />
+        </Route>
+        <Route path="/stub-steam-mockup" exact={true}>
+          <StubSteamMockup />
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
