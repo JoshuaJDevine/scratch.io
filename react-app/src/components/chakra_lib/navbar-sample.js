@@ -1,7 +1,12 @@
 import React from "react";
-import {Box, Button, Flex, Square, Stack} from "@chakra-ui/react";
+// import { useState } from "react"
+import {Box, Button, Flex, Square, Stack, useDisclosure} from "@chakra-ui/react";
+import WhSignUpBtn from "./sample-modal"
+
 
 export default function SampleNavBar(){
+
+
     return(
         <Box bg="black" w="100%" h="10%" spacing={4} p={4} color="white">
             <Flex color="white">
@@ -19,9 +24,7 @@ export default function SampleNavBar(){
                   <Button colorScheme="white" variant="link">
                     Login / Logout
                   </Button>
-                  <Button colorScheme="white" variant="link">
-                    Signup
-                  </Button>
+                  <WhSignUpBtn  />
                   <Button colorScheme="white" variant="link">
                     Profile
                   </Button>

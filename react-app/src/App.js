@@ -68,9 +68,6 @@ function App() {
         <Route path="/sample-form" exact={true}>
           <SampleForm />
         </Route>
-        <Route path="/sample-modal">
-            <SampleModal />
-        </Route>
         <Route path="/stub-page" exact={true}>
           <StubPage />
         </Route>
@@ -89,6 +86,9 @@ function App() {
         <ProtectedRoute path="/" exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>
+        <Route path="/">
+          Error 404
+        </Route>
       </Switch>
     </BrowserRouter>
   );
