@@ -70,6 +70,7 @@ function App() {
         </Route>
         <Route path="/sample-modal">
             <SampleModal />
+        </Route>
         <Route path="/stub-page" exact={true}>
           <StubPage />
         </Route>
