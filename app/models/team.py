@@ -1,5 +1,7 @@
-from enum import unique
+from .users_teams import users_teams
+from .teams_gamejams import teams_gamejams
 from .db import db
+from .skills_teams import skills_teams
 
 class Team(db.Model):
     __tablename__ = 'teams'
@@ -11,6 +13,22 @@ class Team(db.Model):
     website = db.Column(db.String)
     github = db.Column(db.String)
     recruiting = db.Column(db.Boolean)
+    users = db.relationship(
+        'User',
+        secondary=users_teams,
+        back_populates='teams'
+    )
+    gamejams = db.relationship(
+        'GameJam',
+        secondary=teams_gamejams,
+        back_populates='teams'
+    )
+
+    skills = db.relationship(
+        "Skill",
+        secondary=skills_teams,
+        back_populates="teams"
+    )
 
     def to_dict(self):
         return {
@@ -21,4 +39,38 @@ class Team(db.Model):
             "website": self.website,
             "github": self.github,
             "recruiting": self.recruiting
+        }
+
+
+
+      def to_dict_skills(self):
+        return {
+          "id": self.id,
+          "username": self.username,
+          "email": self.email,
+          "skills": [skill.to_dict() for skill in self.skills]
+    }
+
+    def to_dict_users(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "blurb": self.blurb,
+            "avatar": self.avatar,
+            "website": self.website,
+            "github": self.github,
+            "recruiting": self.recruiting,
+            "users": [user.to_dict() for user in self.users]
+        }
+
+    def to_dict_gamejams(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "blurb": self.blurb,
+            "avatar": self.avatar,
+            "website": self.website,
+            "github": self.github,
+            "recruiting": self.recruiting,
+            "gamejams": [gamejam.to_dict() for gamejam in self.gamejams]
         }

@@ -8,7 +8,7 @@ bp = Blueprint('gamejams', __name__)
 @bp.route('/')
 def get_game_jams():
     game_jams = GameJam.query.all()
-    return {"game_jams": [game_jam.to_dict_games() for game_jam in game_jams]}
+    return {"game_jams": [game_jam.to_dict_teams() for game_jam in game_jams]}
 
 # GET game jam data for a single game jam.
 @bp.route('/<int:id>')

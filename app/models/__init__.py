@@ -6,3 +6,5 @@ from .team import Team
 from .game_jam import GameJam
 from .users_games import users_games
 from .games_gamejams import games_gamejams
+from .skills_users import skills_users
+from .skills_teams import skills_teams

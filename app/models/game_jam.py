@@ -1,3 +1,4 @@
+from .teams_gamejams import teams_gamejams
 from .db import db
 from .games_gamejams import games_gamejams
 
@@ -17,6 +18,11 @@ class GameJam(db.Model):
     games = db.relationship(
         "Game",
         secondary=games_gamejams,
+        back_populates='gamejams'
+    )
+    teams = db.relationship(
+        'Team',
+        secondary=teams_gamejams,
         back_populates='gamejams'
     )
 
@@ -47,4 +53,19 @@ class GameJam(db.Model):
             "startDate": self.startDate,
             "endDate": self.endDate,
             "games": [game.to_dict() for game in self.games]
+        }
+
+    def to_dict_teams(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "theme": self.theme,
+            "blurb": self.blurb,
+            "avatar": self.avatar,
+            "website": self.website,
+            "github": self.github,
+            "userLimit": self.userLimit,
+            "startDate": self.startDate,
+            "endDate": self.endDate,
+            "team": [team.to_dict() for team in self.teams]
         }
