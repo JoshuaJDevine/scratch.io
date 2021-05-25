@@ -4,6 +4,7 @@ from .games import seed_games, undo_games
 from .teams import seed_teams, undo_teams
 from .skills import seed_skills, undo_skills
 from .game_jams import seed_game_jams, undo_game_jams
+from .tags import seed_tags, undo_tags
 
 
 # Creates a seed group to hold our commands
@@ -18,6 +19,7 @@ def seed():
     seed_skills()
     seed_teams()
     seed_game_jams()
+    seed_tags()
     # Add other seed functions here
 
 # Creates the `flask seed undo` command
@@ -28,4 +30,5 @@ def undo():
     undo_skills()
     undo_teams()
     undo_game_jams()
+    undo_tags()
     # Add other undo functions here
