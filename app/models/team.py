@@ -1,6 +1,7 @@
 from .users_teams import users_teams
 from .teams_gamejams import teams_gamejams
 from .db import db
+from .skills_teams import skills_teams
 
 class Team(db.Model):
     __tablename__ = 'teams'
@@ -23,6 +24,12 @@ class Team(db.Model):
         back_populates='teams'
     )
 
+    skills = db.relationship(
+        "Skill",
+        secondary=skills_teams,
+        back_populates="teams"
+    )
+
     def to_dict(self):
         return {
             "id": self.id,
@@ -33,6 +40,16 @@ class Team(db.Model):
             "github": self.github,
             "recruiting": self.recruiting
         }
+
+
+
+      def to_dict_skills(self):
+        return {
+          "id": self.id,
+          "username": self.username,
+          "email": self.email,
+          "skills": [skill.to_dict() for skill in self.skills]
+    }
 
     def to_dict_users(self):
         return {
