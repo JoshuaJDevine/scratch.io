@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@brainhubeu/react-carousel": "^2.0.4",
     "@chakra-ui/react": "^1.6.2",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
@@ -13,13 +14,17 @@
     "framer-motion": "^4.1.17",
     "http-proxy-middleware": "^1.0.5",
     "react": "^17.0.0",
+    "react-alice-carousel": "^2.5.1",
     "react-dom": "^17.0.0",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "react-slick": "^0.28.1",
+    "react-touch-carousel": "^0.9.4",
     "redux": "^4.1.0",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "slick-carousel": "^1.8.1"
   },
   "scripts": {
     "start": "react-scripts start",

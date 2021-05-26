@@ -1,5 +1,6 @@
 import React from "react";
 import GameJamCard from "./gamejam-card"
+import Carousel from "./carousel";
 
 
 export default function AnimatedGrid() {
@@ -29,20 +30,8 @@ export default function AnimatedGrid() {
           <GameJamCard cardStyle="card" cardProperties={cardProperties} />
           <GameJamCard cardStyle="card" cardProperties={cardProperties} />
         </section>
-        <section className="animated-grid">
-          <div className="card">a</div>
-          <div className="card">b</div>
-          <div className="card">c</div>
-          <div className="card">d</div>
-          <div className="card">e</div>
-          <div className="card">f</div>
-          <div className="card">g</div>
-          <div className="card">h</div>
-          <div className="card">i</div>
-          <div className="card">j</div>
-          <div className="card">k</div>
-          <div className="card">l</div>
-          <div className="card">main</div>
+        <section>
+          <Carousel />
         </section>
       </div>
     )
