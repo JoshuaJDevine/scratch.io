@@ -21,7 +21,18 @@ export default function AnimatedGrid2() {
           <FloatingCard cardStyle="floating_card" cardProperties={cardProperties} />
           <FloatingCard cardStyle="floating_card" cardProperties={cardProperties} />
           <FloatingCard cardStyle="floating_card" cardProperties={cardProperties} />
-
+        </section>
+        <section>
+            <div>
+                <p><code>wrapAround: true</code></p>
+                <div className="gallery js-flickity" data-flickity-options="{ &quot;wrapAround&quot;: true }">
+                  <div className="gallery-cell" />
+                  <div className="gallery-cell" />
+                  <div className="gallery-cell" />
+                  <div className="gallery-cell" />
+                  <div className="gallery-cell" />
+                </div>
+            </div>
         </section>
       </div>
     )

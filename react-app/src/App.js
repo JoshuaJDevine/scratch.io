@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
-import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
@@ -12,14 +11,19 @@ import { GetGames, PostGame, GetGame, DeleteGame, UpdateGame } from "./store/gam
 import { getAllSkills, skills } from "./store/skills"
 import { GetTeams, PostTeam, GetTeam, UpdateTeam, DeleteTeam } from "./store/team"
 import { getGameJams, getGameJam, postGameJam, patchGameJam, deleteGameJam } from "./store/game_jam";
+
+
+
+//***********
+//Test imports
 import SampleForm from "./components/chakra_lib/sample-form";
-import SampleModal from "./components/chakra_lib/sample-modal"
 import StubPage from "./components/chakra_lib/stub-page";
 import StubSteamMockup from "./components/chakra_lib/stub-steam-mockup";
 import SampleNavBar from "./components/chakra_lib/navbar-sample";
 import AnimatedGrid from "./components/chakra_lib/test-anime-grid"
 import AnimatedGrid2 from "./components/chakra_lib/test-anime-grid2"
 import FloatingCard from "./components/chakra_lib/floating-card";
+import Podium from "./components/chakra_lib/podium";
 
 
 
@@ -68,26 +72,8 @@ function App() {
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
-        <Route path="/sample-form" exact={true}>
-          <SampleForm />
-        </Route>
-        <Route path="/stub-page" exact={true}>
-          <StubPage />
-        </Route>
-        <Route path="/stub-steam-mockup" exact={true}>
-          <StubSteamMockup />
-        </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
-        </Route>
-        <Route path="/anime2">
-            <AnimatedGrid2 />
-        </Route>
-        <Route path="/anime">
-            <AnimatedGrid />
-        </Route>
-        <Route path="/carousel">
-            <FloatingCard />
         </Route>
         <ProtectedRoute path="/users" exact={true} >
           <UsersList/>
@@ -98,6 +84,36 @@ function App() {
         <ProtectedRoute path="/" exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>
+
+
+
+
+
+        {/*TEST ROUTES*/}
+        <Route path="/sample-form" exact={true}>
+          <SampleForm />
+        </Route>
+        <Route path="/stub-page" exact={true}>
+          <StubPage />
+        </Route>
+        <Route path="/stub-steam-mockup" exact={true}>
+          <StubSteamMockup />
+        </Route>
+        <Route path="/anime2">
+            <AnimatedGrid2 />
+        </Route>
+        <Route path="/anime">
+            <AnimatedGrid />
+        </Route>
+        <Route path="/carousel">
+            <FloatingCard />
+        </Route>
+        <Route path="/winner-podium">
+            <Podium />
+        </Route>
+
+
+        {/*HANDLE ERRORS*/}
         <Route path="/">
           Error 404
         </Route>
