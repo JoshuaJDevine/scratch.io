@@ -20,7 +20,7 @@ import SampleNavBar from "./components/chakra_lib/navbar-sample";
 import AnimatedGrid from "./components/chakra_lib/test-anime-grid"
 import AnimatedGrid2 from "./components/chakra_lib/test-anime-grid2"
 import FloatingCard from "./components/chakra_lib/floating-card";
-
+import SocialProfileWithImage from "./components/chakra_lib/sample-profile";
 
 
 function App() {
@@ -94,6 +94,9 @@ function App() {
         </Route>
         <Route path="/carousel">
             <FloatingCard />
+        </Route>
+        <Route path="/test-profile">
+            <SocialProfileWithImage />
         </Route>
         <ProtectedRoute path="/users" exact={true} >
           <UsersList/>
