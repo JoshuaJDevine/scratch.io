@@ -6,12 +6,12 @@ import {useSelector} from "react-redux";
 const NavBar = () => {
     const user = useSelector(state => state.session.user)
   const games = useSelector(state => state.games)
-        console.log("--------------------------------------")
-      console.log("--------------------------------------")
-      console.log("--------------------------------------")
-      console.log(games)
-      console.log()
-      console.log(user)
+      //   console.log("--------------------------------------")
+      // console.log("--------------------------------------")
+      // console.log("--------------------------------------")
+      // console.log(games)
+      // console.log()
+      // console.log(user)
 
   return (
     <nav>
@@ -38,6 +38,11 @@ const NavBar = () => {
         </li>
         <li>
           <LogoutButton />
+        </li>
+        <li>
+          <NavLink to="/test-profile" exact={true} activeClassName="active">
+            Profile
+          </NavLink>
         </li>
       </ul>
     </nav>

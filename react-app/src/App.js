@@ -20,7 +20,7 @@ import SampleNavBar from "./components/chakra_lib/navbar-sample";
 import AnimatedGrid from "./components/chakra_lib/test-anime-grid"
 import AnimatedGrid2 from "./components/chakra_lib/test-anime-grid2"
 import FloatingCard from "./components/chakra_lib/floating-card";
-
+import SocialProfileWithImage from "./components/chakra_lib/sample-profile";
 
 
 function App() {
@@ -38,7 +38,7 @@ function App() {
       // await dispatch(getTeam(1));
       // await dispatch(getTeams());
       // await dispatch(getAllSkills());
-      await dispatch(GetGames());
+      // await dispatch(GetGames());
 
       // await dispatch(GetTeam(1));
       // await dispatch(GetTeams());
@@ -54,9 +54,7 @@ function App() {
 
       // await dispatch(getGameJams());
 
-      await dispatch(getGameJams({
-
-      }));
+      // await dispatch(getGameJams());
 
 
       setLoaded(true);
@@ -94,6 +92,9 @@ function App() {
         </Route>
         <Route path="/carousel">
             <FloatingCard />
+        </Route>
+        <Route path="/test-profile">
+            <SocialProfileWithImage />
         </Route>
         <ProtectedRoute path="/users" exact={true} >
           <UsersList/>
