@@ -38,7 +38,7 @@ function App() {
       // await dispatch(getTeam(1));
       // await dispatch(getTeams());
       // await dispatch(getAllSkills());
-      await dispatch(GetGames());
+      // await dispatch(GetGames());
 
       // await dispatch(GetTeam(1));
       // await dispatch(GetTeams());
@@ -54,9 +54,7 @@ function App() {
 
       // await dispatch(getGameJams());
 
-      await dispatch(getGameJams({
-
-      }));
+      // await dispatch(getGameJams());
 
 
       setLoaded(true);

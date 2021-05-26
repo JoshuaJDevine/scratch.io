@@ -1,11 +1,13 @@
 import React from "react";
 // import { useState } from "react"
-import {Box, Button, Flex, Square, Stack, useDisclosure} from "@chakra-ui/react";
+import {Box, Button, Flex, Square, Stack} from "@chakra-ui/react";
 import WhSignUpBtn from "./sample-modal"
-
+import { useHistory } from "react-router-dom";
+import SocialProfileWithImage from "./sample-profile"
 
 export default function SampleNavBar(){
 
+  const history = useHistory()
 
     return(
         <Box bg="black" w="100%" h="60px"  spacing={4} p={4} color="white" >
@@ -25,8 +27,8 @@ export default function SampleNavBar(){
                     Login / Logout
                   </Button>
                   <WhSignUpBtn  />
-                  <Button colorScheme="white" variant="link">
-                    Profile
+                  <Button colorScheme="white" variant="link" onClick={() => history.push("/test-profile")}>
+                        Profile
                   </Button>
                 </Stack>
               </Square>
