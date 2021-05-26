@@ -17,7 +17,6 @@ def seed_users():
     db.session.add(user2)
     db.session.add(user3)
 
-
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE the users table.

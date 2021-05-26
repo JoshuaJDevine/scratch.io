@@ -10,21 +10,41 @@ def seed_join_tables():
     skills = Skill.query.all()
     tags = Tag.query.all()
 
+    #skills_teams
+    for team in teams:
+        samples = random.sample(skills, k = 2)
+        for skill in samples:
+            team.skills.append(skill)
 
-    dct = {}
-    #games_gamejams
+    #skills_users
+    for user in users:
+        samples = random.sample(skills, k = 2)
+        for skill in samples:
+            user.skills.append(skill)
+
+    #tags_gamejams
+    for gamejam in gamejams:
+        samples = random.sample(tags, k = 4)
+        for tag in samples:
+            gamejam.tags.append(tag)
+
+    #tags_games
     for game in games:
-        print("GAME ----->", game)
-        gamejam = random.choice(gamejams)
-        print("GAMEJAM ----->", gamejam)
-        game.gamejams.append(gamejam)
-        gamejam.games.append(game)
+        samples = random.sample(tags, k = 4)
+        for tag in samples:
+            game.tags.append(tag)
+
+    #teams_gamejams
+    for team in teams:
+        samples = random.sample(gamejams, k = 3)
+        for gamejam in samples:
+            team.gamejams.append(gamejam)
+
+    #users_teams
+    for team in teams:
+        samples = random.sample(users, k=2)
+        team.captainId = samples[0].id
+        for user in samples:
+            team.users.append(user)
 
     db.session.commit()
-    #skills_teams
-    #skills_users
-    #tags_gamejams
-    #tags_games
-    #teams_gamejams
-    #users_games
-    #users_teams
