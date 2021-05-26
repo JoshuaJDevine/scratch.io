@@ -52,10 +52,10 @@ function App() {
       // await  dispatch(UpdateGame(14, "MyTestUpdate"))
 
 
-      await dispatch(getGameJams());
+      // await dispatch(getGameJams());
 
       await dispatch(getGameJams({
-        
+
       }));
 
 
