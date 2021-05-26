@@ -12,6 +12,7 @@ import { GetGames, PostGame, GetGame, DeleteGame, UpdateGame } from "./store/gam
 import { getAllSkills, skills } from "./store/skills"
 import { GetTeams, PostTeam, GetTeam, UpdateTeam, DeleteTeam } from "./store/team"
 import { getGameJams, getGameJam, postGameJam, patchGameJam, deleteGameJam } from "./store/game_jam";
+import SampleForm from "./components/chakra_lib/sample-form";
 
 
 function App() {
@@ -60,6 +61,9 @@ function App() {
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm />
+        </Route>
+        <Route path="/sample-form" exact={true}>
+          <SampleForm />
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
