@@ -18,6 +18,7 @@ import StubPage from "./components/chakra_lib/stub-page";
 import StubSteamMockup from "./components/chakra_lib/stub-steam-mockup";
 import SampleNavBar from "./components/chakra_lib/navbar-sample";
 import AnimatedGrid from "./components/chakra_lib/test-anime-grid"
+import FloatinCard from "./components/chakra_lib/floating-card";
 
 
 
@@ -80,6 +81,9 @@ function App() {
         </Route>
         <Route path="/anime">
             <AnimatedGrid />
+        </Route>
+        <Route path="/carousel">
+            <FloatinCard />
         </Route>
         <ProtectedRoute path="/users" exact={true} >
           <UsersList/>
