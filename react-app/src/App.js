@@ -24,7 +24,7 @@ import AnimatedGrid from "./components/chakra_lib/test-anime-grid"
 import AnimatedGrid2 from "./components/chakra_lib/test-anime-grid2"
 import FloatingCard from "./components/chakra_lib/floating-card";
 import Podium from "./components/chakra_lib/podium";
-
+import SocialProfileWithImage from "./components/chakra_lib/sample-profile";
 
 
 function App() {
@@ -41,8 +41,8 @@ function App() {
 
       // await dispatch(getTeam(1));
       // await dispatch(getTeams());
-      await dispatch(getAllSkills());
-      await dispatch(GetGames());
+      // await dispatch(getAllSkills());
+      // await dispatch(GetGames());
 
       // await dispatch(GetTeam(1));
       // await dispatch(GetTeams());
@@ -55,7 +55,11 @@ function App() {
       // await  dispatch(DeleteGame(12))
       // await  dispatch(UpdateGame(14, "MyTestUpdate"))
 
-      await dispatch(getGameJams());
+
+      // await dispatch(getGameJams());
+
+      // await dispatch(getGameJams());
+
 
       setLoaded(true);
     })();
@@ -114,6 +118,18 @@ function App() {
 
 
         {/*HANDLE ERRORS*/}
+        <Route path="/test-profile">
+            <SocialProfileWithImage />
+        </Route>
+        <ProtectedRoute path="/users" exact={true} >
+          <UsersList/>
+        </ProtectedRoute>
+        <ProtectedRoute path="/users/:userId" exact={true} >
+          <User />
+        </ProtectedRoute>
+        <ProtectedRoute path="/" exact={true} >
+          <h1>My Home Page</h1>
+        </ProtectedRoute>
         <Route path="/">
           Error 404
         </Route>

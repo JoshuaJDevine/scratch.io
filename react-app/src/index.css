@@ -1,8 +1,12 @@
 /* TODO Add site wide styles */
 body {
   background: #000;
+
 }
 
+.boxes-for-days {
+  margin: 0 15px;
+}
 
 .animated-grid {
     height: 85vh;
@@ -271,19 +275,7 @@ margin-bottom: 10px;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*Carousel-Simple*/
 section {
   background: #f4f4f4;
   padding: 50px 0;
@@ -463,11 +455,6 @@ section {
   height: 100%;
   object-fit: cover;
 }
-
-
-
-
-
 
 
 

@@ -1,6 +1,6 @@
+from .db import db
 from .users_teams import users_teams
 from .teams_gamejams import teams_gamejams
-from .db import db
 from .skills_teams import skills_teams
 
 class Team(db.Model):
@@ -13,25 +13,45 @@ class Team(db.Model):
     website = db.Column(db.String)
     github = db.Column(db.String)
     recruiting = db.Column(db.Boolean)
+    captainId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
+
+    captain = db.relationship(
+        "User",
+        back_populates="owned_teams"
+    )
     users = db.relationship(
         'User',
         secondary=users_teams,
         back_populates='teams'
     )
+
     gamejams = db.relationship(
         'GameJam',
         secondary=teams_gamejams,
         back_populates='teams'
     )
-
     skills = db.relationship(
         "Skill",
         secondary=skills_teams,
         back_populates="teams"
     )
+    games = db.relationship(
+        "Game",
+        backref='teams',
+        lazy=True
+    )
 
-    def to_dict(self):
-        return {
+    def get_joined_users(self):
+        return [user.to_dict() for user in self.users]
+
+    def get_joined_gamejams(self):
+        return [gamejam.to_dict() for gamejam in self.gamejams]
+
+    def get_joined_skills(self):
+        return [skill.to_dict() for skill in self.skills]
+
+    def to_dict(self, users=False, gamejams=False, skills=False):
+        dct = {
             "id": self.id,
             "name": self.name,
             "blurb": self.blurb,
@@ -41,6 +61,11 @@ class Team(db.Model):
             "recruiting": self.recruiting
         }
 
+        if users:
+            dct["users"] = self.get_joined_users()
+
+        if gamejams:
+            dct["gamejams"] = self.get_joined_gamejams()
 
 
     def to_dict_skills(self):
@@ -51,26 +76,8 @@ class Team(db.Model):
           "skills": [skill.to_dict() for skill in self.skills]
     }
 
-    def to_dict_users(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "blurb": self.blurb,
-            "avatar": self.avatar,
-            "website": self.website,
-            "github": self.github,
-            "recruiting": self.recruiting,
-            "users": [user.to_dict() for user in self.users]
-        }
+        if skills:
+            dct["skills"] = self.get_joined_skills()
 
-    def to_dict_gamejams(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "blurb": self.blurb,
-            "avatar": self.avatar,
-            "website": self.website,
-            "github": self.github,
-            "recruiting": self.recruiting,
-            "gamejams": [gamejam.to_dict() for gamejam in self.gamejams]
-        }
+
+        return dct

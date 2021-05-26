@@ -9,7 +9,8 @@ def seed_teams():
         avatar = "www.teamavatar.com",
         website = "www.teamwebsite.com",
         github = "www.github.com/team",
-        recruiting = False
+        recruiting = False,
+        captainId = 1
         )
         db.session.add(newTeam)
     db.session.commit()
