@@ -1,52 +1,36 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
-import {useSelector} from "react-redux";
+import React from "react";
+import {Box, Button, Flex, Square, Stack} from "@chakra-ui/react";
+import SignUp from "./SignUp"
+import Login from "./Login"
+import { useHistory } from "react-router-dom";
 
-const NavBar = () => {
-    const user = useSelector(state => state.session.user)
-  const games = useSelector(state => state.games)
-      //   console.log("--------------------------------------")
-      // console.log("--------------------------------------")
-      // console.log("--------------------------------------")
-      // console.log(games)
-      // console.log()
-      // console.log(user)
 
-  return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink to="/" exact={true} activeClassName="active">
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/login" exact={true} activeClassName="active">
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
-            Sign Up
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/users" exact={true} activeClassName="active">
-            Users
-          </NavLink>
-        </li>
-        <li>
-          <LogoutButton />
-        </li>
-        <li>
-          <NavLink to="/test-profile" exact={true} activeClassName="active">
-            Profile
-          </NavLink>
-        </li>
-      </ul>
-    </nav>
-  );
+export default function NavBar(){
+
+  const history = useHistory()
+
+    return(
+        <Box bg="black" w="100%" h="60px"  spacing={4} p={4} color="white" >
+            <Flex color="white">
+              <Square size="100x">
+                <Stack direction="row" spacing={4} align="center">
+                  <Button colorScheme="white" variant="link">
+                    Home
+                  </Button>
+                    <Button colorScheme="white" variant="link">
+                    Gamejams
+                  </Button>
+                  <Button colorScheme="white" variant="link">
+                    Games
+                  </Button>
+                  <Login />
+                  <SignUp  />
+                  <Button colorScheme="white" variant="link" onClick={() => history.push("/test-profile")}>
+                        Profile
+                  </Button>
+                </Stack>
+              </Square>
+            </Flex>
+        </Box>
+        )
 }
-
-export default NavBar;
