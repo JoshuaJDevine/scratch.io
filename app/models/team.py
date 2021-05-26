@@ -67,7 +67,17 @@ class Team(db.Model):
         if gamejams:
             dct["gamejams"] = self.get_joined_gamejams()
 
+
+    def to_dict_skills(self):
+        return {
+          "id": self.id,
+          "username": self.username,
+          "email": self.email,
+          "skills": [skill.to_dict() for skill in self.skills]
+    }
+
         if skills:
             dct["skills"] = self.get_joined_skills()
+
 
         return dct
