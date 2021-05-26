@@ -1,8 +1,8 @@
-"""creating tables
+"""create tables
 
-Revision ID: 1803ab1d0ed3
+Revision ID: 7e6a1ffcdc81
 Revises: 
-Create Date: 2021-05-25 16:16:56.551252
+Create Date: 2021-05-26 14:42:26.847940
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '1803ab1d0ed3'
+revision = '7e6a1ffcdc81'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -31,16 +31,6 @@ def upgrade():
     sa.Column('endDate', sa.Date(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('games',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=255), nullable=False),
-    sa.Column('blurb', sa.Text(), nullable=True),
-    sa.Column('avatarUrl', sa.String(length=255), nullable=True),
-    sa.Column('githubUrl', sa.String(length=255), nullable=True),
-    sa.Column('websiteUrl', sa.String(length=255), nullable=True),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('name')
-    )
     op.create_table('skills',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
@@ -51,17 +41,6 @@ def upgrade():
     sa.Column('name', sa.String(length=25), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('teams',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=100), nullable=False),
-    sa.Column('blurb', sa.Text(), nullable=True),
-    sa.Column('avatar', sa.String(), nullable=True),
-    sa.Column('website', sa.String(), nullable=True),
-    sa.Column('github', sa.String(), nullable=True),
-    sa.Column('recruiting', sa.Boolean(), nullable=True),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('name')
-    )
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=40), nullable=False),
@@ -70,20 +49,6 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
-    )
-    op.create_table('games_gamejams',
-    sa.Column('gameId', sa.Integer(), nullable=True),
-    sa.Column('gameJamId', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['gameId'], ['games.id'], ),
-    sa.ForeignKeyConstraint(['gameJamId'], ['gamejams.id'], )
-    )
-    op.create_table('skills_teams',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('teamId', sa.Integer(), nullable=True),
-    sa.Column('skillId', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['skillId'], ['skills.id'], ),
-    sa.ForeignKeyConstraint(['teamId'], ['teams.id'], ),
-    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('skills_users',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -99,11 +64,42 @@ def upgrade():
     sa.ForeignKeyConstraint(['gameJamId'], ['gamejams.id'], ),
     sa.ForeignKeyConstraint(['tagId'], ['tags.id'], )
     )
-    op.create_table('tags_games',
-    sa.Column('tagId', sa.Integer(), nullable=True),
-    sa.Column('gameId', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['gameId'], ['games.id'], ),
-    sa.ForeignKeyConstraint(['tagId'], ['tags.id'], )
+    op.create_table('teams',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=100), nullable=False),
+    sa.Column('blurb', sa.Text(), nullable=True),
+    sa.Column('avatar', sa.String(), nullable=True),
+    sa.Column('website', sa.String(), nullable=True),
+    sa.Column('github', sa.String(), nullable=True),
+    sa.Column('recruiting', sa.Boolean(), nullable=True),
+    sa.Column('captainId', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['captainId'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('name')
+    )
+    op.create_table('games',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=255), nullable=False),
+    sa.Column('blurb', sa.Text(), nullable=True),
+    sa.Column('avatarUrl', sa.String(length=255), nullable=True),
+    sa.Column('githubUrl', sa.String(length=255), nullable=True),
+    sa.Column('websiteUrl', sa.String(length=255), nullable=True),
+    sa.Column('userId', sa.Integer(), nullable=True),
+    sa.Column('teamId', sa.Integer(), nullable=True),
+    sa.Column('gameJamId', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['gameJamId'], ['gamejams.id'], ),
+    sa.ForeignKeyConstraint(['teamId'], ['teams.id'], ),
+    sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('name')
+    )
+    op.create_table('skills_teams',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('teamId', sa.Integer(), nullable=True),
+    sa.Column('skillId', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['skillId'], ['skills.id'], ),
+    sa.ForeignKeyConstraint(['teamId'], ['teams.id'], ),
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('teams_gamejams',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -111,14 +107,6 @@ def upgrade():
     sa.Column('gameJamId', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['gameJamId'], ['gamejams.id'], ),
     sa.ForeignKeyConstraint(['teamId'], ['teams.id'], ),
-    sa.PrimaryKeyConstraint('id')
-    )
-    op.create_table('users_games',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('userId', sa.Integer(), nullable=True),
-    sa.Column('gameId', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['gameId'], ['games.id'], ),
-    sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('users_teams',
@@ -129,23 +117,27 @@ def upgrade():
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('tags_games',
+    sa.Column('tagId', sa.Integer(), nullable=True),
+    sa.Column('gameId', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['gameId'], ['games.id'], ),
+    sa.ForeignKeyConstraint(['tagId'], ['tags.id'], )
+    )
     # ### end Alembic commands ###
 
 
 def downgrade():
     # ### commands auto generated by Alembic - please adjust! ###
-    op.drop_table('users_teams')
-    op.drop_table('users_games')
-    op.drop_table('teams_gamejams')
     op.drop_table('tags_games')
+    op.drop_table('users_teams')
+    op.drop_table('teams_gamejams')
+    op.drop_table('skills_teams')
+    op.drop_table('games')
+    op.drop_table('teams')
     op.drop_table('tags_gamejams')
     op.drop_table('skills_users')
-    op.drop_table('skills_teams')
-    op.drop_table('games_gamejams')
     op.drop_table('users')
-    op.drop_table('teams')
     op.drop_table('tags')
     op.drop_table('skills')
-    op.drop_table('games')
     op.drop_table('gamejams')
     # ### end Alembic commands ###

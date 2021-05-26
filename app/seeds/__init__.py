@@ -16,10 +16,10 @@ seed_commands = AppGroup('seed')
 @seed_commands.command('all')
 def seed():
     seed_users()
-    seed_games()
-    seed_skills()
     seed_teams()
     seed_game_jams()
+    seed_games()
+    seed_skills()
     seed_tags()
     seed_join_tables()
     # Add other seed functions here
