@@ -29,8 +29,13 @@ const deleteGameJamAction = payload => ({
     payload
 })
 
-export const getGameJams = () => async (dispatch) => {
-    const res = await fetch(`/api/gamejams`);
+export const getGameJams = query => async (dispatch) => {
+    let url = `/api/gamejams?`;
+
+    url += `searchTerm=${query.searchTerm || ""}&`;
+    url += `resultLimit=${query.resultLimit || 25}&`;
+
+    const res = await fetch(url);
     if (res.ok) {
         const data = await res.json();
         dispatch(getGameJamsAction(data));
