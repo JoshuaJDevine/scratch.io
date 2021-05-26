@@ -25,7 +25,7 @@ def games():
     # for i in users_games[0]:
     #     Obj["username"] = i.username
 
-    return {"games": [game.to_dict_users() for game in games]}
+    return {"games": [game.to_dict(users=True) for game in games]}
 
 
 # POST /api/games/  ---------  Create game

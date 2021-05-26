@@ -22,14 +22,11 @@ class User(db.Model, UserMixin):
     secondary=users_games,
     back_populates="users"
   )
-
   skills = db.relationship(
     "Skill",
     secondary=skills_users,
     back_populates="users"
   )
-
-  
   teams = db.relationship(
     "Team",
     secondary=users_teams,
@@ -49,35 +46,56 @@ class User(db.Model, UserMixin):
 
   def check_password(self, password):
     return check_password_hash(self.password, password)
+  
+
+  def get_joined_games(self):
+    return [game.to_dict() for game in self.games]
+
+  def get_joined_teams(self):
+    return [team.to_dict() for team in self.teams]
+
+  def get_joined_skills(self):
+    return [skill.to_dict() for skill in self.skills]
 
 
-  def to_dict(self):
-    return {
+  def to_dict(self, games=False, teams=False, skills=False):
+    dct = {
       "id": self.id,
       "username": self.username,
       "email": self.email
     }
 
-  def to_dict_games(self):
-    return {
-      "id": self.id,
-      "username": self.username,
-      "email": self.email,
-      "games": [game.to_dict() for game in self.games]
-    }
+    if games:
+      dct["games"] = self.get_joined_games()
+
+    if teams:
+      dct["teams"] = self.get_joined_teams()
+    
+    if skills:
+        dct["skills"] = self.get_joined_skills()
+
+    return dct
+
+  # def to_dict_games(self):
+  #   return {
+  #     "id": self.id,
+  #     "username": self.username,
+  #     "email": self.email,
+  #     "games": [game.to_dict() for game in self.games]
+  #   }
 
 
-  def to_dict_skills(self):
-    return {
-      "id": self.id,
-      "username": self.username,
-      "email": self.email,
-      "skills": [skill.to_dict() for skill in self.skills]
-    }
-  def to_dict_teams(self):
-    return {
-        "id": self.id,
-        "username": self.username,
-        "email": self.email,
-        "team": [team.to_dict() for team in self.teams]
-    }
+  # def to_dict_skills(self):
+  #   return {
+  #     "id": self.id,
+  #     "username": self.username,
+  #     "email": self.email,
+  #     "skills": [skill.to_dict() for skill in self.skills]
+  #   }
+  # def to_dict_teams(self):
+  #   return {
+  #       "id": self.id,
+  #       "username": self.username,
+  #       "email": self.email,
+  #       "team": [team.to_dict() for team in self.teams]
+  #   }
