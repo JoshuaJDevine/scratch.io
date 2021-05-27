@@ -46,6 +46,7 @@ function App() {
 
       // await dispatch(GetTeam(1));
       // await dispatch(GetTeams());
+      await dispatch(PostTeam())
       // await dispatch(AddNewMember(2, 3))
 
 
@@ -57,7 +58,6 @@ function App() {
       // await dispatch(GetGame(10))
       // await  dispatch(DeleteGame(12))
       // await  dispatch(UpdateGame(14, "MyTestUpdate"))
-      await dispatch(GetTeams(gameJamQuery({getJoinedUsers: true})))
       // await dispatch(getGameJams({
       //   searchTerm: "n",
       //   getJoinedGames: true,

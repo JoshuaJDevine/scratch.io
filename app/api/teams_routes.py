@@ -24,13 +24,20 @@ def teams():
 ############################ GET ONE TEAM ###############################
 @teams_routes.route('/<int:id>')
 def team(id):
+    args = request.args
+    games = True if args["getJoinedGames"] == 'true' else False
+    users = True if args["getJoinedUsers"] == 'true' else False
+    gamejams = True if args["getJoinedGameJams"] == 'true' else False
+    skills = True if args["getJoinedSkills"] == 'true' else False
+
     team = Team.query.get(id)
-    return team.to_dict()
+    return team.to_dict(games=games, users=users, gamejams=gamejams, skills=skills)
 
 
 ########################## POST NEW TEAM ################################
 @teams_routes.route('/', methods=['POST'])
-def new_team():
+def new_team(userId):
+    print("REQUEST JSON------->", request.json)
     form = NewTeamForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -40,7 +47,8 @@ def new_team():
             avatar=form.data['avatar'],
             website=form.data['website'],
             github=form.data['github'],
-            recruiting=form.data['recruiting']
+            recruiting=form.data['recruiting'],
+            captainId=form.data['captainId'] #Don't know if will grab user Id in form or thunk yet.
         )
         db.session.add(team)
         db.session.commit()
@@ -62,7 +70,10 @@ def update_team(id):
         team_to_update.website = form.data['website'],
         team_to_update.github = form.data['github'],
         team_to_update.recruiting = form.data['recruiting']
+        team_to_update.captainId = form.data['captainId']
+
         db.session.commit()
+        
         return team_to_update.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
