@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAllSkills, skills } from "../store/skills";
+import { PostTeam } from "../store/team"
 import {
     Modal,
     ModalOverlay,
@@ -32,10 +33,11 @@ export default function CreateTeam() {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const skills = useSelector(state => state.skillsReducer.skills.skills)
+    const dispatch = useDispatch()
     // const [allSkills, setAllSkills] = useState(skills)
-    const skillsCollection = [];
+    const wantedSkillsCollection = [];
     skills.forEach((el) => {
-        skillsCollection.push({value: el.id, label: el.name})
+        wantedSkillsCollection.push({value: el.id, label: el.name})
     })
 
     //Revisit validators and add for each field
@@ -43,8 +45,6 @@ export default function CreateTeam() {
         let error
         if (!value) {
           error = "Name is required"
-        } else if (value.toLowerCase() !== "naruto") {
-          error = "Jeez! You're not a fan 😱"
         }
         return error
     }
@@ -68,13 +68,11 @@ export default function CreateTeam() {
                               avatar: "testAvatarUrl",
                               github: "testGithubUrl",
                               recruiting: false,
-                              skillsCollection: []
+                              wantedSkillsCollection: []
                           }}
-                          onSubmit={(values, actions) => {
-                            setTimeout(() => {
-                              alert(JSON.stringify(values, null, 2))
-                              actions.setSubmitting(false)
-                            }, 100)
+                          onSubmit={async (values) => {
+                              console.log('VALUES -------->', values)
+                              await dispatch(PostTeam(values))
                           }}
                         >
                           {(props) => (
@@ -108,20 +106,20 @@ export default function CreateTeam() {
 
 
                                 <FieldArray
-                                    name="skillsCollection"
+                                    name="wantedSkillsCollection"
                                     render={arrayHelpers => (
                                         <div>
-                                            {skillsCollection.map(skill => (
+                                            {wantedSkillsCollection.map(skill => (
                                                 <label key={skill.value}>
                                                     <input
-                                                        name="skillsCollection"
+                                                        name="wantedSkillsCollection"
                                                         type="checkbox"
                                                         value={skill}
                                                         onChange={e => {
                                                           if (e.target.checked) {
                                                             arrayHelpers.push(skill.value);
                                                           } else {
-                                                            const idx = skillsCollection.indexOf(skill.value);
+                                                            const idx = wantedSkillsCollection.indexOf(skill.value);
                                                             arrayHelpers.remove(idx);
                                                           }
                                                         }}

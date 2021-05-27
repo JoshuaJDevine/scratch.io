@@ -3,8 +3,8 @@ const POST_TEAM = "team/POST_TEAM" //Create a team
 const GET_TEAM = "team/GET_TEAM" //Get a team
 const UPDATE_TEAM = "team/UPDATE_TEAM" //Update a team
 const DELETE_TEAM = "team/DELET_TEAM" //Delete a team
-const POST_NEW_MEMBER ="team/POST_NEW_MEMBER"
-
+const POST_NEW_MEMBER = "team/POST_NEW_MEMBER"
+const CHANGE_WANTED_SKILLS = "team/CHANGE_WANTED_SKILLS"
 
 
 
@@ -32,6 +32,10 @@ const addNewMember = (user) => ({
     type: POST_NEW_MEMBER,
     payload: user
 })
+const changeWantedSkills = (skills) => ({
+    type: CHANGE_WANTED_SKILLS,
+    payload: skills
+})
 
 
 
@@ -55,17 +59,34 @@ export const GetTeams = query => async (dispatch) => {
     }
 }
 
-export const PostTeam = (name) => async (dispatch) => {
-    const response = await fetch('/api/teams/', {
+export const PostTeam = (values) => async (dispatch) => {
+    const {
+            name,
+            blurb,
+            avatar,
+            website,
+            github,
+            recruiting
+        } = values
+    const response = await fetch('/api/teams/', {      
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            name
+            name,
+            blurb,
+            avatar,
+            website,
+            github,
+            recruiting
         }),
     });
     const data = await response.json();
+    console.log('DATA --------->', data)
+    // teamId = data.id
+    // dispatch(changeWantedSkills(teamId, wantedSkillsCollection))
+
     if (data.error) {
         return data;
     }
@@ -142,6 +163,25 @@ export const AddNewMember = (teamId, userId) => async (dispatch) => {
     }
 
     dispatch(addNewMember(data))
+    return {};
+}
+
+export const ChangeWantedSkills = (teamId, skills) => async (dispatch) => {
+    const response = await fetch(`/api/teams/${teamId}/change_wanted_skills`, {
+        method: "POST",
+        headers: {
+            'Content-Type': "application/json",
+        },
+        body: JSON.stringify({
+            skills
+        })
+    })
+    const data = await response.json();
+    if (data.erros) {
+        return data
+    }
+
+    dispatch(changeWantedSkills(data))
     return {};
 }
 

@@ -48,7 +48,7 @@ def new_team():
             website=form.data['website'],
             github=form.data['github'],
             recruiting=form.data['recruiting'],
-            captainId=form.data['captainId'] #Don't know if will grab user Id in form or thunk yet.
+            captainId= 1 #Don't know if will grab user Id in form or thunk yet.
         )
         db.session.add(team)
         db.session.commit()
@@ -118,12 +118,17 @@ def remove_team_member(id):
 @teams_routes.route('/<int:id>/change_wanted_skills', methods=['POST'])
 def change_wanted_skills(id):
     data = request.json
-    wantedSkills = 
+    wantedSkills = data["wantedSkillsCollection"]
     allSkills = Skill.query.all()
     team = Team.query.get(id)
 
     for skill in allSkills:
-
-
+        if skill.id in wantedSkills:
+            team.skills.append(skill)
+            db.session.commit()
+        else:
+            team.skiills.remove(skill)
+            db.session.commit()
+            
     return team.to_dict(skills=True)
 
