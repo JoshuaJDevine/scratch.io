@@ -43,7 +43,7 @@ function App() {
       // await dispatch(getTeam(1));
       // await dispatch(getTeams());
       // await dispatch(getAllSkills());
-      await dispatch(GetGames(gameQuery({searchTerm: 'c', getJoinedTags: true})));
+      // await dispatch(GetGames(gameQuery({searchTerm: 'c', getJoinedTags: true})));
 
       // await dispatch(GetTeam(1));
       // await dispatch(GetTeams());
