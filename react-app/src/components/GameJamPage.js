@@ -3,8 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { getGameJams } from "../store/game_jam"
 import { gameJamQuery } from "../utils/queryFunctions"
 
+import GJInfoBox from "./GJInfoBox";
 
-import { Box, Flex, Button } from "@chakra-ui/react"
+
+import { Box, Flex, Input} from "@chakra-ui/react"
 
 
 export default function GameJamPage() {
@@ -24,15 +26,18 @@ export default function GameJamPage() {
     // }
     return (
         <Flex>
-            <Box w="300px" h="300px" bgColor="pink.200">
-                  {
-                    Object.values(gameJams).map(gamejam => <div key={gamejam.id}>{gamejam.name}</div>)
-                  }
+            <Box w="100%" h="200px" bgColor="black">
+                <Box>
+                    
+                </Box>
             </Box>
         </Flex>
     )
 }
 
+{/* {
+  Object.values(gameJams).map(gamejam => <GJInfoBox key={gamejam.id} gamejam={gamejam} />)
+} */}
 // {
 //     Object.values(photos).map(image => <Photo key={image.id} image={image} />)
 // }
