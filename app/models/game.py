@@ -57,6 +57,9 @@ class Game(db.Model):
             "avatarUrl": self.avatarUrl,
             "githubUrl": self.githubUrl,
             "websiteUrl": self.websiteUrl,
+            "userId": self.userId,
+            "teamId": self.teamId,
+            "gameJamId": self.gameJamId
         }
 
         if tags:

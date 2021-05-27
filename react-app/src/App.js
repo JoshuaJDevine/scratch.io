@@ -9,17 +9,17 @@ import User from "./components/User";
 import { authenticate } from "./store/session";
 import { GetGames, PostGame, GetGame, DeleteGame, UpdateGame } from "./store/game"
 import { getAllSkills, skills } from "./store/skills"
-import { GetTeams, PostTeam, GetTeam, UpdateTeam, DeleteTeam } from "./store/team"
+import { GetTeams, PostTeam, GetTeam, UpdateTeam, DeleteTeam, AddNewMember } from "./store/team"
 import { getGameJams, getGameJam, postGameJam, patchGameJam, deleteGameJam } from "./store/game_jam";
-
-
+import { gameJamQuery } from "./utils/queryFunctions"
+import NavBar from "./components/NavBar";
+import Homepage from "./components/Homepage"
 
 //***********
 //Test imports
 import SampleForm from "./components/chakra_lib/sample-form";
 import StubPage from "./components/chakra_lib/stub-page";
 import StubSteamMockup from "./components/chakra_lib/stub-steam-mockup";
-import SampleNavBar from "./components/chakra_lib/navbar-sample";
 import AnimatedGrid from "./components/chakra_lib/test-anime-grid"
 import AnimatedGrid2 from "./components/chakra_lib/test-anime-grid2"
 import FloatingCard from "./components/chakra_lib/floating-card";
@@ -46,6 +46,9 @@ function App() {
 
       // await dispatch(GetTeam(1));
       // await dispatch(GetTeams());
+      // await dispatch(AddNewMember(2, 3))
+
+
       // await dispatch(getAllSkills());
       // await dispatch(GetGames());
 
@@ -54,11 +57,13 @@ function App() {
       // await dispatch(GetGame(10))
       // await  dispatch(DeleteGame(12))
       // await  dispatch(UpdateGame(14, "MyTestUpdate"))
-
-
-      // await dispatch(getGameJams());
-
-      // await dispatch(getGameJams());
+      await dispatch(GetTeams(gameJamQuery({getJoinedUsers: true})))
+      // await dispatch(getGameJams({
+      //   searchTerm: "n",
+      //   getJoinedGames: true,
+      //   getJoinedTeams: true,
+      //   getJoinedTags: false
+      // }));
 
 
       setLoaded(true);
@@ -71,13 +76,10 @@ function App() {
 
   return (
     <BrowserRouter>
-      <SampleNavBar />
+      <NavBar />
       <Switch>
-        <Route path="/login" exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm />
+      <Route path="/" exact={true} >
+          <Homepage /> 
         </Route>
         <ProtectedRoute path="/users" exact={true} >
           <UsersList/>
@@ -85,10 +87,14 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
 
+
+        {/* <Route path="/login" exact={true}>
+          <LoginForm />
+        </Route>
+        <Route path="/sign-up" exact={true}>
+          <SignUpForm />
+        </Route> */}
 
 
 
@@ -126,9 +132,6 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true} >
           <User />
-        </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true} >
-          <h1>My Home Page</h1>
         </ProtectedRoute>
         <Route path="/">
           Error 404

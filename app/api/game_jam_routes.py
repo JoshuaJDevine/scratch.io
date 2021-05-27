@@ -8,11 +8,15 @@ bp = Blueprint('gamejams', __name__)
 @bp.route('/')
 def get_game_jams():
     args = request.args
+    games = True if args["getJoinedGames"] == 'true' else False
+    teams = True if args["getJoinedTeams"] == 'true' else False
+    tags = True if args["getJoinedTags"] == 'true' else False
+
     game_jams = GameJam.query \
         .filter(GameJam.name.ilike(f"%{args['searchTerm']}%")) \
         .limit(int(args['resultLimit'])) \
         .all()
-    return {"game_jams": [game_jam.to_dict(teams=True) for game_jam in game_jams]}
+    return {"game_jams": [game_jam.to_dict(games=games, teams=teams, tags=tags) for game_jam in game_jams]}
 
 # GET game jam data for a single game jam.
 @bp.route('/<int:id>')
