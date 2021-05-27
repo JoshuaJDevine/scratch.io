@@ -3,6 +3,7 @@ const POST_TEAM = "team/POST_TEAM" //Create a team
 const GET_TEAM = "team/GET_TEAM" //Get a team
 const UPDATE_TEAM = "team/UPDATE_TEAM" //Update a team
 const DELETE_TEAM = "team/DELET_TEAM" //Delete a team
+const POST_NEW_MEMBER ="team/POST_NEW_MEMBER"
 
 
 
@@ -27,6 +28,10 @@ const deleteTeam = (team) => ({
     type: DELETE_TEAM,
     payload: team
 })
+const addNewMember = (user) => ({
+    type: POST_NEW_MEMBER,
+    payload: user
+})
 
 
 
@@ -36,18 +41,18 @@ const initialState = { teams: null };
 
 
 
-export const GetTeams = () => async (dispatch) => {
-    const response = await fetch('api/teams/', {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-    const data = await response.json()
-    if (data.errors) {
-        return;
+export const GetTeams = query => async (dispatch) => {
+    let url = `/api/teams?`;
+
+    for (let prop in query) {
+        url += `${prop}=${query[prop]}&`
     }
 
-    dispatch(getTeams(data))
+    const res = await fetch(url);
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(getTeams(data));
+    }
 }
 
 export const PostTeam = (name) => async (dispatch) => {
@@ -121,6 +126,25 @@ export const  DeleteTeam = (id, team) => async (dispatch) => {
     return {};
 }
 
+export const AddNewMember = (teamId, userId) => async (dispatch) => {
+    const response = await fetch(`/api/teams/${teamId}/add_new_member`, {
+        method: "POST",
+        headers: {
+            'Content-Type': "application/json",
+        },
+        body: JSON.stringify({
+            userId
+        })
+    })
+    const data = await response.json();
+    if (data.errors) {
+        return data
+    }
+
+    dispatch(addNewMember(data))
+    return {};
+}
+
 export default function reducer(state=initialState, action) {
     switch (action.type) {
         case GET_TEAMS:
@@ -133,6 +157,8 @@ export default function reducer(state=initialState, action) {
             return { teams: action.payload }
         case DELETE_TEAM:
             return { teams: action.payload }
+        case POST_NEW_MEMBER: 
+            return { teams: action.payload}
         default:
             return state
     }

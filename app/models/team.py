@@ -49,8 +49,11 @@ class Team(db.Model):
 
     def get_joined_skills(self):
         return [skill.to_dict() for skill in self.skills]
+    
+    def get_joined_skills(self):
+        return [game.to_dict() for game in self.games]
 
-    def to_dict(self, users=False, gamejams=False, skills=False):
+    def to_dict(self, users=False, gamejams=False, skills=False, games=False):
         dct = {
             "id": self.id,
             "name": self.name,
@@ -58,7 +61,8 @@ class Team(db.Model):
             "avatar": self.avatar,
             "website": self.website,
             "github": self.github,
-            "recruiting": self.recruiting
+            "recruiting": self.recruiting,
+            "captainId": self.captainId
         }
 
         if users:
@@ -67,17 +71,10 @@ class Team(db.Model):
         if gamejams:
             dct["gamejams"] = self.get_joined_gamejams()
 
-
-    def to_dict_skills(self):
-        return {
-          "id": self.id,
-          "username": self.username,
-          "email": self.email,
-          "skills": [skill.to_dict() for skill in self.skills]
-    }
-
         if skills:
             dct["skills"] = self.get_joined_skills()
 
+        if games:
+            dct["games"] = self.get_joined_games()
 
         return dct

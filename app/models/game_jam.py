@@ -16,6 +16,7 @@ class GameJam(db.Model):
     userLimit = db.Column(db.Integer, nullable=False)
     startDate = db.Column(db.Date, nullable=False)
     endDate = db.Column(db.Date, nullable=False)
+    #add owner column
     teams = db.relationship(
         'Team',
         secondary=teams_gamejams,
@@ -32,8 +33,8 @@ class GameJam(db.Model):
         lazy=True
     )
 
-    # def get_joined_games(self):
-    #     return [game.to_dict() for game in self.games]
+    def get_joined_games(self):
+        return [game.to_dict() for game in self.games]
 
     def get_joined_teams(self):
         return [team.to_dict() for team in self.teams]
@@ -41,7 +42,7 @@ class GameJam(db.Model):
     def get_joined_tags(self):
         return [tag.to_dict() for tag in self.tags]
 
-    def to_dict(self, teams=False, tags=False):
+    def to_dict(self, teams=False, tags=False, games=False):
         dct = {
             "id": self.id,
             "name": self.name,
@@ -58,8 +59,8 @@ class GameJam(db.Model):
         if teams:
             dct["teams"] = self.get_joined_teams()
 
-        # if games:
-        #     dct["games"] = self.get_joined_games()
+        if games:
+            dct["games"] = self.get_joined_games()
 
         if tags:
             dct["tags"] = self.get_joined_tags()
