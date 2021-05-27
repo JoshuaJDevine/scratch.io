@@ -1,7 +1,18 @@
 /* TODO Add site wide styles */
-body {
-  background: #000;
+:root{
+  --russian-violet: #320e3bff;
+  --celtic-blue: #276fbfff;
+  --ruby-red: #a31621ff;
+  --silver-chalice: #b0b2b4ff;
+  --rich-black-fogra-39: rgba(4, 5, 10, 0.315);
+}
 
+body {
+  background: var(--silver-chalice)!important;
+}
+
+#navbar {
+  background: var(--rich-black-fogra-39)!important;
 }
 
 .boxes-for-days {
@@ -490,6 +501,8 @@ section {
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 20px;
+
+  padding: 0 20px;
 
   transition: 0.4s ease-out;
   position: relative;

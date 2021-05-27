@@ -7,10 +7,8 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./store/session";
-import { GetGames, PostGame, GetGame, DeleteGame, UpdateGame } from "./store/game"
-import { getAllSkills, skills } from "./store/skills"
-import { GetTeams, PostTeam, GetTeam, UpdateTeam, DeleteTeam } from "./store/team"
-import { getGameJams, getGameJam, postGameJam, patchGameJam, deleteGameJam } from "./store/game_jam";
+import NavBar from "./components/NavBar";
+import Homepage from "./components/Homepage"
 
 
 
@@ -19,7 +17,6 @@ import { getGameJams, getGameJam, postGameJam, patchGameJam, deleteGameJam } fro
 import SampleForm from "./components/chakra_lib/sample-form";
 import StubPage from "./components/chakra_lib/stub-page";
 import StubSteamMockup from "./components/chakra_lib/stub-steam-mockup";
-import SampleNavBar from "./components/chakra_lib/navbar-sample";
 import AnimatedGrid from "./components/chakra_lib/test-anime-grid"
 import AnimatedGrid2 from "./components/chakra_lib/test-anime-grid2"
 import FloatingCard from "./components/chakra_lib/floating-card";
@@ -71,13 +68,10 @@ function App() {
 
   return (
     <BrowserRouter>
-      <SampleNavBar />
+      <NavBar />
       <Switch>
-        <Route path="/login" exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm />
+      <Route path="/" exact={true} >
+          <Homepage /> 
         </Route>
         <ProtectedRoute path="/users" exact={true} >
           <UsersList/>
@@ -85,10 +79,14 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
 
+
+        {/* <Route path="/login" exact={true}>
+          <LoginForm />
+        </Route>
+        <Route path="/sign-up" exact={true}>
+          <SignUpForm />
+        </Route> */}
 
 
 
@@ -126,9 +124,6 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true} >
           <User />
-        </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true} >
-          <h1>My Home Page</h1>
         </ProtectedRoute>
         <Route path="/">
           Error 404
