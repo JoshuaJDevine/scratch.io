@@ -11,6 +11,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "chakra": "0.0.3",
+    "formik": "^2.2.8",
     "framer-motion": "^4.1.17",
     "http-proxy-middleware": "^1.0.5",
     "react": "^17.0.0",

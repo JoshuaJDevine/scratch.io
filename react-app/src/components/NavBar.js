@@ -2,6 +2,7 @@ import React from "react";
 import {Box, Button, Flex, Square, Stack} from "@chakra-ui/react";
 import SignUp from "./SignUp"
 import Login from "./Login"
+import CreateTeam from "./CreateTeam"
 import { useHistory } from "react-router-dom";
 
 
@@ -26,6 +27,7 @@ export default function NavBar(){
                   </Button>
                   <Login />
                   <SignUp  />
+                  <CreateTeam />
                   <Button colorScheme="white" variant="link" onClick={() => history.push("/test-profile")}>
                         Profile
                   </Button>
