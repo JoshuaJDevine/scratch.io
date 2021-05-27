@@ -1,5 +1,5 @@
 from flask import Blueprint, session, request
-from app.models import Team, User, db
+from app.models import Team, User, Skill, db
 from app.forms import NewTeamForm
 from .auth_routes import validation_errors_to_error_messages
 
@@ -37,7 +37,7 @@ def team(id):
 ########################## POST NEW TEAM ################################
 @teams_routes.route('/', methods=['POST'])
 def new_team():
-    print("REQUEST JSON------->", request.json)
+    # print("REQUEST JSON------->", request.json)
     form = NewTeamForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -79,7 +79,6 @@ def update_team(id):
 
 
 ############################ DELETE TEAM ################################
-
 @teams_routes.route('/<int:id>', methods=['DELETE'])
 def delete_team(id):
     team_to_delete = Team.query.get(id)
@@ -113,3 +112,18 @@ def remove_team_member(id):
     team.users.reomve(user)
     db.session.commit()
     return team.to_dict(users=True)
+
+
+######################## CHANGE WANTED SKILLS ############################
+@teams_routes.route('/<int:id>/change_wanted_skills', methods=['POST'])
+def change_wanted_skills(id):
+    data = request.json
+    wantedSkills = 
+    allSkills = Skill.query.all()
+    team = Team.query.get(id)
+
+    for skill in allSkills:
+
+
+    return team.to_dict(skills=True)
+
