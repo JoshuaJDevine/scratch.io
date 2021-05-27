@@ -6,7 +6,7 @@ import { gameJamQuery } from "../utils/queryFunctions"
 import GJInfoBox from "./GJInfoBox";
 
 
-import { Box, Flex, Input, Button, Stack, InputGroup, IconButton, InputRightElement } from "@chakra-ui/react"
+import { Box, Flex, Input, InputGroup, IconButton, InputRightElement, Select } from "@chakra-ui/react"
 import { SearchIcon } from "@chakra-ui/icons"
 
 
@@ -16,6 +16,7 @@ export default function GameJamPage() {
     const gameJams = useSelector(state => state.gameJams)
 
     const [searchTerm, setSearchTerm] = useState("")
+    const [date, setDate] = useState("")
 
     useEffect(() => {
 
@@ -26,7 +27,7 @@ export default function GameJamPage() {
     const handleClick = (e) => {
         e.preventDefault()
 
-        dispatch(getGameJams(gameJamQuery({searchTerm: searchTerm})))
+        dispatch(getGameJams(gameJamQuery({searchTerm: searchTerm, date: date})))
     }
 
 
@@ -34,6 +35,7 @@ export default function GameJamPage() {
         <>
         <Flex>
             <Box w="100%" h="200px" bgColor="black">
+                <Flex direction="column">
                 <Box>
                     <InputGroup size="md" w="60%">
                         <Input
@@ -45,7 +47,22 @@ export default function GameJamPage() {
                                 <IconButton aria-label="Search database" icon={<SearchIcon />}  onClick={handleClick}/>
                         </InputRightElement>
                     </InputGroup>
+                    <Select placeholder="Select Date" bgColor="gray.200" w="15%" onChange={(e) => setDate(e.target.value)}>
+                                    <option value="day">Next Day</option>
+                                    <option value="week">Next Week</option>
+                                    <option value="month">Next Month</option>
+                                    <option value="year">Next Year</option>
+                                    <option value="all">All Game Jams</option>
+                                </Select>
+                                {/* <Select placeholder="Select Date" bgColor="gray.200" w="15%" onChange={(e) => setDate(e.target.value)}>
+                                    <option value="day">Past Day</option>
+                                    <option value="week">Past Week</option>
+                                    <option value="month">Past Month</option>
+                                    <option value="year">Past Year</option>
+                                    <option value="all">All Time</option>
+                                </Select> */}
                 </Box>
+                </Flex>
             </Box>
         </Flex>
     </>

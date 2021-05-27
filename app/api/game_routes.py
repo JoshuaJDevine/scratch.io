@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import Game, User, Tag, tags_gamejams, db
+from app.models import Game, User, Tag, tags_games, db
 from app.forms import NewGameForm
 
 
@@ -20,14 +20,16 @@ def validation_errors_to_error_messages(validation_errors):
 def games():
     args = request.args
     tags = True if args["getJoinedTags"] == 'true' else False
-    tags = True
+    
 
-    # Game.name.ilike(f"%{args['searchTerm']}%")
-    games = Game.query.join(tags_gamejams).join(Tag)
-        # .filter(Game.tags_gamejams.c.name.ilike(f"%{args['searchTerm']}%")) \
-        # .limit(int(args['resultLimit'])) \
-        # .all()
 
+    games = Game.query.join(tags_games).join(Tag) \
+        .filter(
+            Game.name.ilike(f"%{args['searchTerm']}%") |
+            Tag.name.ilike(f"%{args['searchTerm']}%")
+        ) \
+        .limit(int(args['resultLimit'])) \
+        .all()
     return {"games": [game.to_dict(tags=tags) for game in games]}
 
 
