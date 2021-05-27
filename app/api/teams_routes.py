@@ -36,7 +36,7 @@ def team(id):
 
 ########################## POST NEW TEAM ################################
 @teams_routes.route('/', methods=['POST'])
-def new_team(userId):
+def new_team():
     print("REQUEST JSON------->", request.json)
     form = NewTeamForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -97,5 +97,19 @@ def add_team_member(id):
     team = Team.query.get(id)
 
     team.users.append(user)
+    db.session.commit()
+    return team.to_dict(users=True)
+
+
+
+######################### REMOVE TEAM MEMBER #############################
+@teams_routes.route('/<int:id>/remove_team_member', methods=['DELETE'])
+def remove_team_member(id):
+    data = request.json
+    userId = data["userId"]
+    user = User.query.get(userId)
+    team = Team.query.get(id)
+
+    team.users.reomve(user)
     db.session.commit()
     return team.to_dict(users=True)
