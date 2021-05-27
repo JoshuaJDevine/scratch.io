@@ -117,8 +117,11 @@ def remove_team_member(id):
 ######################## CHANGE WANTED SKILLS ############################
 @teams_routes.route('/<int:id>/change_wanted_skills', methods=['POST'])
 def change_wanted_skills(id):
+    print('SOMETHING CRRRRRRRRRAAAAAAAZZZZZZYYYYYYYYY!!! AND CRASS CUNT!')
     data = request.json
+    print('DATA --------->', data)
     wantedSkills = data["wantedSkillsCollection"]
+    print('WANTED SKILLS ------>', wantedSkills)
     allSkills = Skill.query.all()
     team = Team.query.get(id)
 

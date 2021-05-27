@@ -71,7 +71,6 @@ export default function CreateTeam() {
                               wantedSkillsCollection: []
                           }}
                           onSubmit={async (values) => {
-                              console.log('VALUES -------->', values)
                               await dispatch(PostTeam(values))
                           }}
                         >

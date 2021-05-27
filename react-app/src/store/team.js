@@ -32,8 +32,9 @@ const addNewMember = (user) => ({
     type: POST_NEW_MEMBER,
     payload: user
 })
-const changeWantedSkills = (skills) => ({
+const changeWantedSkills = (team, skills) => ({
     type: CHANGE_WANTED_SKILLS,
+    teamId: team,
     payload: skills
 })
 
@@ -66,7 +67,8 @@ export const PostTeam = (values) => async (dispatch) => {
             avatar,
             website,
             github,
-            recruiting
+            recruiting,
+            wantedSkillsCollection
         } = values
     const response = await fetch('/api/teams/', {      
         method: 'POST',
@@ -83,9 +85,10 @@ export const PostTeam = (values) => async (dispatch) => {
         }),
     });
     const data = await response.json();
-    console.log('DATA --------->', data)
-    // teamId = data.id
-    // dispatch(changeWantedSkills(teamId, wantedSkillsCollection))
+    let teamId = data.id
+    console.log('ATTEMTING TO DISPATCH CHANGE WANTED SKILLS')
+    const res = await dispatch(changeWantedSkills(teamId, wantedSkillsCollection))
+    console.log('RES ------------->', res)
 
     if (data.error) {
         return data;
@@ -167,6 +170,7 @@ export const AddNewMember = (teamId, userId) => async (dispatch) => {
 }
 
 export const ChangeWantedSkills = (teamId, skills) => async (dispatch) => {
+    // console.log('SKILLS------->', skills)
     const response = await fetch(`/api/teams/${teamId}/change_wanted_skills`, {
         method: "POST",
         headers: {
@@ -185,7 +189,9 @@ export const ChangeWantedSkills = (teamId, skills) => async (dispatch) => {
     return {};
 }
 
+
 export default function reducer(state=initialState, action) {
+    const newState = {...state};
     switch (action.type) {
         case GET_TEAMS:
             return { teams: action.payload }
@@ -198,6 +204,8 @@ export default function reducer(state=initialState, action) {
         case DELETE_TEAM:
             return { teams: action.payload }
         case POST_NEW_MEMBER: 
+            return { teams: action.payload}
+        case CHANGE_WANTED_SKILLS:
             return { teams: action.payload}
         default:
             return state
