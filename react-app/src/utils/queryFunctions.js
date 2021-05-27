@@ -3,6 +3,7 @@ export function gameJamQuery(obj={}) {
         searchTerm: "",
         resultLimit: 25,
         getJoinedTeams: false,
+        getJoinedGames: false,
         getJoinedTags: false
     }
 

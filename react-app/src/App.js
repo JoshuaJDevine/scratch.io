@@ -14,6 +14,7 @@ import { getGameJams, getGameJam, postGameJam, patchGameJam, deleteGameJam } fro
 import { gameJamQuery, gameQuery } from "./utils/queryFunctions"
 import NavBar from "./components/NavBar";
 import Homepage from "./components/Homepage"
+import GameJamPage from "./components/GameJamPage"
 
 //***********
 //Test imports
@@ -80,6 +81,9 @@ function App() {
       <Switch>
       <Route path="/" exact={true} >
           <Homepage />
+        </Route>
+        <Route path="/gj-page">
+            <GameJamPage/>
         </Route>
         <ProtectedRoute path="/users" exact={true} >
           <UsersList/>
