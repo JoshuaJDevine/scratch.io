@@ -7,10 +7,13 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./store/session";
+import { GetGames, PostGame, GetGame, DeleteGame, UpdateGame } from "./store/game"
+import { getAllSkills, skills } from "./store/skills"
+import { GetTeams, PostTeam, GetTeam, UpdateTeam, DeleteTeam, AddNewMember } from "./store/team"
+import { getGameJams, getGameJam, postGameJam, patchGameJam, deleteGameJam } from "./store/game_jam";
+import { gameJamQuery } from "./utils/queryFunctions"
 import NavBar from "./components/NavBar";
 import Homepage from "./components/Homepage"
-
-
 
 //***********
 //Test imports
@@ -43,6 +46,9 @@ function App() {
 
       // await dispatch(GetTeam(1));
       // await dispatch(GetTeams());
+      // await dispatch(AddNewMember(2, 3))
+
+
       // await dispatch(getAllSkills());
       // await dispatch(GetGames());
 
@@ -51,11 +57,13 @@ function App() {
       // await dispatch(GetGame(10))
       // await  dispatch(DeleteGame(12))
       // await  dispatch(UpdateGame(14, "MyTestUpdate"))
-
-
-      // await dispatch(getGameJams());
-
-      // await dispatch(getGameJams());
+      await dispatch(GetTeams(gameJamQuery({getJoinedUsers: true})))
+      // await dispatch(getGameJams({
+      //   searchTerm: "n",
+      //   getJoinedGames: true,
+      //   getJoinedTeams: true,
+      //   getJoinedTags: false
+      // }));
 
 
       setLoaded(true);

@@ -32,8 +32,9 @@ const deleteGameJamAction = payload => ({
 export const getGameJams = query => async (dispatch) => {
     let url = `/api/gamejams?`;
 
-    url += `searchTerm=${query.searchTerm || ""}&`;
-    url += `resultLimit=${query.resultLimit || 25}&`;
+    for (let prop in query) {
+        url += `${prop}=${query[prop]}&`
+    }
 
     const res = await fetch(url);
     if (res.ok) {
