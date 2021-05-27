@@ -16,7 +16,8 @@ export default function Homepage() {
         w="100%"
         minH="450px"
         h="35%"
-        bgImg="https://images.unsplash.com/photo-1597266029701-618ac066150a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+        bgImg="https://i.ytimg.com/vi/hyJf0k2s59g/maxresdefault.jpg"
+        className="hp-main-img"
         >
             This is a test message
         </Box>

@@ -11,6 +11,12 @@ body {
   background: var(--silver-chalice)!important;
 }
 
+.hp-main-img {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
 #navbar {
   background: var(--rich-black-fogra-39)!important;
 }
