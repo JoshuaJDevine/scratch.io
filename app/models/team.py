@@ -50,7 +50,7 @@ class Team(db.Model):
     def get_joined_skills(self):
         return [skill.to_dict() for skill in self.skills]
     
-    def get_joined_skills(self):
+    def get_joined_games(self):
         return [game.to_dict() for game in self.games]
 
     def to_dict(self, users=False, gamejams=False, skills=False, games=False):
