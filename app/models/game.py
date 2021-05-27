@@ -28,16 +28,6 @@ class Game(db.Model):
         secondary=tags_games,
         back_populates="games"
     )
-    # users = db.relationship(
-    #     "User",
-    #     secondary=users_games,
-    #     back_populates="games"
-    # )
-    # gamejams = db.relationship(
-    #     "GameJam",
-    #     secondary=games_gamejams,
-    #     back_populates="games"
-    # )
 
     def get_joined_tags(self):
         return [tag.to_dict() for tag in self.tags]
@@ -47,7 +37,6 @@ class Game(db.Model):
 
     # def get_joined_gamejams(self):
     #     return [gamejam.to_dict() for gamejam in self.gamejams]
-
 
     def to_dict(self, tags=False):
         dct = {

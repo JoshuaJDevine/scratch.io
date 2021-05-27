@@ -10,19 +10,27 @@ class User(db.Model, UserMixin):
 
   id = db.Column(db.Integer, primary_key=True)
   username = db.Column(db.String(40), nullable=False, unique=True)
+  first_name = db.Column(db.String(40))
+  last_name = db.Column(db.String(40))
   email = db.Column(db.String(255), nullable=False, unique=True)
   hashed_password = db.Column(db.String(255), nullable=False)
 
+  # One to Many
   owned_teams = db.relationship(
     "Team",
     back_populates='captain'
   )
+  owned_gamejams = db.relationship(
+    "GameJam",
+    back_populates='owner'
+  )
+
+  # Many to Many
   teams = db.relationship(
     "Team",
     secondary=users_teams,
     back_populates='users'
   )
-
   skills = db.relationship(
     "Skill",
     secondary=skills_users,

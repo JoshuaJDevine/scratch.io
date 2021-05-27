@@ -15,16 +15,18 @@ class Team(db.Model):
     recruiting = db.Column(db.Boolean)
     captainId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
 
+    # One to Many
     captain = db.relationship(
         "User",
         back_populates="owned_teams"
     )
+
+    # Many to Many
     users = db.relationship(
         'User',
         secondary=users_teams,
         back_populates='teams'
     )
-
     gamejams = db.relationship(
         'GameJam',
         secondary=teams_gamejams,
@@ -49,7 +51,7 @@ class Team(db.Model):
 
     def get_joined_skills(self):
         return [skill.to_dict() for skill in self.skills]
-    
+
     def get_joined_games(self):
         return [game.to_dict() for game in self.games]
 

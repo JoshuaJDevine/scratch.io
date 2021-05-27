@@ -11,7 +11,7 @@ import { GetGames, PostGame, GetGame, DeleteGame, UpdateGame } from "./store/gam
 import { getAllSkills, skills } from "./store/skills"
 import { GetTeams, PostTeam, GetTeam, UpdateTeam, DeleteTeam, AddNewMember } from "./store/team"
 import { getGameJams, getGameJam, postGameJam, patchGameJam, deleteGameJam } from "./store/game_jam";
-import { gameJamQuery } from "./utils/queryFunctions"
+import { gameJamQuery, gameQuery } from "./utils/queryFunctions"
 import NavBar from "./components/NavBar";
 import Homepage from "./components/Homepage"
 
@@ -42,7 +42,7 @@ function App() {
       // await dispatch(getTeam(1));
       // await dispatch(getTeams());
       // await dispatch(getAllSkills());
-      // await dispatch(GetGames());
+      await dispatch(GetGames(gameQuery({searchTerm: 'c', getJoinedTags: true})));
 
       // await dispatch(GetTeam(1));
       // await dispatch(GetTeams());
@@ -57,7 +57,7 @@ function App() {
       // await dispatch(GetGame(10))
       // await  dispatch(DeleteGame(12))
       // await  dispatch(UpdateGame(14, "MyTestUpdate"))
-      await dispatch(GetTeams(gameJamQuery({getJoinedUsers: true})))
+      //await dispatch(GetTeams(gameJamQuery({getJoinedUsers: true})))
       // await dispatch(getGameJams({
       //   searchTerm: "n",
       //   getJoinedGames: true,
@@ -79,7 +79,7 @@ function App() {
       <NavBar />
       <Switch>
       <Route path="/" exact={true} >
-          <Homepage /> 
+          <Homepage />
         </Route>
         <ProtectedRoute path="/users" exact={true} >
           <UsersList/>

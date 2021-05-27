@@ -18,14 +18,15 @@ def validation_errors_to_error_messages(validation_errors):
 # GET /api/games/   ---------  Get all games
 @game_routes.route('/')
 def games():
-    games = Game.query.all()
+    args = request.args
+    tags = True if args["getJoinedTags"] == 'true' else False
 
-    # Obj = {}
-    # users_games = [game.users for game in games]
-    # for i in users_games[0]:
-    #     Obj["username"] = i.username
+    games = Game.query \
+        .filter(Game.name.ilike(f"%{args['searchTerm']}%")) \
+        .limit(int(args['resultLimit'])) \
+        .all()
 
-    return {"games": [game.to_dict(users=True) for game in games]}
+    return {"games": [game.to_dict(tags=tags) for game in games]}
 
 
 # POST /api/games/  ---------  Create game
