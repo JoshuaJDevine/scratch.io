@@ -28,20 +28,17 @@ const deleteGame = (game) => ({
     payload: game
 })
 
-
-
-
 const initialState = { games: null };
 
+export const GetGames = query => async (dispatch) => {
+    let url = `/api/games?`;
 
+    for (let prop in query) {
+      url += `${prop}=${query[prop]}&`;
+    }
 
+    const response = await fetch(url);
 
-export const GetGames = () => async (dispatch) => {
-    const response = await fetch('/api/games/',{
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
     const data = await response.json();
     if (data.errors) {
         return;

@@ -1,4 +1,4 @@
-from app.models import GameJam, db
+from app.models import GameJam, User, db
 import datetime
 import random
 
@@ -13,6 +13,8 @@ def seed_game_jams():
         "Audio Visual Jam"
     ]
 
+    users = User.query.all()
+
     for n in names:
         db.session.add(GameJam(
             name=n,
@@ -23,7 +25,8 @@ def seed_game_jams():
             github="github.com",
             userLimit=1000,
             startDate=datetime.datetime(2021, 1, 1 + random.randint(1, 9)),
-            endDate=datetime.datetime(2021, 1, 11 + random.randint(1, 9))
+            endDate=datetime.datetime(2021, 1, 11 + random.randint(1, 9)),
+            ownerId=random.choice(users).id
         ))
     db.session.commit()
 
