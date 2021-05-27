@@ -20,73 +20,162 @@ import {
     Textarea,
     Checkbox,
     CheckboxGroup,
-    HStack
+    HStack, FormErrorMessage
 
 } from "@chakra-ui/react"
+import {Field, FieldArray, Form, Formik} from "formik";
 
 
 
 
 export default function CreateTeam() {
+
     const { isOpen, onOpen, onClose } = useDisclosure()
     const skills = useSelector(state => state.skillsReducer.skills.skills)
     // const [allSkills, setAllSkills] = useState(skills)
+    const skillsCollection = [];
+    skills.forEach((el) => {
+        skillsCollection.push({value: el.id, label: el.name})
+    })
+
+    //Revisit validators and add for each field
+    function validateName(value) {
+        let error
+        if (!value) {
+          error = "Name is required"
+        } else if (value.toLowerCase() !== "naruto") {
+          error = "Jeez! You're not a fan 😱"
+        }
+        return error
+    }
+
+
     
     return (
-        
         <>
             <Button onClick={onOpen} colorScheme="white" variant="link" >Create Team</Button>
-
             <Modal size="sm" isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>Create Team</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        <FormControl id="team-name" isRequired mt={1.5}>
-                            <FormLabel>Team Name</FormLabel>
-                            <Input size="sm" placeholder="Team Name" />
-                        </FormControl>
-                        <FormControl id="team-about" isRequired mt={3.5}>
-                            <FormLabel>About</FormLabel>
-                            <Textarea size="sm" placeholder="About" />
-                        </FormControl>
-                        <FormControl id="recruiting" isRequired mt={3.5}>
-                            <FormLabel>Recruiting</FormLabel>
-                            <Checkbox size="sm"/>
-                        </FormControl>
-                        <FormControl id="Skills" mt={3.5} isRequired>
-                            <FormLabel>Skills Wanted</FormLabel>
-                            <CheckboxGroup colorScheme="green" size="sm" />
-                                <HStack>
-                                    {skills.map((skill, index) => (
-                                        <Checkbox key={index} 
-                                                  size="sm" 
-                                                  value={skill.name}>
-                                                      {skill.name}
-                                        </Checkbox>
-                                    ))}
-                                </HStack>
-                        </FormControl>
-                        <FormControl mt={3.5}>
-                            <FormLabel>Avatar</FormLabel>
-                             <Input size="sm" placeholder="Image Url" value="avatar" />
-                        </FormControl>
-                        <FormControl mt={3.5}>
-                            <FormLabel>Website</FormLabel>
-                            <Input size="sm" placeholder="Website Url" value="website" />
-                        </FormControl>
-                        <FormControl mt={3.5}>
-                            <FormLabel>Github</FormLabel>
-                            <Input size="sm" placeholder="Github Url" value="github" />
-                        </FormControl>
+                        <Formik
+                          initialValues={{
+                              name: "testName",
+                              blurb: "testBlurb",
+                              website: "testWebsiteUrl",
+                              avatar: "testAvatarUrl",
+                              github: "testGithubUrl",
+                              recruiting: false,
+                              skillsCollection: []
+                          }}
+                          onSubmit={(values, actions) => {
+                            setTimeout(() => {
+                              alert(JSON.stringify(values, null, 2))
+                              actions.setSubmitting(false)
+                            }, 100)
+                          }}
+                        >
+                          {(props) => (
+                            <Form>
+                              <Field name="name" validate={validateName}>
+                                {({ field, form }) => (
+                                  <FormControl isInvalid={form.errors.name && form.touched.name}>
+                                    <FormLabel>Team Name</FormLabel>
+                                    <Input {...field} size="sm" id="name" placeholder="Team Name" />
+                                  </FormControl>
+                                )}
+                              </Field>
+
+                              <Field name="blurb" >
+                                {({ field, form }) => (
+                                  <FormControl isInvalid={form.errors.name && form.touched.name}>
+                                    <FormLabel htmlFor="blurb">Team blurb</FormLabel>
+                                    <Input {...field} id="blurb" placeholder="Blurb about the team" />
+                                  </FormControl>
+                                )}
+                              </Field>
+
+                              <Field name="avatar">
+                                {({ field, form }) => (
+                                  <FormControl isInvalid={form.errors.name && form.touched.name}>
+                                    <FormLabel htmlFor="avatar">Avatar Url</FormLabel>
+                                    <Input {...field} id="avatar" placeholder="Avatar Url" />
+                                  </FormControl>
+                                )}
+                              </Field>
+
+
+                                <FieldArray
+                                    name="skillsCollection"
+                                    render={arrayHelpers => (
+                                        <div>
+                                            {skillsCollection.map(skill => (
+                                                <label key={skill.value}>
+                                                    <input
+                                                        name="skillsCollection"
+                                                        type="checkbox"
+                                                        value={skill}
+                                                        onChange={e => {
+                                                          if (e.target.checked) {
+                                                            arrayHelpers.push(skill.value);
+                                                          } else {
+                                                            const idx = skillsCollection.indexOf(skill.value);
+                                                            arrayHelpers.remove(idx);
+                                                          }
+                                                        }}
+                                                    />
+                                                    <span>{skill.label}</span>
+                                                </label>
+                                            ))}
+                                        </div>
+                                    )}
+                                />
+
+
+                              <Field name="website">
+                                {({ field, form }) => (
+                                  <FormControl isInvalid={form.errors.name && form.touched.name}>
+                                    <FormLabel htmlFor="website">Website url</FormLabel>
+                                    <Input {...field} id="website" placeholder="websiteUrl" />
+                                  </FormControl>
+                                )}
+                              </Field>
+
+                              <Field name="github">
+                                {({ field, form }) => (
+                                  <FormControl isInvalid={form.errors.name && form.touched.name}>
+                                    <FormLabel htmlFor="github">Github Url</FormLabel>
+                                    <Input {...field} id="github" placeholder="github Url" />
+                                  </FormControl>
+                                )}
+                              </Field>
+
+                              <Field type="checkbox"  name="recruiting">
+                                {({ field, form }) => (
+                                  <FormControl isInvalid={form.errors.name && form.touched.name}>
+                                    <FormLabel htmlFor="recruiting">Recruiting</FormLabel>
+                                    <Checkbox {...field} id="recruiting" placeholder="Recruiting" />
+                                    <FormErrorMessage>{form.errors.name}</FormErrorMessage>
+                                  </FormControl>
+                                )}
+                              </Field>
+
+
+                              <Button
+                                mt={4}
+                                colorScheme="teal"
+                                isLoading={props.isSubmitting}
+                                type="submit"
+                              >
+                                Submit
+                              </Button>
+                            </Form>
+                          )}
+                        </Formik>
                     </ModalBody>
-                    <ModalFooter>
-                        <Button colorScheme="blue" mr={3} onClick={onClose}>
-                            Close
-              </Button>
-                        <Button variant="ghost">Create Team</Button>
-                    </ModalFooter>
+
                 </ModalContent>
             </Modal>
         </>
