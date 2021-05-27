@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import GameJam, db
+from app.models import GameJam, tags_gamejams, Tag, db
 from app.forms import GameJamForm
 
 bp = Blueprint('gamejams', __name__)
@@ -11,9 +11,12 @@ def get_game_jams():
     games = True if args["getJoinedGames"] == 'true' else False
     teams = True if args["getJoinedTeams"] == 'true' else False
     tags = True if args["getJoinedTags"] == 'true' else False
-
-    game_jams = GameJam.query \
-        .filter(GameJam.name.ilike(f"%{args['searchTerm']}%")) \
+    tags = True
+    game_jams = GameJam.query.join(tags_gamejams).join(Tag) \
+        .filter(
+            GameJam.name.ilike(f"%{args['searchTerm']}%") |
+            Tag.name.ilike(f"%{args['searchTerm']}%")
+        ) \
         .limit(int(args['resultLimit'])) \
         .all()
     return {"game_jams": [game_jam.to_dict(games=games, teams=teams, tags=tags) for game_jam in game_jams]}
