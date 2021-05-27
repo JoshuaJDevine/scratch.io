@@ -4,6 +4,7 @@ import FloatinCardSimple from "./floatin-card-simple";
 import Carousel from "./carousel";
 import CardSample2 from "./card-sample-2";
 import MainCarousel from "./mainCarousel";
+import BigMainCarousel from "./bigMainCarousel";
 
 
 export default function Podium(){
@@ -37,7 +38,9 @@ export default function Podium(){
             <Box>
                 <MainCarousel />
             </Box>
-
+            <Box>
+                <BigMainCarousel />
+            </Box>
             <Box w="40%" h="40%" bg="#f2e9e4">
                 <FloatinCardSimple imageUrl="https://andrewhawkes.github.io/codepen-assets/steam-game-cards/game_3.jpg" />
             </Box>
