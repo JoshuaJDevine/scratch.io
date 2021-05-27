@@ -10,7 +10,8 @@ export default function NavBar(){
   const history = useHistory()
 
     return(
-        <Box bg="black" w="100%" h="60px"  spacing={4} p={4} color="white" >
+        <Box bg="black" w="100%" h="60px"  spacing={4} p={4} color="white" id="navbar">
+
             <Flex color="white">
               <Square size="100x">
                 <Stack direction="row" spacing={4} align="center">
