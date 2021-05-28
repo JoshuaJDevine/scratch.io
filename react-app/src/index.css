@@ -783,3 +783,11 @@ input:nth-of-type(6) {
 input:nth-of-type(6):checked ~ #bigMainCarousel {
   --position: 5;
 }
+
+
+
+.gameJamCards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

@@ -15,6 +15,7 @@ import { gameJamQuery, gameQuery } from "./utils/queryFunctions"
 import NavBar from "./components/NavBar";
 import Homepage from "./components/Homepage"
 import GameJamPage from "./components/GameJamPage"
+import GameJamSample from "./components/chakra_lib/gj-page-sample"
 
 //***********
 //Test imports
@@ -26,6 +27,7 @@ import AnimatedGrid2 from "./components/chakra_lib/test-anime-grid2"
 import FloatingCard from "./components/chakra_lib/floating-card";
 import Podium from "./components/chakra_lib/podium";
 import SocialProfileWithImage from "./components/chakra_lib/sample-profile";
+import GameJamPageSample from "./components/chakra_lib/gj-page-sample";
 
 
 function App() {
@@ -93,6 +95,9 @@ function App() {
         </Route>
         <Route path="/gj-page">
             <GameJamPage/>
+        </Route>
+        <Route path="/gj-page2">
+            <GameJamPageSample/>
         </Route>
         <ProtectedRoute path="/users" exact={true} >
           <UsersList/>

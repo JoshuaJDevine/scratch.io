@@ -8,10 +8,6 @@ import BigMainCarousel from "./bigMainCarousel";
 
 
 export default function Podium(){
-
-
-
-
     const podiumData = {
         goldImageUrl: "http://www.digitiser2000.com/uploads/4/0/6/6/40667199/published/doom_1.jpg?1516607707",
         goldTeam: "The Crazy Eights",
@@ -23,13 +19,6 @@ export default function Podium(){
         bronzeTeam: "Jingle Jangle",
         bronzeDescription: "Rocky Racoons Revenge",
     }
-
-
-
-
-
-
-
     return(
         <Grid templateRows="repeat(2, 1fr)" gap={6}>
             <Box>
