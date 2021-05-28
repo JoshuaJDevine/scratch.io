@@ -112,16 +112,6 @@ function App() {
         </ProtectedRoute>
 
 
-        {/* <Route path="/login" exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm />
-        </Route> */}
-
-
-
-
         {/*TEST ROUTES*/}
         <Route path="/sample-form" exact={true}>
           <SampleForm />
