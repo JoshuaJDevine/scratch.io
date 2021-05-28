@@ -120,17 +120,20 @@ def change_wanted_skills(id):
     print('SOMETHING CRRRRRRRRRAAAAAAAZZZZZZYYYYYYYYY!!! AND CRASS CUNT!')
     data = request.json
     print('DATA --------->', data)
-    wantedSkills = data["wantedSkillsCollection"]
+    wantedSkills = data['skills']
     print('WANTED SKILLS ------>', wantedSkills)
     allSkills = Skill.query.all()
+    print("ALL SKILLS ---------->", allSkills)
     team = Team.query.get(id)
+    teamSkills = team.skills
 
-    for skill in allSkills:
-        if skill.id in wantedSkills:
+    for teamSkill in teamSkills:
+        team.skills.remove(teamSkill)
+
+    for skillId in wantedSkills:
+            skill = Skill.query.get(skillId)
+            print('SKIIIIIILLLLLLLLLL!!!!!', skill)
             team.skills.append(skill)
-            db.session.commit()
-        else:
-            team.skiills.remove(skill)
             db.session.commit()
             
     return team.to_dict(skills=True)

@@ -9,7 +9,7 @@ import User from "./components/User";
 import { authenticate } from "./store/session";
 import { GetGames, PostGame, GetGame, DeleteGame, UpdateGame } from "./store/game"
 import { getAllSkills, skills } from "./store/skills"
-import { GetTeams, PostTeam, GetTeam, UpdateTeam, DeleteTeam, AddNewMember } from "./store/team"
+import { GetTeams, PostTeam, GetTeam, UpdateTeam, DeleteTeam, AddNewMember, ChangeWantedSkills } from "./store/team"
 import { getGameJams, getGameJam, postGameJam, patchGameJam, deleteGameJam } from "./store/game_jam";
 import { gameJamQuery } from "./utils/queryFunctions"
 import NavBar from "./components/NavBar";
@@ -43,6 +43,7 @@ function App() {
       // await dispatch(getTeams());
       await dispatch(getAllSkills());
       // await dispatch(GetGames());
+      // await dispatch(ChangeWantedSkills(11, [2]))
 
       // await dispatch(GetTeam(1));
       // await dispatch(GetTeams());

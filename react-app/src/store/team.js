@@ -86,9 +86,10 @@ export const PostTeam = (values) => async (dispatch) => {
     });
     const data = await response.json();
     let teamId = data.id
-    console.log('ATTEMTING TO DISPATCH CHANGE WANTED SKILLS')
-    const res = await dispatch(changeWantedSkills(teamId, wantedSkillsCollection))
-    console.log('RES ------------->', res)
+    // console.log('WANTED SKILLS COLLECTION -------->', wantedSkillsCollection)
+    ChangeWantedSkills(teamId, wantedSkillsCollection)
+    // const res = await dispatch(changeWantedSkills(teamId, wantedSkillsCollection))
+    // console.log('RES ------------->', res)
 
     if (data.error) {
         return data;
@@ -169,8 +170,8 @@ export const AddNewMember = (teamId, userId) => async (dispatch) => {
     return {};
 }
 
-export const ChangeWantedSkills = (teamId, skills) => async (dispatch) => {
-    // console.log('SKILLS------->', skills)
+const ChangeWantedSkills = async (teamId, skills) => {
+    console.log('SKILLS------->', skills)
     const response = await fetch(`/api/teams/${teamId}/change_wanted_skills`, {
         method: "POST",
         headers: {
@@ -184,8 +185,6 @@ export const ChangeWantedSkills = (teamId, skills) => async (dispatch) => {
     if (data.erros) {
         return data
     }
-
-    dispatch(changeWantedSkills(data))
     return {};
 }
 
