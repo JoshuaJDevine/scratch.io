@@ -2,6 +2,7 @@ from werkzeug.security import generate_password_hash
 from app.models import db, User
 from random_username.generate import generate_username
 from faker import Faker
+import random
 
 faker = Faker()
 # Adds a demo user, you can add other users here if you want
@@ -19,10 +20,14 @@ def seed_users():
                 email='chad@aa.io', password='password')
     db.session.add(user3)
 
-    user_names = generate_username(47)
+    avatar_types = ["male", "female", "human", "bottts", "inittials", "avataaars", "micah"]
+
+    user_names = generate_username(48)
     for user_name in user_names:
+        avatar_type = random.choice(avatar_types)
         user = User(username=user_name, first_name=faker.first_name(), last_name=faker.last_name(),
-                    email=faker.email(), password='password')
+                    email=faker.email(), avatar=f'https://avatars.dicebear.com/api/{avatar_type}/{user_name}.svg', 
+                    website=f'www.{user_name}.com', github=f'www.github.com/{user_name}', password='password')
         db.session.add(user)
 
 

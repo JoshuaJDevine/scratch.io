@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import LoginForm from "./components/auth/LoginForm";
-import SignUpForm from "./components/auth/SignUpForm";
-import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/user/UsersList";
-import User from "./components/user/User";
 import { authenticate } from "./store/session";
 import { GetGames, PostGame, GetGame, DeleteGame, UpdateGame } from "./store/game"
 import { getAllSkills, skills } from "./store/skills"
 import { GetTeams, PostTeam, GetTeam, UpdateTeam, DeleteTeam, AddNewMember, ChangeWantedSkills } from "./store/team"
 import { getGameJams, getGameJam, postGameJam, patchGameJam, deleteGameJam } from "./store/game_jam";
 import { gameJamQuery, gameQuery } from "./utils/queryFunctions"
-import NavBar from "./components/NavBar";
+
+import LoginForm from "./components/auth/LoginForm";
+import SignUpForm from "./components/auth/SignUpForm";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import UsersList from "./components/user/UsersList";
+import User from "./components/user/User";
+import NavBar from "./components/navbar/NavBar";
 import Homepage from "./components/Homepage"
 import GameJamPage from "./components/gamejams/GameJamPage"
 import GameJamSample from "./components/chakra_lib/gj-page-sample"
@@ -71,7 +72,7 @@ function App() {
       // await  dispatch(UpdateGame(14, "MyTestUpdate"))
 
       // await dispatch(GetTeams(gameJamQuery({getJoinedUsers: true})))
-     await dispatch(getGameJams)
+    //  await dispatch(getGameJams())
 
 
       // await dispatch(getGameJams({
@@ -113,16 +114,6 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true} >
           <User />
         </ProtectedRoute>
-
-
-        {/* <Route path="/login" exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm />
-        </Route> */}
-
-
 
 
         {/*TEST ROUTES*/}
