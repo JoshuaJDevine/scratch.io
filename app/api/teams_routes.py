@@ -77,6 +77,23 @@ def update_team(id):
         return team_to_update.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
+######################## CHANGE WANTED SKILLS ############################
+@teams_routes.route('/<int:id>/change_wanted_skills', methods=['POST'])
+def change_wanted_skills(id):
+    data = request.json
+    wantedSkills = data['skills']
+    team = Team.query.get(id)
+    teamSkills = team.skills
+
+    for teamSkill in teamSkills:
+        team.skills.remove(teamSkill)
+
+    for skillId in wantedSkills:
+            skill = Skill.query.get(skillId)
+            team.skills.append(skill)
+            db.session.commit()
+            
+    return team.to_dict(skills=True)
 
 ############################ DELETE TEAM ################################
 @teams_routes.route('/<int:id>', methods=['DELETE'])
@@ -114,27 +131,4 @@ def remove_team_member(id):
     return team.to_dict(users=True)
 
 
-######################## CHANGE WANTED SKILLS ############################
-@teams_routes.route('/<int:id>/change_wanted_skills', methods=['POST'])
-def change_wanted_skills(id):
-    print('SOMETHING CRRRRRRRRRAAAAAAAZZZZZZYYYYYYYYY!!! AND CRASS CUNT!')
-    data = request.json
-    print('DATA --------->', data)
-    wantedSkills = data['skills']
-    print('WANTED SKILLS ------>', wantedSkills)
-    allSkills = Skill.query.all()
-    print("ALL SKILLS ---------->", allSkills)
-    team = Team.query.get(id)
-    teamSkills = team.skills
-
-    for teamSkill in teamSkills:
-        team.skills.remove(teamSkill)
-
-    for skillId in wantedSkills:
-            skill = Skill.query.get(skillId)
-            print('SKIIIIIILLLLLLLLLL!!!!!', skill)
-            team.skills.append(skill)
-            db.session.commit()
-            
-    return team.to_dict(skills=True)
 

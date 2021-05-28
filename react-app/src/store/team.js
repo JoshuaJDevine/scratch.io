@@ -132,7 +132,7 @@ export const PostTeam = (values) => async (dispatch) => {
     const data = await response.json();
 
     let teamId = data.id
-    ChangeWantedSkills(teamId, wantedSkillsCollection)
+    changeWantedSkills(teamId, wantedSkillsCollection)
 
     if (data.error) {
         return data;
@@ -168,7 +168,7 @@ export const UpdateTeam = (id, values) => async (dispatch) => {
             recruiting
         }),
     });
-    ChangeWantedSkills(Id, wantedSkillsCollection)
+    changeWantedSkills(id, wantedSkillsCollection)
 
     const data = await response.json();
     if (data.error) {
@@ -241,7 +241,7 @@ export const RemoveTeamMember = (teamId, userId) => async (dispatch) => {
         return data
     }
 
-    dispatch(removeTeamMemeber(data))
+    dispatch(deleteTeamMember(data))
     return {};
 }
 
@@ -263,8 +263,6 @@ export default function reducer(state=initialState, action) {
         case DELETE_TEAM:
             return { teams: action.payload }
         case POST_NEW_MEMBER: 
-            return { teams: action.payload}
-        case CHANGE_WANTED_SKILLS:
             return { teams: action.payload}
         case DELETE_TEAM_MEMBER:
             return { teams: action.payload}
