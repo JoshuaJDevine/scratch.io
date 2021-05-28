@@ -1,14 +1,17 @@
 import React from "react";
-import {Box, Flex} from "@chakra-ui/react";
+import GameJamBox from "../GameJamBox";
+import {Box} from "@chakra-ui/react";
 
 export default function CardSample2(props){
-    console.log(props.gameJams[0]);
-
-
     return(
+        <>
+
+
+
+        {/*Example animated box class implementation*/}
         <div className="gameJamCards">
             {Object.keys(props.gameJams).map(function(key) {
-              return <Box >
+              return <Box key={key}>
                   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400" rel="stylesheet" />
                     <div className="black-card-container">
                       <div className="black-card">
@@ -26,8 +29,17 @@ export default function CardSample2(props){
                   </div>
               </Box>;
             })}
-
         </div>
 
+
+
+        {/*Example box class implementation*/}
+        {/*<div className="gameJamCards">*/}
+        {/*          <GameJamBox />*/}
+        {/*</div>*/}
+
+
+
+        </>
     )
 }
