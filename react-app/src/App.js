@@ -30,6 +30,7 @@ import SocialProfileWithImage from "./components/chakra_lib/sample-profile";
 import GameJamPageSample from "./components/chakra_lib/gj-page-sample";
 import TeamProfilePage from "./components/teams/TeamProfilePage";
 import ProfilePage from "./components/Profile";
+import Games from "./components/games/Games";
 
 
 function App() {
@@ -104,7 +105,9 @@ function App() {
         <Route path="/profile">
           <ProfilePage />
         </Route>
-
+        <Route path="/games">
+          <Games />
+        </Route>
         <ProtectedRoute path="/users" exact={true} >
           <UsersList/>
         </ProtectedRoute>

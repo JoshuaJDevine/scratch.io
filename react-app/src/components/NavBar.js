@@ -31,19 +31,16 @@ export default function NavBar(){
                   <Button colorScheme="white" variant="link" className="navbar buttons">
                     Home
                   </Button>
-                    <Button colorScheme="white" variant="link" className="navbar buttons">
+                    <Button colorScheme="white" variant="link" className="navbar buttons" >
                     Gamejams
                   </Button>
-                  <Button colorScheme="white" variant="link" className="navbar buttons">
+                  <Button colorScheme="white" variant="link"  onClick={() => history.push("/games")} className="navbar buttons">
                     Games
                   </Button>
                   <Login />
                     {(user) ? <LogoutButton/> : null}
                   <SignUp  />
                   <CreateTeam />
-
-{/* //                   <Button colorScheme="white" variant="link" onClick={() => history.push("/test-profile")} className="navbar buttons"> */}
-
                   <Button colorScheme="white" variant="link" onClick={() => history.push("/profile")} className="navbar buttons">
                         Profile
                   </Button>
