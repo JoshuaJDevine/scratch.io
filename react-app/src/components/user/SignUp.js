@@ -40,7 +40,7 @@ import {useDispatch} from "react-redux";
 
     return (
       <>
-        <Button onClick={onOpen} colorScheme="white" variant="link" >Sign Up</Button>
+        <Button onClick={onOpen} colorScheme="white" variant="link"  className="navbar buttons">Sign Up</Button>
 
         <Modal size="sm" isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
