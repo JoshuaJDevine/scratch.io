@@ -53,7 +53,7 @@ export default function CreateTeam() {
 
     return (
         <>
-            <Button onClick={onOpen} colorScheme="white" variant="link" >Create Team</Button>
+            <Button onClick={onOpen} colorScheme="white" variant="link" className="navbar buttons">Create Team</Button>
             <Modal closeOnOverlayClick={true} size="sm" isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>

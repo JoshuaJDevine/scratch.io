@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Button, Flex, Square, Stack } from "@chakra-ui/react";
+import { Box, Button, Flex, Square, Stack, Icon} from "@chakra-ui/react";
 import SignUp from "./user/SignUp"
 import Login from "./user/Login"
 import CreateTeam from "./teams/CreateTeam"
@@ -18,19 +18,19 @@ export default function NavBar(){
       <Flex color="white">
         <Square size="100x">
           <Stack direction="row" spacing={4} align="center">
-            <Button colorScheme="white" variant="link" onClick={() => history.push("/")}>
+            <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push("/")}>
               Home
             </Button>
-            <Button colorScheme="white" variant="link" onClick={() => history.push("/gj-page2")}>
+            <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push("/gj-page2")}>
               Gamejams
             </Button>
-            <Button colorScheme="white" variant="link" onClick={() => history.push("/")}>
+            <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push("/")}>
               Games
             </Button>
             <CreateTeam />
             { !user && <Login /> }
             { !user && <SignUp /> }
-            { user && <Button colorScheme="white" variant="link" onClick={() => history.push("/profile")}>
+            { user && <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push("/profile")}>
                 Profile
               </Button>
             }

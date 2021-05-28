@@ -63,7 +63,7 @@ export default function SignUp() {
 
   return (
     <>
-      <Button onClick={onOpen} colorScheme="white" variant="link" >Sign Up</Button>
+      <Button onClick={onOpen} colorScheme="white" variant="link" className="navbar buttons">Sign Up</Button>
 
       <Modal closeOnOverlayClick={true} size="sm" isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

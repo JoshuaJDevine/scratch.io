@@ -50,7 +50,7 @@ export default function Login() {
 
   return (
     <>
-      <Button colorScheme="white" variant="link" onClick={onOpen}>Log In</Button>
+      <Button colorScheme="white" variant="link" onClick={onOpen} className="navbar buttons">Log In</Button>
 
       <Modal closeOnOverlayClick={true} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -100,10 +100,7 @@ export default function Login() {
                   </Form>
                 )}
               </Formik>
-
           </ModalBody>
-          <ModalFooter>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </>
