@@ -42,7 +42,7 @@ export default function NavBar(){
                   <SignUp  />
                   <CreateTeam />
 
-//                   <Button colorScheme="white" variant="link" onClick={() => history.push("/test-profile")} className="navbar buttons">
+{/* //                   <Button colorScheme="white" variant="link" onClick={() => history.push("/test-profile")} className="navbar buttons"> */}
 
                   <Button colorScheme="white" variant="link" onClick={() => history.push("/profile")} className="navbar buttons">
                         Profile
