@@ -823,7 +823,14 @@ input:nth-of-type(3):checked ~ #maincarousel {
 
 
 
-
+.BooleanFields{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+.BooleanFields span{
+  margin-left: 8px;
+}
 
 
 
