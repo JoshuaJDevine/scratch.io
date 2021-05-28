@@ -50,6 +50,21 @@ body {
   margin: 0 15px;
 }
 
+/* ================= PROFILE GAME JAM PORTION ===============*/
+/* FROM THE CAROUSEL */
+.maincarousel-item.gamejam-info {
+  border-radius: 5px;
+  box-shadow: 0 0 8px 0 black;
+}
+
+.gamejam-box-profile {
+  margin: 10px 15px;
+}
+
+.profile-gj-boxes {
+  margin: 10px 15px!important;
+}
+
 .animated-grid {
     height: 85vh;
     margin-bottom: 200px;

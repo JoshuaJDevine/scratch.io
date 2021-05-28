@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Box, SimpleGrid } from "@chakra-ui/react";
+import { SimpleGrid } from "@chakra-ui/react";
 
 import MainGJBoxes from "./MainGJBoxes";
 
