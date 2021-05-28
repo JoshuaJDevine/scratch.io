@@ -1,5 +1,6 @@
 import React from "react"
-import GameJamBox from "./gamejams/GameJamBox"
+import GameJamBox from "./gamejams/GameJamBox";
+import GameBox from "./games/GameBox"
 
 import {
     Flex,
@@ -35,7 +36,7 @@ export default function Homepage() {
                 Genre
             </h1>
             </Heading>
-            <GameJamBox />
+            <GameBox />
         </Box>
         </Flex>
     )
