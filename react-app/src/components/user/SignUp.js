@@ -42,7 +42,7 @@ import {useDispatch} from "react-redux";
       <>
         <Button onClick={onOpen} colorScheme="white" variant="link" >Sign Up</Button>
 
-        <Modal size="sm" isOpen={isOpen} onClose={onClose}>
+        <Modal closeOnOverlayClick={true} size="sm" isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
             <ModalHeader>Sign Up</ModalHeader>
@@ -58,6 +58,7 @@ import {useDispatch} from "react-redux";
                       console.log("LOGIN")
                       console.log(values)
                       await dispatch(signUp(values.username, values.email, values.password));
+                      onClose();
                   }}
                 >
                   {(props) => (

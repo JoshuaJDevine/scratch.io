@@ -21,7 +21,6 @@ export default function NavBar(){
         console.log('You clicked logout. GJ.');
       }
 
-
     return(
         <Box bg="black" w="100%" h="60px"  spacing={4} p={4} color="white" id="navbar">
 
@@ -37,12 +36,12 @@ export default function NavBar(){
                   <Button colorScheme="white" variant="link">
                     Games
                   </Button>
-                  <Login />
-                    {(user) ? <LogoutButton/> : null}
-                  <SignUp  />
+                  { !user && <Login /> }
+                  { !user && <SignUp /> }
+                  { user && <LogoutButton/> }
                   <CreateTeam />
                   <Button colorScheme="white" variant="link" onClick={() => history.push("/test-profile")}>
-                        Profile
+                    Profile
                   </Button>
                 </Stack>
               </Square>

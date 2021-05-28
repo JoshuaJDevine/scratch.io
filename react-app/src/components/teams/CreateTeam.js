@@ -50,11 +50,11 @@ export default function CreateTeam() {
     }
 
 
-    
+
     return (
         <>
             <Button onClick={onOpen} colorScheme="white" variant="link" >Create Team</Button>
-            <Modal size="sm" isOpen={isOpen} onClose={onClose}>
+            <Modal closeOnOverlayClick={true} size="sm" isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>Create Team</ModalHeader>
@@ -71,7 +71,8 @@ export default function CreateTeam() {
                               wantedSkillsCollection: []
                           }}
                           onSubmit={async (values) => {
-                              await dispatch(PostTeam(values))
+                              await dispatch(PostTeam(values));
+                              onClose();
                           }}
                         >
                           {(props) => (
