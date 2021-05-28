@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import User
 
@@ -15,5 +15,9 @@ def users():
 @user_routes.route('/<int:id>')
 @login_required
 def user(id):
+    args = request.args
+    teams = True if args["getJoinedTeams"] == 'true' else False
+    skills = True if args["getJoinedSkills"] == 'true' else False
+
     user = User.query.get(id)
-    return user.to_dict()
+    return user.to_dict(teams=teams, skills=skills)

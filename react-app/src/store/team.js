@@ -3,8 +3,8 @@ const POST_TEAM = "team/POST_TEAM" //Create a team
 const GET_TEAM = "team/GET_TEAM" //Get a team
 const UPDATE_TEAM = "team/UPDATE_TEAM" //Update a team
 const DELETE_TEAM = "team/DELET_TEAM" //Delete a team
-const POST_NEW_MEMBER ="team/POST_NEW_MEMBER"
-
+const POST_NEW_MEMBER = "team/POST_NEW_MEMBER"
+const CHANGE_WANTED_SKILLS = "team/CHANGE_WANTED_SKILLS"
 
 
 
@@ -32,6 +32,11 @@ const addNewMember = (user) => ({
     type: POST_NEW_MEMBER,
     payload: user
 })
+const changeWantedSkills = (team, skills) => ({
+    type: CHANGE_WANTED_SKILLS,
+    teamId: team,
+    payload: skills
+})
 
 
 
@@ -55,17 +60,37 @@ export const GetTeams = query => async (dispatch) => {
     }
 }
 
-export const PostTeam = (name) => async (dispatch) => {
-    const response = await fetch('/api/teams/', {
+export const PostTeam = (values) => async (dispatch) => {
+    const {
+            name,
+            blurb,
+            avatar,
+            website,
+            github,
+            recruiting,
+            wantedSkillsCollection
+        } = values
+    const response = await fetch('/api/teams/', {      
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            name
+            name,
+            blurb,
+            avatar,
+            website,
+            github,
+            recruiting
         }),
     });
     const data = await response.json();
+    let teamId = data.id
+    // console.log('WANTED SKILLS COLLECTION -------->', wantedSkillsCollection)
+    ChangeWantedSkills(teamId, wantedSkillsCollection)
+    // const res = await dispatch(changeWantedSkills(teamId, wantedSkillsCollection))
+    // console.log('RES ------------->', res)
+
     if (data.error) {
         return data;
     }
@@ -145,7 +170,27 @@ export const AddNewMember = (teamId, userId) => async (dispatch) => {
     return {};
 }
 
+const ChangeWantedSkills = async (teamId, skills) => {
+    console.log('SKILLS------->', skills)
+    const response = await fetch(`/api/teams/${teamId}/change_wanted_skills`, {
+        method: "POST",
+        headers: {
+            'Content-Type': "application/json",
+        },
+        body: JSON.stringify({
+            skills
+        })
+    })
+    const data = await response.json();
+    if (data.erros) {
+        return data
+    }
+    return {};
+}
+
+
 export default function reducer(state=initialState, action) {
+    const newState = {...state};
     switch (action.type) {
         case GET_TEAMS:
             return { teams: action.payload }
@@ -158,6 +203,8 @@ export default function reducer(state=initialState, action) {
         case DELETE_TEAM:
             return { teams: action.payload }
         case POST_NEW_MEMBER: 
+            return { teams: action.payload}
+        case CHANGE_WANTED_SKILLS:
             return { teams: action.payload}
         default:
             return state
