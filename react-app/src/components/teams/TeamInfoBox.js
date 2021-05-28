@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+
 
 
 import {
@@ -90,4 +91,4 @@ export default function ProfileInfoBox() {
       </Box>
     </Box>
   )
-}
+

@@ -72,7 +72,7 @@ function App() {
       // await  dispatch(UpdateGame(14, "MyTestUpdate"))
 
       // await dispatch(GetTeams(gameJamQuery({getJoinedUsers: true})))
-     await dispatch(getGameJams)
+    //  await dispatch(getGameJams())
 
 
       // await dispatch(getGameJams({

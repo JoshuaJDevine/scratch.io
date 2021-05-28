@@ -16,11 +16,8 @@ console.log(props);
                           p="10"
                           textAlign="center"
                           rounded="lg"
-                          color="pink">
+                          color="white">
                             <p>{props.gameJams[key].name}</p>
-                            <p>Info</p>
-                            <p>Info</p>
-                            <p>Info</p>
                     </Flex>
                 </Box>
             })}
