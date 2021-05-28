@@ -16,13 +16,40 @@ import {
     FormHelperText,
     InputGroup,
     InputRightElement,
-
+    FormErrorMessage
   } from "@chakra-ui/react"
 import {login, signUp} from "../../store/session";
 import {Field, Form, Formik} from "formik";
 import {useDispatch} from "react-redux";
 
+export default function SignUp() {
+  const dispatch = useDispatch();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
+  function validateUsername(value) {
+    let error;
+    if (!value)
+      error = "Required"
+    else if (value.length < 3)
+      error = "Invalid username"
+    return error;
+  }
+
+  function validateEmail(value) {
+    let error;
+    if (!value)
+      error = 'Required';
+    else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value))
+      error = 'Invalid email address';
+    return error;
+  }
+
+  function validatePassword(value) {
+    let error;
+    if (!value)
+      error = 'Required';
+    return error;
+  }
 
 
   export default function SignUp() {
@@ -57,7 +84,7 @@ import {useDispatch} from "react-redux";
                   onSubmit={async (values) => {
                       console.log("LOGIN")
                       console.log(values)
-                      await dispatch(signUp(values.username, values.email, values.password));
+                      await dispatch(signUp(values));
                   }}
                 >
                   {(props) => (
@@ -70,11 +97,51 @@ import {useDispatch} from "react-redux";
                           </FormControl>
                         )}
                       </Field>
+                      <Field name="first_name" validate={validateEmail}>
+                        {({ field, form }) => (
+                          <FormControl isInvalid={form.errors.name && form.touched.name}>
+                            <FormLabel>First Name</FormLabel>
+                            <Input {...field} size="sm" id="first_name" placeholder="First Name" />
+                          </FormControl>
+                        )}
+                      </Field>
+                      <Field name="last_name" validate={validateEmail}>
+                        {({ field, form }) => (
+                          <FormControl isInvalid={form.errors.name && form.touched.name}>
+                            <FormLabel>Last Name</FormLabel>
+                            <Input {...field} size="sm" id="last_name" placeholder="Last Name" />
+                          </FormControl>
+                        )}
+                      </Field>
                       <Field name="email" >
                         {({ field, form }) => (
                           <FormControl id="email"  mt={1.5} isInvalid={form.errors.name && form.touched.name}>
                             <FormLabel>Email</FormLabel>
                             <Input {...field} size="sm" id="email" placeholder="Email" />
+                          </FormControl>
+                        )}
+                      </Field>
+                      <Field name="website" validate={validateEmail}>
+                        {({ field, form }) => (
+                          <FormControl isInvalid={form.errors.name && form.touched.name}>
+                            <FormLabel>Website</FormLabel>
+                            <Input {...field} size="sm" id="user_website" placeholder="Website Url" />
+                          </FormControl>
+                        )}
+                      </Field>
+                      <Field name="github" validate={validateEmail}>
+                        {({ field, form }) => (
+                          <FormControl isInvalid={form.errors.name && form.touched.name}>
+                            <FormLabel>Github</FormLabel>
+                            <Input {...field} size="sm" id="user_github" placeholder="Github Url" />
+                          </FormControl>
+                        )}
+                      </Field>
+                      <Field name="avatar" validate={validateEmail}>
+                        {({ field, form }) => (
+                          <FormControl isInvalid={form.errors.name && form.touched.name}>
+                            <FormLabel>Avatar</FormLabel>
+                            <Input {...field} size="sm" id="user_avatar" placeholder="Avatar URL" />
                           </FormControl>
                         )}
                       </Field>
@@ -100,7 +167,7 @@ import {useDispatch} from "react-redux";
                         isLoading={props.isSubmitting}
                         type="submit"
                       >
-                        Submit
+                        Sign Up
                       </Button>
                     </Form>
                   )}
@@ -173,13 +240,18 @@ import {useDispatch} from "react-redux";
 
             </ModalBody>
             <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={onClose}>
-                Close
-              </Button>
-              <Button variant="ghost">Sign Up</Button>
+              
             </ModalFooter>
           </ModalContent>
         </Modal>
       </>
     )
-  }
+
+  function validateConfirmPassword(value) {
+    let error;
+    const pass = document.getElementById('password').value;
+    if (!value)
+      error = 'Required';
+    else if (pass !== value)
+      error = "Password does not match confirmation password"
+    return error;

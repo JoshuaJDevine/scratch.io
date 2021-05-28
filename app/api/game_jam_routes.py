@@ -14,7 +14,7 @@ def get_game_jams():
         date_later = datetime.now() + timedelta(days=1)
     elif args['date'] == "week":
         date_later = datetime.now()+ timedelta(weeks=1)
-    elif args['date'] =="month":
+    elif args['date'] == "month":
         date_later = datetime.now()+ timedelta(days=30)
     elif args['date'] == "year":
         date_later = datetime.now()+ timedelta(days=365)
@@ -22,13 +22,10 @@ def get_game_jams():
         date_now = datetime.now() - timedelta(days=(365*100))
         date_later = datetime.now() + timedelta(days=(365*100))
 
-    # print(date_later)
-
     games = True if args["getJoinedGames"] == 'true' else False
     teams = True if args["getJoinedTeams"] == 'true' else False
     tags = True if args["getJoinedTags"] == 'true' else False
 
-       
     game_jams = GameJam.query.join(tags_gamejams).join(Tag) \
         .filter(
             GameJam.name.ilike(f"%{args['searchTerm']}%") |
