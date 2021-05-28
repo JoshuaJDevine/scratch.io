@@ -1,10 +1,13 @@
 /* TODO Add site wide styles */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
 :root{
   --russian-violet: #320e3bff;
   --celtic-blue: #276fbfff;
   --ruby-red: #a31621ff;
   --silver-chalice: #b0b2b4ff;
-  --rich-black-fogra-39: rgba(4, 5, 10, 0.315);
+  --rich-black-fogra-39: rgba(4, 5, 10, 0.800);
+  --font-op: 'Open Sans', sans-serif;
 }
 
 body {
@@ -17,8 +20,30 @@ body {
   background-position: center center;
 }
 
+/* ================ NAVBAR STYLES =============== */
 #navbar {
-  background: var(--rich-black-fogra-39)!important;
+  background: var(--rich-black-fogra-39);
+  border-bottom: 5px solid rgba(4, 5, 10, 0.100);
+}
+
+#navbar .navbar.buttons:last-of-type {
+  position: relative;
+  left: 135%;
+}
+
+.navbar.buttons {
+  color: whitesmoke;
+  outline: none;
+  padding: 3px;
+  /* margin: 0 5px; */
+  font-size: 1.15rem;
+  font-family: var(--font-op);
+}
+
+.navbar.buttons:hover {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  outline: none;
 }
 
 .boxes-for-days {
@@ -190,7 +215,8 @@ body {
 }
 /*CARD EFFECT*/
 .l-container {
-  display: flex;
+display: flex;
+flex-direction: column;
 position: relative;
 margin-left: 10px;
 margin-top: 10px;
@@ -316,7 +342,6 @@ section {
   height: 1px;
   width: 1px;
   margin: -1px;
-  overflow: hidden;
   padding: 0;
   position: absolute;
 }
@@ -596,11 +621,11 @@ svg {
   --items: 5;
   --middle: 3;
   --position: 1;
-  pointer-events: none;
 }
 div.maincarousel-item {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   padding: 10px;
   position: absolute;
   width: 600px;
@@ -612,7 +637,7 @@ div.maincarousel-item {
   --abs: max(calc(var(--r) * -1), var(--r));
   transition: all 0.25s linear;
   transform: rotateY(calc(-7deg * var(--r)))
-    translateX(calc(-300px * var(--r)));
+    translateX(calc(-400px * var(--r)));
   z-index: calc((var(--position) - var(--abs)));
 }
 div.maincarousel-item:nth-of-type(1) {
@@ -672,6 +697,23 @@ input:nth-of-type(5) {
 input:nth-of-type(5):checked ~ #maincarousel {
   --position: 5;
 }
+.mainCarouselWrapper{
+}
+#CarouselRadio1{
+  position: relative;
+  left: 30%;
+}
+#CarouselRadio2{
+  position: relative;
+  left: 50%;
+}
+#CarouselRadio3{
+  position: relative;
+  left: 70%;
+}
+
+
+
 
 
 /*Bigger main*/
@@ -704,7 +746,7 @@ div.bigMainCarousel-item {
   --r: calc(var(--position) - var(--offset));
   --abs: max(calc(var(--r) * -1), var(--r));
   transition: all 0.25s linear;
-  transform: rotateY(calc(-14deg * var(--r)))
+  transform: rotateY(calc(-30deg * var(--r)))
     translateX(calc(-300px * var(--r)));
   z-index: calc((var(--position) - var(--abs)));
 }
@@ -791,3 +833,12 @@ input:nth-of-type(6):checked ~ #bigMainCarousel {
     flex-direction: row;
     flex-wrap: wrap;
 }
+
+
+
+
+
+
+
+
+/*RADIO STYLES*/

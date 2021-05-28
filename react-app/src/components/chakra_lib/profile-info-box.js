@@ -14,13 +14,9 @@ import {
   } from '@chakra-ui/react';
 
 
-
-
-
 export default function ProfileInfoBox() {
 return (
-
-<Box
+        <Box
           maxW={'270px'}
           w={'full'}
           bg={useColorModeValue('white', 'gray.800')}
@@ -30,7 +26,7 @@ return (
           rounded={'md'}
           overflow={'hidden'}
           className="boxes-for-days"
-        //   paddingX="10px"
+          //paddingX="10px"
           >
           <Image
             h={'120px'}
@@ -93,5 +89,5 @@ return (
             </Button>
           </Box>
         </Box>
-)
+        )
 }
