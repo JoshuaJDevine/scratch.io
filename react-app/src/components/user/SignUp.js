@@ -16,13 +16,40 @@ import {
     FormHelperText,
     InputGroup,
     InputRightElement,
-
+    FormErrorMessage
   } from "@chakra-ui/react"
 import {login, signUp} from "../../store/session";
 import {Field, Form, Formik} from "formik";
 import {useDispatch} from "react-redux";
 
+export default function SignUp() {
+  const dispatch = useDispatch();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
+  function validateUsername(value) {
+    let error;
+    if (!value)
+      error = "Required"
+    else if (value.length < 3)
+      error = "Invalid username"
+    return error;
+  }
+
+  function validateEmail(value) {
+    let error;
+    if (!value)
+      error = 'Required';
+    else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value))
+      error = 'Invalid email address';
+    return error;
+  }
+
+  function validatePassword(value) {
+    let error;
+    if (!value)
+      error = 'Required';
+    return error;
+  }
 
 
   export default function SignUp() {
@@ -219,4 +246,12 @@ import {useDispatch} from "react-redux";
         </Modal>
       </>
     )
-  }
+
+  function validateConfirmPassword(value) {
+    let error;
+    const pass = document.getElementById('password').value;
+    if (!value)
+      error = 'Required';
+    else if (pass !== value)
+      error = "Password does not match confirmation password"
+    return error;
