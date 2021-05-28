@@ -40,8 +40,8 @@ export default function NavBar(){
                   { !user && <SignUp /> }
                   { user && <LogoutButton/> }
                   <CreateTeam />
-                  <Button colorScheme="white" variant="link" onClick={() => history.push("/test-profile")}>
-                    Profile
+                  <Button colorScheme="white" variant="link" onClick={() => history.push("/profile")}>
+                        Profile
                   </Button>
                 </Stack>
               </Square>

@@ -40,9 +40,9 @@ return (
     borderBottom="solid 2px black"
     fontSize="lg"
     >
-        <h4>
+        <p>
             Skills
-        </h4>
+        </p>
 </Heading>
 
 </Box>
