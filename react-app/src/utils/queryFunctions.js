@@ -1,17 +1,30 @@
 export function gameJamQuery(obj={}) {
-    let defaultObj = {
+    const defaultObj = {
         searchTerm: "",
         resultLimit: 25,
-        getJoinedGames: false,
+        date: "all",
         getJoinedTeams: false,
-        getJoinedTags: false,
-        getJoinedUsers:false,
-        getJoinedGameJams:false,
-        getJoinedSkills: false
+        getJoinedGames: false,
+        getJoinedTags: false
     }
 
     for (let key in obj) {
-        defaultObj[key] = obj[key]
+        defaultObj[key] = obj[key];
     }
-    return defaultObj
+
+    return defaultObj;
+}
+
+export function gameQuery(obj={}) {
+    const defaultObj = {
+        searchTerm: "",
+        resultLimit: 25,
+        getJoinedTags: false
+    }
+
+    for (let key in obj) {
+        defaultObj[key] = obj[key];
+    }
+
+    return defaultObj;
 }

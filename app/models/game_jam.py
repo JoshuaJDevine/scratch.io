@@ -16,7 +16,15 @@ class GameJam(db.Model):
     userLimit = db.Column(db.Integer, nullable=False)
     startDate = db.Column(db.Date, nullable=False)
     endDate = db.Column(db.Date, nullable=False)
-    #add owner column
+    ownerId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
+
+    # One to Many
+    owner = db.relationship(
+        "User",
+        back_populates='owned_gamejams'
+    )
+
+    # Many to Many
     teams = db.relationship(
         'Team',
         secondary=teams_gamejams,
