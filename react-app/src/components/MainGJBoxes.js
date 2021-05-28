@@ -2,7 +2,7 @@ import React from "react";
 
 import { Box } from "@chakra-ui/react";
 
-export default function MainGJBoxes() {
+export default function MainGJBoxes(props) {
 
     return (
         <Box
@@ -13,7 +13,7 @@ export default function MainGJBoxes() {
         bg="white"
         border="solid 3px black"
         padding="1rem">
-            Game Jam Example
+            {props.children}
         </Box>
     )
 }

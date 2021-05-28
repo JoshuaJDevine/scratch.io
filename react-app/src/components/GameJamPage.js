@@ -61,6 +61,9 @@ export default function GameJamPage() {
                                     <option value="year">Past Year</option>
                                     <option value="all">All Time</option>
                                 </Select> */}
+        {
+          Object.values(gameJams).map(gamejam => <GJInfoBox key={gamejam.id} gamejam={gamejam} />)
+        }
                 </Box>
                 </Flex>
             </Box>
@@ -78,9 +81,6 @@ export default function GameJamPage() {
 // </Input>
 // </Stack> */}
 
-// {/* {
-//   Object.values(gameJams).map(gamejam => <GJInfoBox key={gamejam.id} gamejam={gamejam} />)
-// } */}
 // // {
 // //     Object.values(photos).map(image => <Photo key={image.id} image={image} />)
 // // }
