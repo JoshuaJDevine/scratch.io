@@ -42,7 +42,7 @@ export default function CreateTeam() {
 
     //Revisit validators and add for each field
     function validateName(value) {
-        let error
+        let error;
         if (!value) {
           error = "Name is required"
         }
