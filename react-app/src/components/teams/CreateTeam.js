@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllSkills, skills } from "../store/skills";
-import { PostTeam } from "../store/team"
+import { getAllSkills, skills } from "../../store/skills";
+import { PostTeam } from "../../store/team"
 import {
     Modal,
     ModalOverlay,

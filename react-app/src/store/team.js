@@ -4,8 +4,7 @@ const GET_TEAM = "team/GET_TEAM" //Get a team
 const UPDATE_TEAM = "team/UPDATE_TEAM" //Update a team
 const DELETE_TEAM = "team/DELET_TEAM" //Delete a team
 const POST_NEW_MEMBER = "team/POST_NEW_MEMBER"
-const CHANGE_WANTED_SKILLS = "team/CHANGE_WANTED_SKILLS"
-
+const DELETE_TEAM_MEMBER = "team/DELETE_TEAM_MEMBER"
 
 
 const getTeams = (teams) => ({
@@ -32,27 +31,53 @@ const addNewMember = (user) => ({
     type: POST_NEW_MEMBER,
     payload: user
 })
-const changeWantedSkills = (team, skills) => ({
-    type: CHANGE_WANTED_SKILLS,
-    teamId: team,
-    payload: skills
+const deleteTeamMember = (user) => ({
+    type: DELETE_TEAM_MEMBER,
+    payload: user
 })
-
-
-
 
 const initialState = { teams: null };
 
 
+/*
+=========================== HELPER FUNCTIONS ========================
+*/
 
 
+/********************** CHANGE WANTED SKILLS FUNCTION *****************/
+const changeWantedSkills = async (teamId, skills) => {
+    console.log('SKILLS------->', skills)
+    const response = await fetch(`/api/teams/${teamId}/change_wanted_skills`, {
+        method: "POST",
+        headers: {
+            'Content-Type': "application/json",
+        },
+        body: JSON.stringify({
+            skills
+        })
+    })
+    const data = await response.json();
+    if (data.erros) {
+        return data
+    }
+    return {};
+}
+
+
+/*
+=============================== THUNKS =============================
+*/
+
+/*--------------------------- GET THUNKS ------------------------*/
+
+/*************************** GET TEAMS **********************/
 export const GetTeams = query => async (dispatch) => {
     let url = `/api/teams?`;
-
+    
     for (let prop in query) {
         url += `${prop}=${query[prop]}&`
     }
-
+    
     const res = await fetch(url);
     if (res.ok) {
         const data = await res.json();
@@ -60,11 +85,31 @@ export const GetTeams = query => async (dispatch) => {
     }
 }
 
+
+/******************** GET INDIVIDUAL TEAM *****************/
+export const GetTeam = (id) => async (dispatch) => {
+    const response = await fetch(`api/teams/${id}`, {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+    const data = await response.json();
+    if (data.errors) {
+        return data;
+    }
+
+    dispatch(getTeam(data))
+}
+
+
+/*---------------------------- POST THUNKS ----------------------------*/
+
+/******************* CREATE NEW TEAM ********************/
 export const PostTeam = (values) => async (dispatch) => {
     const {
-            name,
-            blurb,
-            avatar,
+        name,
+        blurb,
+        avatar,
             website,
             github,
             recruiting,
@@ -85,11 +130,9 @@ export const PostTeam = (values) => async (dispatch) => {
         }),
     });
     const data = await response.json();
+
     let teamId = data.id
-    // console.log('WANTED SKILLS COLLECTION -------->', wantedSkillsCollection)
     ChangeWantedSkills(teamId, wantedSkillsCollection)
-    // const res = await dispatch(changeWantedSkills(teamId, wantedSkillsCollection))
-    // console.log('RES ------------->', res)
 
     if (data.error) {
         return data;
@@ -99,58 +142,46 @@ export const PostTeam = (values) => async (dispatch) => {
     return {};
 }
 
-export const GetTeam = (id) => async (dispatch) => {
-    const response = await fetch(`api/teams/${id}`, {
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    });
-    const data = await response.json();
-    if (data.errors) {
-        return data;
-    }
 
-    dispatch(getTeam(data))
-}
-
-export const UpdateTeam = (id, name) => async (dispatch) => {
+/*************************** UPDATE A TEAM *************************/
+export const UpdateTeam = (id, values) => async (dispatch) => {
+    const {
+        name,
+        blurb,
+        avatar,
+        website,
+        github,
+        recruiting,
+        wantedSkillsCollection
+    } = values
     const response = await fetch(`/api/teams/${id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            name
+            name,
+            blurb,
+            avatar,
+            website,
+            github,
+            recruiting
         }),
     });
+    ChangeWantedSkills(Id, wantedSkillsCollection)
+
     const data = await response.json();
     if (data.error) {
         return data;
     }
-
+    
     dispatch(updateTeam(data))
     return {}
 }
 
-export const  DeleteTeam = (id, team) => async (dispatch) => {
-    const response = await fetch(`/api/teams/${id}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            team
-        }),
-    });
-    const data = await response.json();
-    if (data.errors) {
-        return data;
-    }
 
-    dispatch(deleteTeam(data))
-    return {};
-}
 
+/********************* ADD NEW TEAM MEMEBER ***********************/
 export const AddNewMember = (teamId, userId) => async (dispatch) => {
     const response = await fetch(`/api/teams/${teamId}/add_new_member`, {
         method: "POST",
@@ -170,27 +201,56 @@ export const AddNewMember = (teamId, userId) => async (dispatch) => {
     return {};
 }
 
-const ChangeWantedSkills = async (teamId, skills) => {
-    console.log('SKILLS------->', skills)
-    const response = await fetch(`/api/teams/${teamId}/change_wanted_skills`, {
-        method: "POST",
+
+/*-------------------------------- DELETE THUNKS -------------------------*/
+
+/************************** DELETE TEAM ************************/
+export const  DeleteTeam = (id, team) => async (dispatch) => {
+    const response = await fetch(`/api/teams/${id}`, {
+        method: 'DELETE',
         headers: {
-            'Content-Type': "application/json",
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            skills
-        })
-    })
+            team
+        }),
+    });
     const data = await response.json();
-    if (data.erros) {
-        return data
+    if (data.errors) {
+        return data;
     }
+
+    dispatch(deleteTeam(data))
     return {};
 }
 
 
+/*********************** REMOVE TEAM MEMBER ***********************/
+export const RemoveTeamMember = (teamId, userId) => async (dispatch) => {
+    const response = await fetch(`/api/teams/${teamId}/remove_team_member`, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': "application/json",
+        },
+        body: JSON.stringify({
+            userId
+        }),
+    });
+    const data = await response.json();
+    if (data.errors) {
+        return data
+    }
+
+    dispatch(removeTeamMemeber(data))
+    return {};
+}
+
+
+/*
+============================== REDUCER =================================
+*/
 export default function reducer(state=initialState, action) {
-    const newState = {...state};
+    // const newState = {...state};
     switch (action.type) {
         case GET_TEAMS:
             return { teams: action.payload }
@@ -205,6 +265,8 @@ export default function reducer(state=initialState, action) {
         case POST_NEW_MEMBER: 
             return { teams: action.payload}
         case CHANGE_WANTED_SKILLS:
+            return { teams: action.payload}
+        case DELETE_TEAM_MEMBER:
             return { teams: action.payload}
         default:
             return state
