@@ -41,7 +41,10 @@ export default function NavBar(){
                     {(user) ? <LogoutButton/> : null}
                   <SignUp  />
                   <CreateTeam />
-                  <Button colorScheme="white" variant="link" onClick={() => history.push("/test-profile")} className="navbar buttons">
+
+//                   <Button colorScheme="white" variant="link" onClick={() => history.push("/test-profile")} className="navbar buttons">
+
+                  <Button colorScheme="white" variant="link" onClick={() => history.push("/profile")} className="navbar buttons">
                         Profile
                   </Button>
                 </Stack>

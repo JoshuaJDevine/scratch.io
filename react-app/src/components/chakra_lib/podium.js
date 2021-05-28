@@ -21,9 +21,9 @@ export default function Podium(){
     }
     return(
         <Grid templateRows="repeat(2, 1fr)" gap={6}>
-            <Box>
-                <CardSample2 />
-            </Box>
+            {/*<Box>*/}
+            {/*    <CardSample2 props={podiumData}/>*/}
+            {/*</Box>*/}
             <Box>
                 <MainCarousel />
             </Box>

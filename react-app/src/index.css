@@ -215,7 +215,8 @@ body {
 }
 /*CARD EFFECT*/
 .l-container {
-  display: flex;
+display: flex;
+flex-direction: column;
 position: relative;
 margin-left: 10px;
 margin-top: 10px;
@@ -341,7 +342,6 @@ section {
   height: 1px;
   width: 1px;
   margin: -1px;
-  overflow: hidden;
   padding: 0;
   position: absolute;
 }
@@ -621,11 +621,11 @@ svg {
   --items: 5;
   --middle: 3;
   --position: 1;
-  pointer-events: none;
 }
 div.maincarousel-item {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   padding: 10px;
   position: absolute;
   width: 600px;
@@ -637,7 +637,7 @@ div.maincarousel-item {
   --abs: max(calc(var(--r) * -1), var(--r));
   transition: all 0.25s linear;
   transform: rotateY(calc(-7deg * var(--r)))
-    translateX(calc(-300px * var(--r)));
+    translateX(calc(-400px * var(--r)));
   z-index: calc((var(--position) - var(--abs)));
 }
 div.maincarousel-item:nth-of-type(1) {
@@ -697,6 +697,23 @@ input:nth-of-type(5) {
 input:nth-of-type(5):checked ~ #maincarousel {
   --position: 5;
 }
+.mainCarouselWrapper{
+}
+#CarouselRadio1{
+  position: relative;
+  left: 30%;
+}
+#CarouselRadio2{
+  position: relative;
+  left: 50%;
+}
+#CarouselRadio3{
+  position: relative;
+  left: 70%;
+}
+
+
+
 
 
 /*Bigger main*/
@@ -729,7 +746,7 @@ div.bigMainCarousel-item {
   --r: calc(var(--position) - var(--offset));
   --abs: max(calc(var(--r) * -1), var(--r));
   transition: all 0.25s linear;
-  transform: rotateY(calc(-14deg * var(--r)))
+  transform: rotateY(calc(-30deg * var(--r)))
     translateX(calc(-300px * var(--r)));
   z-index: calc((var(--position) - var(--abs)));
 }
@@ -816,3 +833,12 @@ input:nth-of-type(6):checked ~ #bigMainCarousel {
     flex-direction: row;
     flex-wrap: wrap;
 }
+
+
+
+
+
+
+
+
+/*RADIO STYLES*/
