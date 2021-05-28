@@ -1,5 +1,5 @@
 import React from "react";
-import {Box, Button, Flex, Square, Stack} from "@chakra-ui/react";
+import {Box, Button, Flex, Square, Stack, Icon} from "@chakra-ui/react";
 import SignUp from "./user/SignUp"
 import Login from "./user/Login"
 import CreateTeam from "./teams/CreateTeam"
@@ -28,20 +28,20 @@ export default function NavBar(){
             <Flex color="white">
               <Square size="100x">
                 <Stack direction="row" spacing={4} align="center">
-                  <Button colorScheme="white" variant="link">
+                  <Button colorScheme="white" variant="link" className="navbar buttons">
                     Home
                   </Button>
-                    <Button colorScheme="white" variant="link">
+                    <Button colorScheme="white" variant="link" className="navbar buttons">
                     Gamejams
                   </Button>
-                  <Button colorScheme="white" variant="link">
+                  <Button colorScheme="white" variant="link" className="navbar buttons">
                     Games
                   </Button>
                   <Login />
                     {(user) ? <LogoutButton/> : null}
                   <SignUp  />
                   <CreateTeam />
-                  <Button colorScheme="white" variant="link" onClick={() => history.push("/test-profile")}>
+                  <Button colorScheme="white" variant="link" onClick={() => history.push("/test-profile")} className="navbar buttons">
                         Profile
                   </Button>
                 </Stack>
