@@ -1,21 +1,8 @@
 import React from "react";
+import {Avatar, Box, Button, Flex, Heading, Image, Stack, Text, useColorModeValue} from "@chakra-ui/react";
 
-
-import {
-    Heading,
-    Avatar,
-    Box,
-    Image,
-    Flex,
-    Text,
-    Stack,
-    Button,
-    useColorModeValue
-  } from '@chakra-ui/react';
-
-
-export default function ProfileInfoBox() {
-return (
+export default function TeamInfoBox(){
+    return(
         <Box
           maxW={'270px'}
           w={'full'}
@@ -89,5 +76,5 @@ return (
             </Button>
           </Box>
         </Box>
-        )
+    )
 }
