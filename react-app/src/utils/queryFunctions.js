@@ -28,3 +28,19 @@ export function gameQuery(obj={}) {
 
     return defaultObj;
 }
+
+export function teamQuery(obj = {}) {
+    const defaultObj = {
+        searchTerm: "",
+        resultLimit: 25,
+        getJoinedUsers: false,
+        getJoinedGames: false,
+        getJoinedGameJams: false
+    }
+
+    for (let key in obj) {
+        defaultObj[key] = obj[key];
+    }
+
+    return defaultObj;
+}
