@@ -34,14 +34,16 @@ return (
     overflow={'hidden'}
     className="boxes-for-days">
 
+    <Heading
     padding="5px"
     margin="5px"
     borderBottom="solid 2px black"
     fontSize="lg"
     >
-        <h4>
+        <p>
             Skills
-        </h4>
+        </p>
+</Heading>
 
 </Box>
 )
