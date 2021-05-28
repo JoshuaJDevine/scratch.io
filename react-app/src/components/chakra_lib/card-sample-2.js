@@ -1,5 +1,5 @@
 import React from "react";
-import GameJamBox from "../GameJamBox";
+import GameJamBox from "../gamejams/GameJamBox";
 import {Box} from "@chakra-ui/react";
 
 export default function CardSample2(props){
@@ -37,8 +37,6 @@ export default function CardSample2(props){
         {/*<div className="gameJamCards">*/}
         {/*          <GameJamBox />*/}
         {/*</div>*/}
-
-
 
         </>
     )

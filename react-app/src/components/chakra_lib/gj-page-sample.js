@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getGameJams } from "../../store/game_jam"
 import { gameJamQuery } from "../../utils/queryFunctions"
 
-import GJInfoBox from "../GJInfoBox";
+import GJInfoBox from "../gamejams/GJInfoBox";
 
 
 import {Box, Flex, Input, InputGroup, IconButton, InputRightElement, Select, Grid} from "@chakra-ui/react"

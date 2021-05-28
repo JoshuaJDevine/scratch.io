@@ -2,8 +2,10 @@ import React from "react";
 import { useState } from "react"
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { login } from "../store/session";
+import {login} from "../../store/session";
 import {Field, FieldArray, Form, Formik} from "formik";
+import {PostTeam} from "../../store/team";
+
 import {
     Modal,
     ModalOverlay,
@@ -21,7 +23,6 @@ import {
     InputGroup,
     InputRightElement, Checkbox, FormErrorMessage
 } from "@chakra-ui/react"
-import {PostTeam} from "../store/team";
 
 export default function Login() {
 

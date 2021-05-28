@@ -18,7 +18,7 @@ import {
     InputRightElement,
 
   } from "@chakra-ui/react"
-import {login, signUp} from "../store/session";
+import {login, signUp} from "../../store/session";
 import {Field, Form, Formik} from "formik";
 import {useDispatch} from "react-redux";
 
