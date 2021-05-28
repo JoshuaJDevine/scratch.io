@@ -1,8 +1,22 @@
 import React from "react";
+
 import { useSelector } from "react-redux"
 import {Box, useColorModeValue, Flex, Container} from "@chakra-ui/react";
 
 import GameJamInfoCard from "../gamejams/GameJamInfoCard"
+
+// import {
+//     Heading,
+//     Avatar,
+//     Box,
+//     Image,
+//     Flex,
+//     Text,
+//     Stack,
+//     Button,
+//     useColorModeValue
+// } from '@chakra-ui/react';
+
 
 
 export default function TeamInfoBox(){
@@ -88,3 +102,8 @@ export default function TeamInfoBox(){
               Follow
             </Button>
           </Box> */}
+          </Box>
+        </Box>
+    )
+}
+
