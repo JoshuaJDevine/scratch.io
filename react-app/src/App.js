@@ -69,7 +69,9 @@ function App() {
       // await  dispatch(DeleteGame(12))
       // await  dispatch(UpdateGame(14, "MyTestUpdate"))
 
-      //await dispatch(GetTeams(gameJamQuery({getJoinedUsers: true})))
+      // await dispatch(GetTeams(gameJamQuery({getJoinedUsers: true})))
+     await dispatch(getGameJams)
+
 
       // await dispatch(getGameJams({
       //   searchTerm: "n",

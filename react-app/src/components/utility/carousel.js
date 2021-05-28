@@ -22,7 +22,7 @@ export default function Carousel (){
 
                   <UserProfile />
               </div>
-              <div className="maincarousel-item">
+              <div className="maincarousel-item gamejam-info">
 
                     <TeamInfoBox/>
               </div>
