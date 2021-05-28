@@ -36,13 +36,11 @@ export default function NavBar(){
                   <Button colorScheme="white" variant="link">
                     Games
                   </Button>
+                  <CreateTeam />
                   { !user && <Login /> }
                   { !user && <SignUp /> }
+                  { user && <Button colorScheme="white" variant="link" onClick={() => history.push("/profile")}> Profile </Button> }
                   { user && <LogoutButton/> }
-                  <CreateTeam />
-                  <Button colorScheme="white" variant="link" onClick={() => history.push("/profile")}>
-                        Profile
-                  </Button>
                 </Stack>
               </Square>
             </Flex>

@@ -28,33 +28,23 @@ import {
 
 export default function Login() {
 
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-
-  const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const [errors, setErrors] = useState([]);
-
-  //Validators - Install YUP or add functionality here
-  function validateEmail2(value) {
-    console.log("VALIDATE")
-    let error;
-    if (value?.length < 3 ) {
-      error = "Name is required";
-    }
-    console.log(error)
-    return error
-  }
+  const user = useSelector(state => state.session.user);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   function validateEmail(value) {
     let error;
-    if (!value) {
+    if (!value)
       error = 'Required';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+    else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value))
       error = 'Invalid email address';
-    }
-    console.log('ERROR',error)
+    return error;
+  }
+
+  function validatePassword(value) {
+    let error;
+    if (!value)
+      error = 'Required';
     return error;
   }
 
@@ -70,11 +60,11 @@ export default function Login() {
           <ModalBody>
           <Formik
                 initialValues={{
-                    email: "",
-                    name: ""
+                  email: "",
+                  name: ""
                 }}
                 onSubmit={async (values) => {
-                  const data = await dispatch(login(values.email, values.password));
+                  await dispatch(login(values.email, values.password));
                   onClose();
                 }}
               >
@@ -82,18 +72,19 @@ export default function Login() {
                   <Form>
                     <Field name="email" validate={validateEmail}>
                       {({ field, form }) => (
-                        <FormControl isInvalid={form.errors.name && form.touched.name}>
+                        <FormControl isInvalid={form.errors.email && form.touched.email}>
                           <FormLabel htmlFor="email">Email</FormLabel>
                           <Input {...field} size="sm" id="email" placeholder="Email" />
-                          <FormErrorMessage>{form.errors.name}</FormErrorMessage>
+                          <FormErrorMessage>{form.errors.email}</FormErrorMessage>
                         </FormControl>
                       )}
                     </Field>
-                    <Field name="password" >
+                    <Field name="password" validate={validatePassword}>
                       {({ field, form }) => (
-                        <FormControl id="password"  mt={1.5} isInvalid={form.errors.name && form.touched.name}>
-                          <FormLabel>Password</FormLabel>
-                          <Input {...field} size="sm" id="password" placeholder="Username / Email" />
+                        <FormControl mt={1.5} isInvalid={form.errors.password && form.touched.password}>
+                          <FormLabel htmlFor="password">Password</FormLabel>
+                          <Input {...field} type='password' size="sm" id="Password" placeholder="password" />
+                          <FormErrorMessage>{form.errors.password}</FormErrorMessage>
                         </FormControl>
                       )}
                     </Field>
@@ -109,23 +100,6 @@ export default function Login() {
                   </Form>
                 )}
               </Formik>
-
-          {/*<FormControl id="login-pw" isRequired>*/}
-          {/*<FormLabel>Password</FormLabel>*/}
-          {/*    <InputGroup size="md">*/}
-          {/*      <Input*/}
-          {/*        my="5px"*/}
-          {/*        pr="4.5rem"*/}
-          {/*        type={show ? "text" : "password"}*/}
-          {/*        placeholder="Enter password"*/}
-          {/*      />*/}
-          {/*      <InputRightElement width="4.5rem">*/}
-          {/*        <Button h="1.50rem" size="sm" onClick={handleClick} mt="10px">*/}
-          {/*          {show ? "Hide" : "Show"}*/}
-          {/*        </Button>*/}
-          {/*      </InputRightElement>*/}
-          {/*    </InputGroup>*/}
-          {/*</FormControl>*/}
 
           </ModalBody>
           <ModalFooter>
