@@ -1,5 +1,5 @@
 import React from "react"
-import GameJamBox from "./GameJamBox"
+import GameJamBox from "./gamejams/GameJamBox"
 
 import {
     Flex,

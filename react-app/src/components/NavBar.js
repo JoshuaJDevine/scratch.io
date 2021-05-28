@@ -1,8 +1,8 @@
 import React from "react";
 import {Box, Button, Flex, Square, Stack} from "@chakra-ui/react";
-import SignUp from "./SignUp"
-import Login from "./Login"
-import CreateTeam from "./CreateTeam"
+import SignUp from "./user/SignUp"
+import Login from "./user/Login"
+import CreateTeam from "./teams/CreateTeam"
 import { useHistory } from "react-router-dom";
 
 
