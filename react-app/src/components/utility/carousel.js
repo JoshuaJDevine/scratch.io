@@ -6,22 +6,24 @@ import TeamInfoBox from "../teams/TeamInfoBox";
 
 export default function Carousel (){
     return(
-         <div>
-             <input type="radio" name="position" />
-            <input type="radio" name="position" defaultChecked />
-            <input type="radio" name="position"/>
-
+         <div className="mainCarouselWrapper">
+             <input type="radio" name="position" id="CarouselRadio1" />
+             <input type="radio" name="position" id="CarouselRadio2" defaultChecked />
+             <input type="radio" name="position" id="CarouselRadio3"/>
             <main id="maincarousel">
               <div className="maincarousel-item">
+
                   <FloatinCardSimple imageUrl="https://andrewhawkes.github.io/codepen-assets/steam-game-cards/game_3.jpg" />
                   <FloatinCardSimple imageUrl="https://andrewhawkes.github.io/codepen-assets/steam-game-cards/game_3.jpg" />
                   <FloatinCardSimple imageUrl="https://andrewhawkes.github.io/codepen-assets/steam-game-cards/game_3.jpg" />
                   <FloatinCardSimple imageUrl="https://andrewhawkes.github.io/codepen-assets/steam-game-cards/game_3.jpg" />
               </div>
               <div className="maincarousel-item">
+
                   <UserProfile />
               </div>
               <div className="maincarousel-item">
+
                     <TeamInfoBox/>
               </div>
               {/*<div className="maincarousel-item">*/}

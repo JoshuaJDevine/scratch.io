@@ -317,7 +317,6 @@ section {
   height: 1px;
   width: 1px;
   margin: -1px;
-  overflow: hidden;
   padding: 0;
   position: absolute;
 }
@@ -597,7 +596,6 @@ svg {
   --items: 5;
   --middle: 3;
   --position: 1;
-  pointer-events: none;
 }
 div.maincarousel-item {
   display: flex;
@@ -674,6 +672,23 @@ input:nth-of-type(5) {
 input:nth-of-type(5):checked ~ #maincarousel {
   --position: 5;
 }
+.mainCarouselWrapper{
+}
+#CarouselRadio1{
+  position: relative;
+  left: 30%;
+}
+#CarouselRadio2{
+  position: relative;
+  left: 50%;
+}
+#CarouselRadio3{
+  position: relative;
+  left: 70%;
+}
+
+
+
 
 
 /*Bigger main*/
@@ -793,3 +808,12 @@ input:nth-of-type(6):checked ~ #bigMainCarousel {
     flex-direction: row;
     flex-wrap: wrap;
 }
+
+
+
+
+
+
+
+
+/*RADIO STYLES*/
