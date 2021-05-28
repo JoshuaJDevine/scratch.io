@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import {Box, useColorModeValue, Flex, Container} from "@chakra-ui/react";
 
-import GameJamInfoCard from "../gamejams/GameJamInfoCard"
 
 import { getGameJams } from "../../store/game_jam"
 import { gameJamQuery } from "../../utils/queryFunctions"
