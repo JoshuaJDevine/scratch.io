@@ -28,6 +28,7 @@ import FloatingCard from "./components/chakra_lib/floating-card";
 import Podium from "./components/chakra_lib/podium";
 import SocialProfileWithImage from "./components/chakra_lib/sample-profile";
 import GameJamPageSample from "./components/chakra_lib/gj-page-sample";
+import TeamProfilePage from "./components/teams/TeamProfilePage";
 
 
 function App() {
@@ -138,6 +139,9 @@ function App() {
         </Route>
         <Route path="/winner-podium">
             <Podium />
+        </Route>
+        <Route path="/teams">
+          <TeamProfilePage />
         </Route>
 
 

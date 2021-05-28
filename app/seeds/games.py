@@ -1,5 +1,8 @@
 from app.models import db, Game, User, Team, GameJam
+from faker import Faker
 import random
+
+faker = Faker()
 
 # Adds a demo user, you can add other users here if you want
 def seed_games():
@@ -21,8 +24,13 @@ def seed_games():
         else:
             t = random.choice(teams).id
 
+        domain = ''.join(nameList[i].split())
         newGame = Game(
             name=nameList[i],
+            blurb=faker.text(255),
+            avatarUrl="www.gameavatar.com",
+            githubUrl=f"www.github.com/{domain}",
+            websiteUrl=f"www.{domain}.com",
             userId=u,
             teamId=t,
             gameJamId=random.choice(gamejams).id
