@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getGameJams } from "../store/game_jam"
-import { gameJamQuery } from "../utils/queryFunctions"
+import { getGameJams } from "../../store/game_jam"
+import { gameJamQuery } from "../../utils/queryFunctions"
 
 import GJInfoBox from "./GJInfoBox";
 
