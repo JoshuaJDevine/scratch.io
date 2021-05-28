@@ -4,11 +4,23 @@ import SignUp from "./SignUp"
 import Login from "./Login"
 import CreateTeam from "./CreateTeam"
 import { useHistory } from "react-router-dom";
+import {login} from "../store/session";
+import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../services/auth";
+import LogoutButton from "./auth/LogoutButton";
 
 
 export default function NavBar(){
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.session.user)
 
   const history = useHistory()
+      async function handleLogout(e) {
+        e.preventDefault();
+        await dispatch(logout);
+        console.log('You clicked logout. GJ.');
+      }
+
 
     return(
         <Box bg="black" w="100%" h="60px"  spacing={4} p={4} color="white" id="navbar">
@@ -26,6 +38,7 @@ export default function NavBar(){
                     Games
                   </Button>
                   <Login />
+                    {(user) ? <LogoutButton/> : null}
                   <SignUp  />
                   <CreateTeam />
                   <Button colorScheme="white" variant="link" onClick={() => history.push("/test-profile")}>

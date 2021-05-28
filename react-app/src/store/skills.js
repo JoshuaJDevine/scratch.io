@@ -42,9 +42,6 @@ export const skillGet = (id) => async dispatch => {
     dispatch(getSkill(data))
 }
 
-
-//? Skills Reducer //
-
 export default function skillsReducer(state=initialState, action) {
     switch (action.type) {
         case GET_SKILLS:
