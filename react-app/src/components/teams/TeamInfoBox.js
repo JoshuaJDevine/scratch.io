@@ -1,5 +1,4 @@
 import React from "react";
-import {Avatar, Box, Button, Flex, Heading, Image, Stack, Text, useColorModeValue} from "@chakra-ui/react";
 import {
     Heading,
     Avatar,
