@@ -19,7 +19,7 @@ export default function GameJamPage() {
 
     useEffect(() => {
         dispatch(getGameJams(gameJamQuery()));
-    }, [dispatch])
+    }, [dispatch]);
 
     const handleClick = (e) => {
         e.preventDefault();

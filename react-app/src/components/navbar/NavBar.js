@@ -2,10 +2,12 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Button, Flex, Square, Stack, Icon} from "@chakra-ui/react";
-import SignUp from "./user/SignUp"
-import Login from "./user/Login"
-import CreateTeam from "./teams/CreateTeam"
-import LogoutButton from "./auth/LogoutButton";
+
+import SignUp from "../user/SignUp";
+import Login from "../user/Login";
+import CreateTeam from "../teams/CreateTeam";
+import LogoutButton from "../auth/LogoutButton";
+import SearchBar from './SearchBar';
 
 
 export default function NavBar(){
@@ -35,6 +37,7 @@ export default function NavBar(){
               </Button>
             }
             { user && <LogoutButton/> }
+            <SearchBar />
           </Stack>
         </Square>
       </Flex>
