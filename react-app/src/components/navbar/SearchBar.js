@@ -25,12 +25,14 @@ export default function SearchBar() {
                         placeholder="Search"
                         variant="filled"
                         onChange={(e) => setSearchTerm(e.target.value)}
+                        color="white"
+                        bgColor="white"
                     />
                     <InputRightElement>
-                        <IconButton aria-label="Search database" icon={<SearchIcon />}  onClick={handleClick}/>
+                        <IconButton aria-label="Search database" icon={<SearchIcon />}  onClick={handleClick} bgColor="white" color="black" />
                     </InputRightElement>
                 </InputGroup>
-                <Select placeholder="Select Date" bgColor="gray.200" w="15%" onChange={(e) => setDate(e.target.value)}>
+                <Select placeholder="Select Date" bgColor="gray.200" w="15%" onChange={(e) => setDate(e.target.value)} bgColor="white" color="black">
                     <option value="day">Next Day</option>
                     <option value="week">Next Week</option>
                     <option value="month">Next Month</option>
