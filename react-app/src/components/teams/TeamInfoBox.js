@@ -45,7 +45,7 @@ export default function TeamInfoBox(){
 }
 
 
-{/* <Image
+/* <Image
             h={'120px'}
             w={'full'}
             src={
@@ -101,9 +101,7 @@ export default function TeamInfoBox(){
               }}>
               Follow
             </Button>
-          </Box> */}
-          </Box>
-        </Box>
-    )
-}
+          </Box> */
+
+
 
