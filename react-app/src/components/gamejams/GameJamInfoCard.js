@@ -1,14 +1,13 @@
 import React from "react"
 
 
-import { Box, Flex } from "@chakra-ui/react"
+import { Box, Flex, Image } from "@chakra-ui/react"
 
-export default function GameJamInfoCard(props) {
-console.log(props);
+export default function GameJamInfoCard({ game }) {
+// console.log(game);
     return (
         <>
-            {Object.keys(props.gameJams).map(function(key){
-                return <Box className="profile-gj-boxes">
+                <Box className="profile-gj-boxes">
                         <Flex
                           bg="rgba(4, 5, 10, 0.315)"
                           columns={{ sm: 5 }}
@@ -16,14 +15,17 @@ console.log(props);
                           p="10"
                           textAlign="center"
                           rounded="lg"
-                          color="pink">
-                            <p>{props.gameJams[key].name}</p>
-                            <p>Info</p>
-                            <p>Info</p>
-                            <p>Info</p>
+                          color="white">
+                              <Image
+                              src={game.avatar}
+                              alt="alta-idk"
+                              h="100px"
+                              />
+                            <p>{game.theme}</p>
                     </Flex>
                 </Box>
-            })}
     </>
     )
 }
+
+
