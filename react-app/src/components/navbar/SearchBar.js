@@ -18,7 +18,7 @@ export default function SearchBar() {
 
     return (
     <>
-        <Box>
+        <Box id="navbar-main-box">
             <Flex flexDirection='row'>
                 <InputGroup>
                     <Input

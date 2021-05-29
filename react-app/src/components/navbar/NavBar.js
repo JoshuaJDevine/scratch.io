@@ -32,12 +32,15 @@ export default function NavBar(){
             <CreateTeam />
             { !user && <Login /> }
             { !user && <SignUp /> }
-            { user && <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push("/profile")}>
+            <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push(`/profile/1`)}>
+              Demo Login
+            </Button>
+            <SearchBar />
+            { user && <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push(`/profile/${user.id}`)}>
                 Profile
               </Button>
             }
             { user && <LogoutButton/> }
-            <SearchBar />
           </Stack>
         </Square>
       </Flex>

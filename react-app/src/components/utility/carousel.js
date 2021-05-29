@@ -18,20 +18,19 @@ export default function Carousel (){
              {/*<input type="radio" name="position" id="CarouselRadio2" defaultChecked />*/}
              {/*<input type="radio" name="position" id="CarouselRadio3"/>*/}
             <main id="maincarousel">
+                
               <div className="maincarousel-item" onClick={() => handleCarouselPosition(1)}>
-
                   <FloatinCardSimple imageUrl="https://andrewhawkes.github.io/codepen-assets/steam-game-cards/game_3.jpg" />
                   <FloatinCardSimple imageUrl="https://andrewhawkes.github.io/codepen-assets/steam-game-cards/game_3.jpg" />
                   <FloatinCardSimple imageUrl="https://andrewhawkes.github.io/codepen-assets/steam-game-cards/game_3.jpg" />
                   <FloatinCardSimple imageUrl="https://andrewhawkes.github.io/codepen-assets/steam-game-cards/game_3.jpg" />
               </div>
+
               <div className="maincarousel-item" onClick={() => handleCarouselPosition(2)} >
                   <UserProfile />
               </div>
 
               <div className="maincarousel-item gamejam-info" onClick={() => handleCarouselPosition(3)}>
-
-
                     <TeamInfoBox/>
               </div>
               {/*<div className="maincarousel-item">*/}

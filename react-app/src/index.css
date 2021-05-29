@@ -26,9 +26,13 @@ body {
   border-bottom: 5px solid rgba(4, 5, 10, 0.100);
 }
 
-#navbar .navbar.buttons:last-of-type {
+/* #navbar .navbar.buttons:last-of-type {
   position: relative;
-  left: 135%;
+  left: 20%;
+} */
+
+#navbar-main-box {
+  z-index: 1;
 }
 
 .navbar.buttons {

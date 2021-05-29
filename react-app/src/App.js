@@ -104,7 +104,10 @@ function App() {
         <Route path="/gj-page2">
             <GameJamPageSample/>
         </Route>
-        <Route path="/profile">
+        {/* <Route path="/profile">
+          <ProfilePage />
+        </Route> */}
+        <Route path="/profile/:id" exact={true}>
           <ProfilePage />
         </Route>
 
