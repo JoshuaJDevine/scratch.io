@@ -22,7 +22,7 @@ import {login, signUp} from "../../store/session";
 import {Field, Form, Formik} from "formik";
 import {useDispatch} from "react-redux";
 
-export default function SignUp() {
+export default function CreateNewGameJam() {
   const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -63,12 +63,13 @@ export default function SignUp() {
 
   return (
     <>
-      <Button onClick={onOpen} colorScheme="white" variant="link" className="navbar buttons">Sign Up</Button>
+      <Button onClick={onOpen} colorScheme="white" variant="link" className="navbar buttons">Host a Game Jam
+      </Button>
 
       <Modal closeOnOverlayClick={true} size="sm" isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Sign Up</ModalHeader>
+          <ModalHeader>Create new Game Jam</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Formik

@@ -844,6 +844,33 @@ input:nth-of-type(3):checked ~ #maincarousel {
   flex-direction: column;
   margin: 10px
 }
+.CreateGameJamWrapper{
+  display: flex;
+  margin: 10px;
+  justify-content: center;
+}
+.CreateGameJamButton{
+  display: flex;
+  margin: 10px;
+  font-size: 1rem;
+  justify-content: center;
+  border: 2px solid dimgrey;
+}
+.CreateGameJamButton{
+  display: flex;
+  margin: 10px;
+  font-size: 1rem;
+  justify-content: center;
+  border: 1px solid dimgrey;
+
+
+}
+.CreateGameJamButton:hover{
+  background-color: lightgray;
+}
+
+
+
 
 
 
