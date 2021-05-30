@@ -9,21 +9,35 @@ export default function GameJamInfoCard({ game }) {
         <>
                 <Box className="profile-gj-boxes"
                 h="300px"
-                
+
                 >
-                            <p>{game.name}</p>
+                        <Box className="gj-intro-info">
                             <Image
                               src={game?.avatar}
-                              alt="alta-idk"
+                              alt="img-gamejam"
                               h="50px"
                               />
-                            <p>{game.theme}</p>
-                            <p>{game.blurb}</p>
-                            <p>{game?.website}</p>
-                            <p>{game?.github}</p>
-                            <p>{game.userLimit}</p>
-                            <p>{game.startDate}</p>
-                            <p>{game.endDate}</p>
+                            <div className="gj-info-entries">{game.name}</div>
+                        </Box>
+                            <div className="gj-info-entries theme">{`#${game.theme}`}</div>
+
+                            <div className="gj-info-entries titles">A bit of info:</div>
+                            <div className="gj-info-entries blurb">{game.blurb}</div>
+
+                            <div className="gj-info-entries userLimit">{`User limit: ${game.userLimit}`}</div>
+                            
+                        <div className="gj-info-entries titles">Sites:</div>
+                        <div className="gj-info-entries sites">
+                            <div>{`The game: ${game?.website}`}</div>
+                            <div>{`Github: ${game?.github}`}</div>
+                        </div>
+
+                        <div className="gj-info-entries titles">Dates:</div>
+                        <div className="gj-info-entries dates">
+                            <div>{`Start date: ${game.startDate}`}</div>
+                            <div>{`End date: ${game.endDate}`}</div>
+                        </div>
+                        <hr />
                 </Box>
     </>
     )

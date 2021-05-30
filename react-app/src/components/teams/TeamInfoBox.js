@@ -10,10 +10,12 @@ import GameJamInfoCard from "../gamejams/GameJamInfoCard"
 import { getGameJam } from "../../store/game_jam"
 
 
+
 export default function TeamInfoBox(){
 
   const dispatch = useDispatch()
   const gameJams = useSelector(state => state.gameJams)
+  const user = useSelector(state => state.session.user)
 
   const { id } = useParams()
 
@@ -24,18 +26,20 @@ export default function TeamInfoBox(){
   }, [dispatch, id])
 
     return(
+      <>
+      <Box className="your-gamejams">Your gamejams:</Box>
         <Box
-          maxW={'270px'}
-          w="100%"
+          maxW={'350px'}
+          w="50%"
           bg={useColorModeValue('white', 'gray.800')}
           pos={"relative"}
-          top={"25px"}
+          // top={"25px"}
           boxShadow={'2xl'}
           rounded={'md'}
-          overflow={'hidden'}
+          overflow={'auto'}
           className="gamejam-box-profile"
           >
-            <Flex justify="space-around" align="stretch" direction="column" h="40rem">
+            {/* <Flex justify="space-around" align="stretch" direction="column" h="30rem"> */}
             <Container>
                   {
                       Object.values(gameJams).map((game, idx) =>
@@ -43,7 +47,8 @@ export default function TeamInfoBox(){
                        <GameJamInfoCard key={idx} game={game}  /> )
                   }
             </Container>
-            </Flex>
+            {/* </Flex> */}
         </Box>
+    </>
     )
 }
