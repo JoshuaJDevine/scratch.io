@@ -28,7 +28,7 @@ def seed_games():
         newGame = Game(
             name=nameList[i],
             blurb=faker.text(255),
-            avatarUrl="www.gameavatar.com",
+            avatarUrl=f"https://avatars.dicebear.com/api/identicon/{domain}.svg",
             githubUrl=f"www.github.com/{domain}",
             websiteUrl=f"www.{domain}.com",
             userId=u,
