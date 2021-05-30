@@ -12,7 +12,7 @@ export default function Carousel (){
         console.log("clicked", newPos)
         document.getElementById("maincarousel").style.setProperty("--position", newPos)
     }
-
+    
     return(
          <div className="mainCarouselWrapper">
              {/*<input type="radio" name="position" id="CarouselRadio1" />*/}

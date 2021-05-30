@@ -86,7 +86,7 @@ export default function TeamInfoBox() {
                         transform: 'translateY(-2px)',
                         boxShadow: 'lg',
                     }}>
-                    Follow
+                    Apply
             </Button>
             </Box>
         </Box>

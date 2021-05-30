@@ -31,6 +31,7 @@ import SocialProfileWithImage from "./components/chakra_lib/sample-profile";
 import GameJamPageSample from "./components/chakra_lib/gj-page-sample";
 import TeamProfile from "./components/teams/TeamProfile";
 import ProfilePage from "./components/Profile";
+import UserProfileInfoBox from "./components/user/UserProfileInfoBox"
 
 
 function App() {
@@ -140,7 +141,7 @@ function App() {
         </Route>
         <Route path="/teams">
           <TeamProfile />
-        </Route>
+        </Route> 
 
 
         {/*HANDLE ERRORS*/}
