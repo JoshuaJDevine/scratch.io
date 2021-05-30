@@ -29,7 +29,7 @@ import FloatingCard from "./components/chakra_lib/floating-card";
 import Podium from "./components/chakra_lib/podium";
 import SocialProfileWithImage from "./components/chakra_lib/sample-profile";
 import GameJamPageSample from "./components/chakra_lib/gj-page-sample";
-import TeamProfilePage from "./components/teams/TeamProfilePage";
+import TeamProfile from "./components/teams/TeamProfile";
 import ProfilePage from "./components/Profile";
 
 
@@ -139,7 +139,7 @@ function App() {
             <Podium />
         </Route>
         <Route path="/teams">
-          <TeamProfilePage />
+          <TeamProfile />
         </Route>
 
 
