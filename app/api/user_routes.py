@@ -4,14 +4,17 @@ from app.models import User
 
 user_routes = Blueprint('users', __name__)
 
-
 @user_routes.route('/')
 # @login_required
 def users():
+    args = request.args
+    skills = True if args["getJoinedSkills"] == 'true' else False
+    teams = True if args["getJoinedTeams"] == 'true' else False
+
     users = User.query.all()
-    return {"users": [user.to_dict(skills=True) for user in users]}
+    return {"users": [user.to_dict(skills=skills, teams=teams) for user in users]}
 
-
+# /api/users/:id
 @user_routes.route('/<int:id>')
 @login_required
 def user(id):

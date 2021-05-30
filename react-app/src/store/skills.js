@@ -43,7 +43,7 @@ export const skillGet = (id) => async dispatch => {
 }
 
 export const getUserSkills = query => async (dispatch) => {
-    let url = await fetch(`api/skills?`)
+    let url = await fetch(`/api/skills?`)
 
     for (let property in query) {
         url += `${property}=${query[property]}&`

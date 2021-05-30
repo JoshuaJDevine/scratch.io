@@ -56,3 +56,15 @@ export function skillsQuery(obj = {}) {
 
     return defaultObj
 }
+
+export function usersQuery(obj = {}) {
+    const defaultObj = {
+        getJoinedSkills: false,
+        getJoinedTeams: false
+    }
+
+    for (let key in obj) {
+        defaultObj[key] = obj[key]
+    }
+    return defaultObj
+}

@@ -24,7 +24,7 @@ export default function ProfileInfoBoxTwo() {
 
     const dispatch = useDispatch()
     const skills = useSelector(state => state.skillsReducer)
-    const user = useSelector(state => state.session)
+    const { user } = useSelector(state => state.session)
 
     console.log(skills);
     console.log(user);

@@ -107,7 +107,7 @@ function App() {
         {/* <Route path="/profile">
           <ProfilePage />
         </Route> */}
-        <Route path="/profile/:id" exact={true}>
+        <Route path="/profile/:id" >
           <ProfilePage />
         </Route>
 
