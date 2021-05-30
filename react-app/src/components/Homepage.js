@@ -31,11 +31,11 @@ export default function Homepage() {
             <GameJamBox />
         </Box>
         <Box>
-        <Heading>
+        {/* <Heading>
             <h1>
                 Genre
             </h1>
-            </Heading>
+            </Heading> */}
             <GameBox />
         </Box>
         </Flex>

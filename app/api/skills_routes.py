@@ -1,4 +1,6 @@
 from flask import Blueprint
+from flask.globals import request
+from app.models import User, skills_users
 
 # app.models imports go here:
 from app.models import Skill
@@ -18,11 +20,12 @@ def skills():
     skills = Skill.query.all()
     return {"skills": [skill.to_dict(users=True) for skill in skills]}
 
-@skills_routes.route('<int:id>')
-def skill(id):
-    skill = Skill.query.get(id)
-    return skill.to_dict()
+@skills_routes.route('/<int:id>')
+def skill():
+    args = request.args
+    users = True if args["getJoinedUsers"] == 'true' else False
 
-# @skills_routes.route('<int:id>')
-# def get_all_skills_of_user():
-#     userSkills = Skill.query
+    skills_of_user = Skill.query.join(skills_users).join(User).all()
+    return {'skills_of_user': [skills.to_dict(users=users) for skills in skills_of_user]}
+
+

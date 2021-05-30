@@ -36,9 +36,9 @@ export default function CreateTeam() {
     const dispatch = useDispatch()
     // const [allSkills, setAllSkills] = useState(skills)
     const wantedSkillsCollection = [];
-    skills.forEach((el) => {
-        wantedSkillsCollection.push({value: el.id, label: el.name})
-    })
+    // skills.forEach((el) => {
+    //     wantedSkillsCollection.push({value: el.id, label: el.name})
+    // })
 
     //Revisit validators and add for each field
     function validateName(value) {
