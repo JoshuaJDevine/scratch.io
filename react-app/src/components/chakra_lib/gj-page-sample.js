@@ -40,6 +40,7 @@ export default function GameJamPageSample() {
         <>
         <box className="CreateGameJamWrapper">
             <Box className="CreateGameJamButton" width="200px">
+                {/*Move this to nav bar */}
                 <CreateNewGameJam/>
             </Box>
         </box>

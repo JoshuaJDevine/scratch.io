@@ -1,5 +1,8 @@
 import React from "react";
 import { useState } from "react";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 import {
     Modal,
     ModalOverlay,
@@ -16,8 +19,8 @@ import {
     FormHelperText,
     InputGroup,
     InputRightElement,
-    FormErrorMessage
-  } from "@chakra-ui/react"
+    FormErrorMessage, NumberInput
+} from "@chakra-ui/react"
 import {login, signUp} from "../../store/session";
 import {Field, Form, Formik} from "formik";
 import {useDispatch} from "react-redux";
@@ -25,41 +28,44 @@ import {useDispatch} from "react-redux";
 export default function CreateNewGameJam() {
   const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [startDate, setStartDate] = useState(new Date());
 
-  function validateUsername(value) {
+
+  function validateName(value) {
     let error;
     if (!value)
       error = "Required"
     else if (value.length < 3)
-      error = "Invalid username"
+      error = "Invalid gamejam Name"
+    return error;
+  }
+  function validateTheme(value){
+    let error;
+    if (!value)
+      error = "Required"
+    else if (value.length < 3)
+      error = "Invalid theme Name"
+    return error;
+  }
+  function validateBlurb(value){
+    let error;
+    if (!value)
+      error = "Required"
+    else if (value.length < 3)
+      error = "Invalid theme Name"
+    return error;
+  }
+    function validateUserLimit(value){
+    let error;
+    if (!value)
+      error = "Required"
+    else if (value < 10)
+      error = "Invalid user limit"
+    else if (value > 1000)
+      error = "Invalid user limit"
     return error;
   }
 
-  function validateEmail(value) {
-    let error;
-    if (!value)
-      error = 'Required';
-    else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value))
-      error = 'Invalid email address';
-    return error;
-  }
-
-  function validatePassword(value) {
-    let error;
-    if (!value)
-      error = 'Required';
-    return error;
-  }
-
-  function validateConfirmPassword(value) {
-    let error;
-    const pass = document.getElementById('password').value;
-    if (!value)
-      error = 'Required';
-    else if (pass !== value)
-      error = "Password does not match confirmation password"
-    return error;
-  }
 
   return (
     <>
@@ -74,52 +80,58 @@ export default function CreateNewGameJam() {
           <ModalBody>
             <Formik
                 initialValues={{
-                  email: "",
-                  name: ""
+                    name: "",
+                    theme: "",
+                    blurb: "",
+                    userLimit: 25,
+                    startDate: "",
+                    endDate: "",
                 }}
                 onSubmit={async (values) => {
-                  await dispatch(signUp(values.username, values.email, values.password));
+                  await dispatch(signUp(values.name, values.email, values.password));
                   onClose();
                 }}
               >
                 {(props) => (
                   <Form>
-                    <Field name="username" validate={validateUsername}>
+                    <Field name="name" validate={validateName}>
                       {({ field, form }) => (
-                        <FormControl isInvalid={form.errors.username && form.touched.username}>
-                          <FormLabel htmlFor="username">Username</FormLabel>
-                          <Input {...field} size="sm" id="username" placeholder="Username" />
-                          <FormErrorMessage>{form.errors.username}</FormErrorMessage>
+                        <FormControl isInvalid={form.errors.name && form.touched.name}>
+                          <FormLabel htmlFor="name">Name</FormLabel>
+                          <Input {...field} size="sm" id="name" placeholder="Name" />
+                          <FormErrorMessage>{form.errors.name}</FormErrorMessage>
                         </FormControl>
                       )}
                     </Field>
-                    <Field name="email" validate={validateEmail}>
+                    <Field name="theme" validate={validateTheme}>
                       {({ field, form }) => (
-                        <FormControl isInvalid={form.errors.email && form.touched.email}>
-                          <FormLabel htmlFor="email">Email</FormLabel>
-                          <Input {...field} size="sm" id="email" placeholder="Email" />
-                          <FormErrorMessage>{form.errors.email}</FormErrorMessage>
+                        <FormControl isInvalid={form.errors.theme && form.touched.theme}>
+                          <FormLabel htmlFor="theme">Theme</FormLabel>
+                          <Input {...field} size="sm" id="theme" placeholder="theme" />
+                          <FormErrorMessage>{form.errors.theme}</FormErrorMessage>
                         </FormControl>
                       )}
                     </Field>
-                    <Field name="password" validate={validatePassword}>
+                    <Field name="blurb" validate={validateBlurb}>
                       {({ field, form }) => (
-                        <FormControl mt={1.5} isInvalid={form.errors.password && form.touched.password}>
-                          <FormLabel htmlFor="password">Password</FormLabel>
-                          <Input {...field} type='password' size="sm" id="password" placeholder="Password" />
-                          <FormErrorMessage>{form.errors.password}</FormErrorMessage>
+                        <FormControl isInvalid={form.errors.blurb && form.touched.blurb}>
+                          <FormLabel htmlFor="blurb">Blurb</FormLabel>
+                          <Input {...field} size="sm" id="blurb" placeholder="blurb" />
+                          <FormErrorMessage>{form.errors.blurb}</FormErrorMessage>
                         </FormControl>
                       )}
                     </Field>
-                    <Field name="confirmPassword" validate={validateConfirmPassword}>
+                    <Field name="userLimit" validate={validateUserLimit}>
                       {({ field, form }) => (
-                        <FormControl mt={1.5} isInvalid={form.errors.confirmPassword && form.touched.confirmPassword}>
-                          <FormLabel htmlFor="confirmPassword">Confirm Password</FormLabel>
-                          <Input {...field} type='password' size="sm" id="confirmPassword" placeholder="Confirm Password" />
-                          <FormErrorMessage>{form.errors.confirmPassword}</FormErrorMessage>
-                        </FormControl>
+                        <NumberInput max={1000} min={10} isInvalid={form.errors.userLimit && form.touched.userLimit}>
+                          <FormLabel htmlFor="userLimit">User Limit</FormLabel>
+                          <Input {...field} size="sm" id="userLimit" placeholder="userLimit" />
+                          <FormErrorMessage>{form.errors.userLimit}</FormErrorMessage>
+                        </NumberInput>
                       )}
                     </Field>
+                    {/*  ADD DATE PICKER AND HOOK UP THE FORM*/}
+
                     <Button
                       mt={4}
                       colorScheme="teal"
