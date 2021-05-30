@@ -104,11 +104,12 @@ export default function CreateTeam() {
                                 )}
                               </Field>
 
-
+                                <FormLabel htmlFor="wantedSkillsCollection">Team Skills</FormLabel>
                                 <FieldArray
                                     name="wantedSkillsCollection"
+
                                     render={arrayHelpers => (
-                                        <div>
+                                        <div className="SkillBooleanButtons">
                                             {wantedSkillsCollection.map(skill => (
                                                 <label key={skill.value}>
                                                     <input
