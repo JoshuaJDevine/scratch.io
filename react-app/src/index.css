@@ -170,9 +170,6 @@ body {
 
 
 
-
-
-
 .animated_floating_card {
   display: grid;
   gap: 3rem;
@@ -843,4 +840,35 @@ input:nth-of-type(3):checked ~ #maincarousel {
 
 
 
-/*RADIO STYLES*/
+/*JAMES'S TEAM COMPONENTS NO TOUCHY!!*/
+
+.user-profile-info-box {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: 50% 50%;
+  grid-template-areas: 
+  "A B"
+  "A C";
+  background-color: grey;
+  max-width: 300px;
+  min-height: 100px;
+  margin-left: 40px;
+  border-radius: 10px;
+}
+
+.user-profile-info-box-avatar {
+  grid-area: A;
+  background-color: purple;
+  border-radius: 10px
+}
+
+.user-profile-info-box-avatar-text1 {
+  grid-area: B;
+  background-color: blue;
+}
+
+.user-profile-info-box-avatar-text2 {
+  grid-area: C;
+  background-color: red;
+
+}
