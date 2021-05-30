@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSkills, skills } from "../../store/skills";
-import { PostTeam } from "../../store/team"
+import { createTeam } from "../../store/team"
 import {
     Modal,
     ModalOverlay,
@@ -71,7 +71,7 @@ export default function CreateTeam() {
                               wantedSkillsCollection: []
                           }}
                           onSubmit={async (values) => {
-                              await dispatch(PostTeam(values));
+                              await dispatch(createTeam(values));
                               onClose();
                           }}
                         >

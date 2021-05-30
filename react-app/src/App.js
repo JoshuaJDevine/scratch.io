@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authenticate } from "./store/session";
 import { GetGames, PostGame, GetGame, DeleteGame, UpdateGame } from "./store/game"
 import { getAllSkills, skills } from "./store/skills"
-import { GetTeams, PostTeam, GetTeam, UpdateTeam, DeleteTeam, AddNewMember, ChangeWantedSkills } from "./store/team"
+import { getAllTeams, createTeam, getOneTeam, updateCurrentTeam, deleteCurrentTeam, addNewTeamMember } from "./store/team"
 import { getGameJams, getGameJam, postGameJam, patchGameJam, deleteGameJam } from "./store/game_jam";
 import { gameJamQuery, gameQuery } from "./utils/queryFunctions"
 
@@ -139,7 +139,7 @@ function App() {
         <Route path="/winner-podium">
             <Podium />
         </Route>
-        <Route path="/teams">
+        <Route path="/teams/:id">
           <TeamProfile />
         </Route> 
 

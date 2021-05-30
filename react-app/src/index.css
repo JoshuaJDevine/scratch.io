@@ -980,8 +980,21 @@ input:nth-of-type(3):checked ~ #maincarousel {
   padding: 10px;
 }
 
-.user-profile
+.team-info-box-recruiting {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
 
+.team-game-jams-container {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px
+}
+
+.team-info-box-main {
+  margin-left: 10px;
+}
 
 
 .react-datepicker__day:hover {
