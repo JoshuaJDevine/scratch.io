@@ -13,6 +13,7 @@ import MainCarousel from "./mainCarousel";
 import BigMainCarousel from "./bigMainCarousel";
 import FloatinCardSimple from "./floatin-card-simple";
 import Carousel from "./carousel";
+import CreateNewGameJam from "../gamejams/CreateNewGameJam";
 
 
 export default function GameJamPageSample() {
@@ -37,31 +38,13 @@ export default function GameJamPageSample() {
 
     return (
         <>
-        <Flex>
-            <Box w="100%" h="200px" bgColor="black">
-                <Flex direction="column">
-                    <Box>
-                        <InputGroup size="md" w="60%">
-                            <Input
-                                placeholder="Search"
-                                variant="outline"
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                            />
-                            <InputRightElement>
-                                    <IconButton aria-label="Search database" icon={<SearchIcon />}  onClick={handleClick}/>
-                            </InputRightElement>
-                        </InputGroup>
-                        <Select placeholder="Select Date" bgColor="gray.200" w="15%" onChange={(e) => setDate(e.target.value)}>
-                            <option value="day">Next Day</option>
-                            <option value="week">Next Week</option>
-                            <option value="month">Next Month</option>
-                            <option value="year">Next Year</option>
-                            <option value="all">All Game Jams</option>
-                        </Select>
-                    </Box>
-                </Flex>
+        <box className="CreateGameJamWrapper">
+            <Box className="CreateGameJamButton" width="200px">
+                {/*Move this to nav bar */}
+                <CreateNewGameJam/>
             </Box>
-        </Flex>
+        </box>
+
         <Grid templateRows="repeat(2, 1fr)" gap={6}>
             <Box>
                 <CardSample2 gameJams={gameJams} />
