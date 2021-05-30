@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
 
-import {Box, useColorModeValue, Flex, Container} from "@chakra-ui/react";
+import {Box, useColorModeValue, Container} from "@chakra-ui/react";
 
 import GameJamInfoCard from "../gamejams/GameJamInfoCard"
 
@@ -15,7 +15,7 @@ export default function TeamInfoBox(){
 
   const dispatch = useDispatch()
   const gameJams = useSelector(state => state.gameJams)
-  const user = useSelector(state => state.session.user)
+  
 
   const { id } = useParams()
 

@@ -22,3 +22,7 @@ def skills():
 def skill(id):
     skill = Skill.query.get(id)
     return skill.to_dict()
+
+# @skills_routes.route('<int:id>')
+# def get_all_skills_of_user():
+#     userSkills = Skill.query

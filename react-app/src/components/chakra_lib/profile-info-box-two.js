@@ -1,16 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 
+import { useSelector, useDispatch } from "react-redux"
+
+import { useParams } from "react-router-dom"
+
+import { skillGet, getAllSkills } from "../../store/skills"
 
 import {
     Heading,
-    Avatar,
     Box,
-    Center,
-    Image,
-    Flex,
-    Text,
-    Stack,
-    Button,
     useColorModeValue,
     Container
   } from '@chakra-ui/react';
@@ -20,6 +18,19 @@ import {
 
 
 export default function ProfileInfoBoxTwo() {
+
+    const dispatch = useDispatch()
+    const skills = useSelector(state => state.skillsReducer)
+
+    const { id } = useParams()
+
+    useEffect(() => {
+
+        dispatch(getAllSkills())
+        dispatch(skillGet(id))
+
+    }, [dispatch, id])
+
 return (
 
 <Box
@@ -44,7 +55,11 @@ return (
             Skills
         </p>
 </Heading>
-
+{
+  Object.values(skills).map(skill => {
+    return <Box>{skill.name}</Box>
+  })
+}
 </Box>
 )
 }
