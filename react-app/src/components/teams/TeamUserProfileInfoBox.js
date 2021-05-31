@@ -42,7 +42,11 @@ return (
           </Box>
           <Box className="team-user-profile-info-box-skills">
             <p>Skills:</p>
-            <p>list of skills here and stuff</p>
+            {users?.skills.map((skill) => {
+              return (
+                `${skill.name} `
+              )
+            })}
           </Box>
         </Box>
         )

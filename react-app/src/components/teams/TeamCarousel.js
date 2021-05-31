@@ -12,7 +12,7 @@ export default function Carousel (){
     const [carouselPos, setCarouselPos] = useState(1);
 
     // const { id } = useParams()
-    const teamId = 3
+    const { teamId } = useParams()
 
     const dispatch = useDispatch()
     const teamArr = useSelector(state => Object.values(state.teams))

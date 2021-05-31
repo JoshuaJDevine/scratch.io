@@ -16,8 +16,9 @@ def users():
 @login_required
 def user(id):
     args = request.args
-    teams = True if args["getJoinedTeams"] == 'true' else False
-    skills = True if args["getJoinedSkills"] == 'true' else False
+    # teams = True if args["getJoinedTeams"] == 'true' else False
+    # skills = True if args["getJoinedSkills"] == 'true' else False
 
     user = User.query.get(id)
-    return user.to_dict(teams=teams, skills=skills)
+    print("PRINTED USER -------->", user.to_dict(teams=True, skills=True))
+    return user.to_dict(teams=True, skills=True)
