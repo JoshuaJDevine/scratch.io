@@ -16,14 +16,13 @@ export default function CarouselV3({gameJams, setSlide, currentSlide}) {
     <div>
        <Carousel
           plugins={[
-            'centered',
             {
               resolve: slidesToShowPlugin,
               options: {
                numberOfSlides: 5
               }
             },
-            'clickToChange',
+            'clickToChange'
 
         ]}
         >
@@ -57,7 +56,7 @@ export default function CarouselV3({gameJams, setSlide, currentSlide}) {
                 </>
                 :
                 <>
-                <p>" "</p>
+                <p> </p>
                 </>}
         </Box>
     </div>
