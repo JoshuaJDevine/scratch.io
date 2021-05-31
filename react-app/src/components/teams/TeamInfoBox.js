@@ -45,8 +45,12 @@ export default function TeamInfoBox({ team }) {
                 objectFit={'cover'}
             />
             <Flex justify={'center'} mt={-12}>
-                <Avatar
-                    size={'xl'}
+                <Image
+                    // size={'sm'}
+                    // className="team-avatar"
+                    h={'100px'}
+                    w={'100px'}
+                    // w={'200px'}
                     src={
                         `${path}${team?.avatar}`
                     }

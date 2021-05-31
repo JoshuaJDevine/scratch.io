@@ -12,7 +12,7 @@ export default function Carousel (){
     const [carouselPos, setCarouselPos] = useState(1);
 
     // const { id } = useParams()
-    const { teamId } = useParams()
+    const teamId = 11
 
     const dispatch = useDispatch()
     const teamArr = useSelector(state => Object.values(state.teams))
@@ -33,7 +33,7 @@ export default function Carousel (){
         console.log("clicked", newPos)
         document.getElementById("maincarousel").style.setProperty("--position", newPos)
     }
-    console.log("CAROUSEL PROPS ------->", team?.users[0])
+    // console.log("CAROUSEL PROPS ------->", team?.users[0])
     return(
          <div className="mainCarouselWrapper">
              {/*<input type="radio" name="position" id="CarouselRadio1" />*/}
@@ -42,16 +42,16 @@ export default function Carousel (){
             <main id="maincarousel">
               <div className="maincarousel-item" onClick={() => handleCarouselPosition(1)}>
 
+                  {/* <FloatinCardSimple imageUrl="https://andrewhawkes.github.io/codepen-assets/steam-game-cards/game_3.jpg" />
                   <FloatinCardSimple imageUrl="https://andrewhawkes.github.io/codepen-assets/steam-game-cards/game_3.jpg" />
                   <FloatinCardSimple imageUrl="https://andrewhawkes.github.io/codepen-assets/steam-game-cards/game_3.jpg" />
-                  <FloatinCardSimple imageUrl="https://andrewhawkes.github.io/codepen-assets/steam-game-cards/game_3.jpg" />
-                  <FloatinCardSimple imageUrl="https://andrewhawkes.github.io/codepen-assets/steam-game-cards/game_3.jpg" />
+                  <FloatinCardSimple imageUrl="https://andrewhawkes.github.io/codepen-assets/steam-game-cards/game_3.jpg" /> */}
               </div>
               <div className="maincarousel-item" onClick={() => handleCarouselPosition(2)} >
                   <TeamProfilePage team={team}/>
               </div>
               <div className="maincarousel-item gamejam-info" onClick={() => handleCarouselPosition(3)}>
-                    <UserProfileInfoBox users={team?.users[0]}/>
+                    <UserProfileInfoBox users={team?.users}/>
               </div>
               {/*<div className="maincarousel-item">*/}
               {/*      <h1>Content</h1>*/}

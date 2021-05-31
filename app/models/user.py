@@ -71,7 +71,7 @@ class User(db.Model, UserMixin):
       "avatar": self.avatar,
       "website": self.website,
       "github": self.github,
-      "email": self.email
+      "email": self.email,
     }
 
     if teams:
