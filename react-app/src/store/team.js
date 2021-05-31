@@ -73,11 +73,11 @@ const changeWantedSkills = async (teamId, skills) => {
 /*************************** GET TEAMS **********************/
 export const getAllTeams = query => async (dispatch) => {
     let url = `/api/teams?`;
-    
+
     for (let prop in query) {
         url += `${prop}=${query[prop]}&`
     }
-    
+
     const res = await fetch(url);
     if (res.ok) {
         const data = await res.json();
@@ -105,41 +105,24 @@ export const getOneTeam = (id) => async (dispatch) => {
 /*---------------------------- POST THUNKS ----------------------------*/
 
 /******************* CREATE NEW TEAM ********************/
-export const createTeam = (values) => async (dispatch) => {
-    const {
-        name,
-        blurb,
-        avatar,
-            website,
-            github,
-            recruiting,
-            wantedSkillsCollection
-        } = values
-    const response = await fetch('/api/teams/', {      
+export const createTeam = payload => async (dispatch) => {
+    const { wantedSkillsCollection } = payload;
+    const res = await fetch('/api/teams/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-            name,
-            blurb,
-            avatar,
-            website,
-            github,
-            recruiting
-        }),
+        body: JSON.stringify(payload),
     });
-    const data = await response.json();
-
-    let teamId = data.id
-    changeWantedSkills(teamId, wantedSkillsCollection)
-
-    if (data.error) {
-        return data;
+    if (res.ok) {
+        const data = await res.json();
+        let teamId = data.id;
+        changeWantedSkills(teamId, wantedSkillsCollection);
+        dispatch(postTeam(data));
     }
-
-    dispatch(postTeam(data))
-    return {};
+    else {
+        console.log("Errors:", res);
+    }
 }
 
 
@@ -174,7 +157,7 @@ export const updateCurrentTeam = (id, values) => async (dispatch) => {
     if (data.error) {
         return data;
     }
-    
+
     dispatch(updateTeam(data))
     return {}
 }
@@ -262,7 +245,7 @@ export default function teamReducer(state=initialState, action) {
             return { teams: action.payload }
         case DELETE_TEAM:
             return { teams: action.payload }
-        case POST_NEW_MEMBER: 
+        case POST_NEW_MEMBER:
             return { teams: action.payload}
         case DELETE_TEAM_MEMBER:
             return { teams: action.payload}

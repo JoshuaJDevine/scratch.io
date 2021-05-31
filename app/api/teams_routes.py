@@ -37,23 +37,22 @@ def team(id):
 ########################## POST NEW TEAM ################################
 @teams_routes.route('/', methods=['POST'])
 def new_team():
-    # print("REQUEST JSON------->", request.json)
     form = NewTeamForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        data = form.data
         team = Team(
-            name=form.data['name'],
-            blurb=form.data['blurb'],
-            avatar=form.data['avatar'],
-            website=form.data['website'],
-            github=form.data['github'],
-            recruiting=form.data['recruiting'],
-            captainId= 1 #Don't know if will grab user Id in form or thunk yet.
+            name=data['name'],
+            blurb=data['blurb'],
+            avatar=data['avatar'],
+            website=data['website'],
+            github=data['github'],
+            recruiting=data['recruiting'],
+            captainId=data['captainId']
         )
         db.session.add(team)
         db.session.commit()
         return team.to_dict()
-        # put into utils or imp[ort from auth routes?
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
@@ -73,7 +72,7 @@ def update_team(id):
         team_to_update.captainId = form.data['captainId']
 
         db.session.commit()
-        
+
         return team_to_update.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
@@ -92,7 +91,7 @@ def change_wanted_skills(id):
             skill = Skill.query.get(skillId)
             team.skills.append(skill)
             db.session.commit()
-            
+
     return team.to_dict(skills=True)
 
 ############################ DELETE TEAM ################################
@@ -129,6 +128,3 @@ def remove_team_member(id):
     team.users.reomve(user)
     db.session.commit()
     return team.to_dict(users=True)
-
-
-

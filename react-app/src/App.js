@@ -15,8 +15,6 @@ import UsersList from "./components/user/UsersList";
 import User from "./components/user/User";
 import NavBar from "./components/navbar/NavBar";
 import Homepage from "./components/Homepage"
-import GameJamPage from "./components/gamejams/GameJamPage"
-import GameJamSample from "./components/chakra_lib/gj-page-sample"
 
 //***********
 //Test imports
@@ -28,17 +26,21 @@ import AnimatedGrid2 from "./components/chakra_lib/test-anime-grid2"
 import FloatingCard from "./components/chakra_lib/floating-card";
 import Podium from "./components/chakra_lib/podium";
 import SocialProfileWithImage from "./components/chakra_lib/sample-profile";
-import GameJamPageSample from "./components/chakra_lib/gj-page-sample";
 import TeamProfile from "./components/teams/TeamProfile";
+import TeamProfilePage from "./components/teams/TeamProfilePage";
 import ProfilePage from "./components/Profile";
+
 import UserProfileInfoBox from "./components/teams/TeamUserProfileInfoBox"
 import GameBox from "./components/games/GameBox"
 
+import GameJamPageRedesign from "./components/chakra_lib/GameJamPageRedesign";
+import GamePage from "./components/games/gamesPage";
+
+
 
 function App() {
-  const user = useSelector(state => state.session.user)
-  const games = useSelector(state => state.session.games)
   const [loaded, setLoaded] = useState(false);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -55,7 +57,8 @@ function App() {
       // await dispatch(ChangeWantedSkills(11, [2]))
 
       // await dispatch(getAllSkills());
-      // await dispatch(GetGames(gameQuery({searchTerm: 'c', getJoinedTags: true})));
+      await dispatch(GetGames(gameQuery({searchTerm: 'c', getJoinedTags: true})));
+      // await dispatch(GetGame(1,gameQuery({getJoinedTags: true})));
 
 
       // await dispatch(GetTeam(1));
@@ -74,16 +77,7 @@ function App() {
       // await  dispatch(UpdateGame(14, "MyTestUpdate"))
 
       // await dispatch(GetTeams(gameJamQuery({getJoinedUsers: true})))
-     await dispatch(getGameJams)
-
-
-      // await dispatch(getGameJams({
-      //   searchTerm: "n",
-      //   getJoinedGames: true,
-      //   getJoinedTeams: true,
-      //   getJoinedTags: false
-      // }));
-
+      await dispatch(getGameJams)
 
       setLoaded(true);
     })();
@@ -101,12 +95,15 @@ function App() {
           <Homepage />
         </Route>
         <Route path="/gj-page">
-            <GameJamPage/>
+            <GameJamPageRedesign/>
         </Route>
-        <Route path="/gj-page2">
-            <GameJamPageSample/>
+        <Route path="/games-page">
+          <GamePage />
         </Route>
-        <Route path="/profile">
+        {/* <Route path="/profile">
+          <ProfilePage />
+        </Route> */}
+        <Route path="/profile/:id" >
           <ProfilePage />
         </Route>
 
@@ -148,6 +145,7 @@ function App() {
         </Route> */}
         <Route>
           <GameBox path="/games"/>
+
         </Route>
 
 

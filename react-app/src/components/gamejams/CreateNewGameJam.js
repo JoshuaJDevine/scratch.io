@@ -1,75 +1,87 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import DatePicker from "react-datepicker";
+import { useDispatch, useSelector } from "react-redux";
+import { postGameJam } from "../../store/game_jam";
 
-import "react-datepicker/dist/react-datepicker.css";
+import { Field, Form, Formik } from "formik";
 import {
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    useDisclosure,
-    Button,
-    FormControl,
-    FormLabel,
-    Input,
-    FormHelperText,
-    InputGroup,
-    InputRightElement,
-    FormErrorMessage, NumberInput
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  FormHelperText,
+  FormErrorMessage
 } from "@chakra-ui/react"
-import {login, signUp} from "../../store/session";
-import {Field, Form, Formik} from "formik";
-import {useDispatch} from "react-redux";
+
 
 export default function CreateNewGameJam() {
   const dispatch = useDispatch();
+  const { user } = useSelector(state => state.session);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [startDate, setStartDate] = useState(new Date());
-
 
   function validateName(value) {
     let error;
     if (!value)
-      error = "Required"
+      error = "Required";
     else if (value.length < 3)
-      error = "Invalid gamejam Name"
+      error = "Invalid gamejam Name";
     return error;
   }
+
   function validateTheme(value){
     let error;
     if (!value)
-      error = "Required"
+      error = "Required";
     else if (value.length < 3)
-      error = "Invalid theme Name"
+      error = "Invalid theme Name";
     return error;
   }
+
   function validateBlurb(value){
     let error;
     if (!value)
-      error = "Required"
-    else if (value.length < 3)
-      error = "Invalid theme Name"
-    return error;
-  }
-    function validateUserLimit(value){
-    let error;
-    if (!value)
-      error = "Required"
-    else if (value < 10)
-      error = "Invalid user limit"
-    else if (value > 1000)
-      error = "Invalid user limit"
+      error = "Required";
     return error;
   }
 
+  function validateUserLimit(value){
+    let error;
+    if (!value)
+      error = "Required";
+    else if (value < 10)
+      error = "Invalid user limit";
+    else if (value > 10000)
+      error = "Invalid user limit";
+    return error;
+  }
+
+  function validateStartDate(value) {
+    let error;
+    if (!value)
+      error = "Required";
+    return error;
+  }
+
+  function validateEndDate(value) {
+    let error;
+
+    if (!value)
+      error = "Required";
+    return error;
+  }
 
   return (
     <>
-      <Button onClick={onOpen} colorScheme="white" variant="link" className="navbar buttons">Host a Game Jam
+      <Button onClick={onOpen} colorScheme="white" variant="link" className="navbar buttons">
+        Host a Game Jam
       </Button>
 
       <Modal closeOnOverlayClick={true} size="sm" isOpen={isOpen} onClose={onClose}>
@@ -80,15 +92,19 @@ export default function CreateNewGameJam() {
           <ModalBody>
             <Formik
                 initialValues={{
-                    name: "",
-                    theme: "",
-                    blurb: "",
-                    userLimit: 25,
-                    startDate: "",
-                    endDate: "",
+                  name: "",
+                  theme: "",
+                  blurb: "",
+                  avatar: "https://cdn.pixabay.com/photo/2016/12/23/07/00/game-1926905_1280.png",
+                  website: "",
+                  github: "",
+                  userLimit: 10,
+                  startDate: undefined,
+                  endDate: undefined,
+                  ownerId: user && user.id
                 }}
                 onSubmit={async (values) => {
-                  await dispatch(signUp(values.name, values.email, values.password));
+                  await dispatch(postGameJam(values));
                   onClose();
                 }}
               >
@@ -123,14 +139,31 @@ export default function CreateNewGameJam() {
                     </Field>
                     <Field name="userLimit" validate={validateUserLimit}>
                       {({ field, form }) => (
-                        <NumberInput max={1000} min={10} isInvalid={form.errors.userLimit && form.touched.userLimit}>
+                        <FormControl isInvalid={form.errors.userLimit && form.touched.userLimit}>
                           <FormLabel htmlFor="userLimit">User Limit</FormLabel>
                           <Input {...field} size="sm" id="userLimit" placeholder="userLimit" />
                           <FormErrorMessage>{form.errors.userLimit}</FormErrorMessage>
-                        </NumberInput>
+                        </FormControl>
                       )}
                     </Field>
-                    {/*  ADD DATE PICKER AND HOOK UP THE FORM*/}
+                    <Field name="startDate" validate={validateStartDate}>
+                      {({ field, form }) => (
+                        <FormControl isInvalid={form.errors.startDate && form.touched.startDate}>
+                          <FormLabel htmlFor="startDate">Start Date</FormLabel>
+                          <Input type='date' {...field} size="sm" id="startDate" placeholder="startDate" />
+                          <FormErrorMessage>{form.errors.startDate}</FormErrorMessage>
+                        </FormControl>
+                      )}
+                    </Field>
+                    <Field name="endDate" validate={validateEndDate}>
+                      {({ field, form }) => (
+                        <FormControl isInvalid={form.errors.endDate && form.touched.endDate}>
+                          <FormLabel htmlFor="endDate">End Date</FormLabel>
+                          <Input type='date' {...field} size="sm" id="endDate" placeholder="endDate" />
+                          <FormErrorMessage>{form.errors.endDate}</FormErrorMessage>
+                        </FormControl>
+                      )}
+                    </Field>
 
                     <Button
                       mt={4}

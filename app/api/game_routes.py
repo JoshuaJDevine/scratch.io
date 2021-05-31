@@ -22,7 +22,6 @@ def games():
     tags = True if args["getJoinedTags"] == 'true' else False
     
 
-
     games = Game.query.join(tags_games).join(Tag) \
         .filter(
             Game.name.ilike(f"%{args['searchTerm']}%") |

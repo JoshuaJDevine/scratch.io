@@ -62,7 +62,10 @@ class User(db.Model, UserMixin):
   def get_joined_skills(self):
     return [skill.to_dict() for skill in self.skills]
 
-  def to_dict(self, teams=False, skills=False):
+  def get_joined_game_jams(self):
+    return [game_jam.to_dict() for game_jam in self.owned_gamejams]
+
+  def to_dict(self, teams=False, skills=False, game_jams=False):
     dct = {
       "id": self.id,
       "username": self.username,
@@ -79,5 +82,8 @@ class User(db.Model, UserMixin):
 
     if skills:
         dct["skills"] = self.get_joined_skills()
+
+    if game_jams:
+      dct["owned_gamejams"] = self.get_joined_game_jams()
 
     return dct

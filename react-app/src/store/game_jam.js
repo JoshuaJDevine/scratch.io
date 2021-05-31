@@ -52,7 +52,7 @@ export const getGameJam = id => async (dispatch) => {
 }
 
 export const postGameJam = payload => async (dispatch) => {
-    const res = await fetch(`/api/gamejams`, {
+    const res = await fetch(`/api/gamejams/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -62,6 +62,9 @@ export const postGameJam = payload => async (dispatch) => {
     if (res.ok) {
         const data = await res.json();
         dispatch(postGameJamAction(data));
+    }
+    else {
+        console.log("Errors:", res);
     }
 }
 
@@ -96,13 +99,13 @@ const gameJamReducer = (state = initialState, action) => {
         case GET_GAME_JAMS:
             return { ...action.payload['game_jams'] };
         case GET_GAME_JAM:
-            newState[action.payload.id] = action.payload.data;
+            newState[action.payload.id] = action.payload;
             return newState;
         case POST_GAME_JAM:
-            newState[action.payload.id] = action.payload.data;
+            newState[action.payload.id] = action.payload;
             return newState;
         case PATCH_GAME_JAM:
-            newState[action.payload.id] = action.payload.data;
+            newState[action.payload.id] = action.payload;
             return newState;
         case DELETE_GAME_JAM:
             delete newState[action.payload];
