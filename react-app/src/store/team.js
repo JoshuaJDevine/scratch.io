@@ -46,7 +46,7 @@ const initialState = { teams: null };
 
 /********************** CHANGE WANTED SKILLS FUNCTION *****************/
 const changeWantedSkills = async (teamId, skills) => {
-    console.log('SKILLS------->', skills)
+    // console.log('SKILLS------->', skills)
     const response = await fetch(`/api/teams/${teamId}/change_wanted_skills`, {
         method: "POST",
         headers: {
@@ -71,13 +71,13 @@ const changeWantedSkills = async (teamId, skills) => {
 /*--------------------------- GET THUNKS ------------------------*/
 
 /*************************** GET TEAMS **********************/
-export const GetTeams = query => async (dispatch) => {
+export const getAllTeams = query => async (dispatch) => {
     let url = `/api/teams?`;
-    
+
     for (let prop in query) {
         url += `${prop}=${query[prop]}&`
     }
-    
+
     const res = await fetch(url);
     if (res.ok) {
         const data = await res.json();
@@ -87,7 +87,7 @@ export const GetTeams = query => async (dispatch) => {
 
 
 /******************** GET INDIVIDUAL TEAM *****************/
-export const GetTeam = (id) => async (dispatch) => {
+export const getOneTeam = (id) => async (dispatch) => {
     const response = await fetch(`api/teams/${id}`, {
         headers: {
             'Content-Type': 'application/json',
@@ -105,46 +105,29 @@ export const GetTeam = (id) => async (dispatch) => {
 /*---------------------------- POST THUNKS ----------------------------*/
 
 /******************* CREATE NEW TEAM ********************/
-export const PostTeam = (values) => async (dispatch) => {
-    const {
-        name,
-        blurb,
-        avatar,
-            website,
-            github,
-            recruiting,
-            wantedSkillsCollection
-        } = values
-    const response = await fetch('/api/teams/', {      
+export const createTeam = payload => async (dispatch) => {
+    const { wantedSkillsCollection } = payload;
+    const res = await fetch('/api/teams/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-            name,
-            blurb,
-            avatar,
-            website,
-            github,
-            recruiting
-        }),
+        body: JSON.stringify(payload),
     });
-    const data = await response.json();
-
-    let teamId = data.id
-    changeWantedSkills(teamId, wantedSkillsCollection)
-
-    if (data.error) {
-        return data;
+    if (res.ok) {
+        const data = await res.json();
+        let teamId = data.id;
+        changeWantedSkills(teamId, wantedSkillsCollection);
+        dispatch(postTeam(data));
     }
-
-    dispatch(postTeam(data))
-    return {};
+    else {
+        console.log("Errors:", res);
+    }
 }
 
 
 /*************************** UPDATE A TEAM *************************/
-export const UpdateTeam = (id, values) => async (dispatch) => {
+export const updateCurrentTeam = (id, values) => async (dispatch) => {
     const {
         name,
         blurb,
@@ -174,7 +157,7 @@ export const UpdateTeam = (id, values) => async (dispatch) => {
     if (data.error) {
         return data;
     }
-    
+
     dispatch(updateTeam(data))
     return {}
 }
@@ -182,7 +165,7 @@ export const UpdateTeam = (id, values) => async (dispatch) => {
 
 
 /********************* ADD NEW TEAM MEMEBER ***********************/
-export const AddNewMember = (teamId, userId) => async (dispatch) => {
+export const addNewTeamMember = (teamId, userId) => async (dispatch) => {
     const response = await fetch(`/api/teams/${teamId}/add_new_member`, {
         method: "POST",
         headers: {
@@ -205,7 +188,7 @@ export const AddNewMember = (teamId, userId) => async (dispatch) => {
 /*-------------------------------- DELETE THUNKS -------------------------*/
 
 /************************** DELETE TEAM ************************/
-export const  DeleteTeam = (id, team) => async (dispatch) => {
+export const  deleteCurrentTeam = (id, team) => async (dispatch) => {
     const response = await fetch(`/api/teams/${id}`, {
         method: 'DELETE',
         headers: {
@@ -226,7 +209,7 @@ export const  DeleteTeam = (id, team) => async (dispatch) => {
 
 
 /*********************** REMOVE TEAM MEMBER ***********************/
-export const RemoveTeamMember = (teamId, userId) => async (dispatch) => {
+export const removeCurrentTeamMember = (teamId, userId) => async (dispatch) => {
     const response = await fetch(`/api/teams/${teamId}/remove_team_member`, {
         method: "DELETE",
         headers: {
@@ -249,7 +232,7 @@ export const RemoveTeamMember = (teamId, userId) => async (dispatch) => {
 /*
 ============================== REDUCER =================================
 */
-export default function reducer(state=initialState, action) {
+export default function teamReducer(state=initialState, action) {
     // const newState = {...state};
     switch (action.type) {
         case GET_TEAMS:
@@ -262,7 +245,7 @@ export default function reducer(state=initialState, action) {
             return { teams: action.payload }
         case DELETE_TEAM:
             return { teams: action.payload }
-        case POST_NEW_MEMBER: 
+        case POST_NEW_MEMBER:
             return { teams: action.payload}
         case DELETE_TEAM_MEMBER:
             return { teams: action.payload}

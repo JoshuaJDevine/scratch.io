@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { authenticate } from "./store/session";
 import { GetGames, PostGame, GetGame, DeleteGame, UpdateGame } from "./store/game"
 import { getAllSkills, skills } from "./store/skills"
-import { GetTeams, PostTeam, GetTeam, UpdateTeam, DeleteTeam, AddNewMember, ChangeWantedSkills } from "./store/team"
+import teams, { getAllTeams, createTeam, getOneTeam, updateCurrentTeam, deleteCurrentTeam, addNewTeamMember } from "./store/team"
 import { getGameJams, getGameJam, postGameJam, patchGameJam, deleteGameJam } from "./store/game_jam";
-import { gameJamQuery, gameQuery } from "./utils/queryFunctions"
+import { gameJamQuery, gameQuery, teamQuery } from "./utils/queryFunctions"
 
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
@@ -14,6 +14,10 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/user/UsersList";
 import User from "./components/user/User";
 import NavBar from "./components/navbar/NavBar";
+import Homepage from "./components/Homepage";
+import GameJamPage from "./components/gamejams/GameJamPage";
+import GameJamSample from "./components/chakra_lib/gj-page-sample";
+import GamePage from "./components/games/GamePage";
 import Homepage from "./components/Homepage"
 
 //***********
@@ -26,10 +30,13 @@ import AnimatedGrid2 from "./components/chakra_lib/test-anime-grid2"
 import FloatingCard from "./components/chakra_lib/floating-card";
 import Podium from "./components/chakra_lib/podium";
 import SocialProfileWithImage from "./components/chakra_lib/sample-profile";
+import GameJamPageSample from "./components/chakra_lib/gj-page-sample";
+import TeamProfile from "./components/teams/TeamProfile";
 import TeamProfilePage from "./components/teams/TeamProfilePage";
 import ProfilePage from "./components/Profile";
 import GameJamPageRedesign from "./components/chakra_lib/GameJamPageRedesign";
 import GamePage from "./components/games/gamesPage";
+import UserProfileInfoBox from "./components/teams/TeamUserProfileInfoBox"
 
 
 function App() {
@@ -49,8 +56,8 @@ function App() {
 
       //Examples of api thinks
 
-      // await dispatch(getTeam(1));
-      // await dispatch(getTeams());
+      // await dispatch(getOneTeam(1));
+      // await dispatch(getAllTeams(teamQuery()));
 
       await dispatch(getAllSkills());
       // await dispatch(GetGames());
@@ -112,6 +119,9 @@ function App() {
         <Route path="/games">
             <GamePage/>
         </Route>
+        <Route path="/games-page">
+          <GamePage />
+        </Route>
         <Route path="/profile">
           <ProfilePage />
         </Route>
@@ -147,7 +157,7 @@ function App() {
             <Podium />
         </Route>
         <Route path="/teams">
-          <TeamProfilePage />
+          <TeamProfile />
         </Route>
 
 

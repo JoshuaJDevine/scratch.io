@@ -1,13 +1,11 @@
 /* TODO Add site wide styles */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
-/*Get rid of ugly chakra blue outline*/
-
 :root{
   --russian-violet: #320e3bff;
   --celtic-blue: #276fbfff;
   --ruby-red: #a31621ff;
-  --silver-chalice: #3b3c3e;
+  --silver-chalice: #b0b2b4ff;
   --rich-black-fogra-39: rgba(4, 5, 10, 0.800);
   --font-op: 'Open Sans', sans-serif;
 }
@@ -158,9 +156,6 @@ body {
     grid-area: 🌟;
     animation-delay: calc(13 * var(--stagger-delay));
   }
-
-
-
 
 
 
@@ -1152,6 +1147,65 @@ input:nth-of-type(3):checked ~ #maincarousel {
 
 .BrainhubCarousel__dots.BrainhubCarousel__dots--isRTL {
 	direction: rtl
+/*JAMES'S TEAM COMPONENTS NO TOUCHY!!*/
+
+.user-profile-info-box {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: 50% 50%;
+  grid-template-areas:
+  "A B"
+  "A C";
+  max-width: 375px;
+  height: 120px;
+  margin-left: 40px;
+  border-radius: 10px;
+}
+
+.team-user-profile-info-box-avatar {
+  grid-area: A;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.team-user-profile-info-box-username {
+  grid-area: B;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: x-large;
+  display: flex;
+  align-items: center;
+}
+
+.team-user-profile-info-box-skills {
+  grid-area: C;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.team-info-box-recruiting {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.team-game-jams-container {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px
+}
+
+.team-info-box-main {
+  margin-left: 10px;
+}
+
+
+.react-datepicker__day:hover {
+  background: #edf2f7;
 }
 
 .BrainhubCarousel__dots .BrainhubCarousel__dot {
