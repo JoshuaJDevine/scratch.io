@@ -53,6 +53,7 @@ def create_new_game():
 @game_routes.route('/<int:id>')
 def game(id):
     game = Game.query.get(id)
+    print("GAM IN API ------>", game)
     return game.to_dict()
 
 

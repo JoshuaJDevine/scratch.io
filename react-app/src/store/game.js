@@ -74,7 +74,7 @@ export const GetGame = (id) => async (dispatch) => {
     });
     const data = await response.json();
     if (data.errors) {
-        return;
+        return data;
     }
 
     dispatch(getGame(data))   //What needs to be returned?
