@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Button, Flex, Square, Stack, Icon} from "@chakra-ui/react";
@@ -14,6 +14,13 @@ export default function NavBar(){
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user);
   const history = useHistory();
+
+  // let [profileIndex, setProfileIndex] = useState(52)
+
+  // let demoUserPageLoader = () => {
+  //     setProfileIndex(profileIndex++)
+  //     history.push(`/profile/${profileIndex}`)
+  // }
 
   return(
     <Box bg="black" w="100%" h="60px"  spacing={4} p={4} color="white" id="navbar">
@@ -32,7 +39,7 @@ export default function NavBar(){
             <CreateTeam />
             { !user && <Login /> }
             { !user && <SignUp /> }
-            <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push(`/profile/1`)}>
+            <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push("/profile/1")}>
               Demo Login
             </Button>
             <SearchBar />

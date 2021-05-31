@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux"
 
@@ -25,23 +25,47 @@ export default function ProfileInfoBoxTwo() {
     const dispatch = useDispatch()
     const skills = useSelector(state => state.skillsReducer.skills.skills)
     const users = useSelector(state => state.userReducer.users)
+    const { id } = useParams()
+    const [userSkills, setUserSkills] = useState(null)
 
-    console.log("I'VE THE SKILLS", skills);
+    // console.log("I'VE THE SKILLS", skills);
 
     // console.log(skills);
-    console.log("CHECK THIS OUT", users);
+    // console.log("CHECK THIS OUT", users);
 
 
-
-    const { id } = useParams()
-
+    // console.log('CURRENT USER', user);
     useEffect(() => {
-        dispatch(getUser(id, usersQuery({getJoinedSkills: true})))
-        // dispatch(getUsers(usersQuery({getJoinedSkills: true})))
 
-    }, [dispatch])
+      if(!users) {
+        return null
+      } else {
+        // console.log('CURRENT USER', user?.skills);
+        for (let key in users) {
+          // console.log("THIS IS THE ID", id);
+          if (key === id) {
+            setUserSkills(users[key])
+          }
+        }
+      }
 
-return (
+    },[users])
+
+    // {Object.keys(users.skills).map(function(key) {
+      //   return <Box className={users.skills[key].myprop}
+      //   </Box>;
+      // })}
+
+      useEffect(() => {
+        // dispatch(getUser(id, usersQuery({getJoinedSkills: true})))
+        // dispatch(getUser(id))
+
+        dispatch(getUsers(usersQuery({getJoinedSkills: true, getJoinedGameJams: true})))
+
+      }, [dispatch])
+
+      // console.log("THIS IS THE TYPE", Object.values(users));
+      return (
 
 <Box
     maxW={'270px'}
@@ -65,10 +89,12 @@ return (
             Skills
         </p>
 </Heading>
-{ users ?
+{ userSkills ?
   <>
   <Box>
-    {users.username}
+   {Object.keys(userSkills.skills).map((key) => {
+     return <Box key={key}>{userSkills.skills[key].name}</Box>
+   })}
   </Box>
   </>
   :

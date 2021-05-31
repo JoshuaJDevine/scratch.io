@@ -59,8 +59,11 @@ export function skillsQuery(obj = {}) {
 
 export function usersQuery(obj = {}) {
     const defaultObj = {
+        searchTerm: "",
+        resultLimit: 25,
         getJoinedSkills: false,
-        getJoinedTeams: false
+        getJoinedTeams: false,
+        getJoinedGameJams: false
     }
 
     for (let key in obj) {
