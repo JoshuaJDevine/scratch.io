@@ -229,6 +229,7 @@ body {
 .l-container {
 display: flex;
 flex-direction: column;
+align-items: center;
 position: relative;
 margin-left: 10px;
 margin-top: 10px;
@@ -259,9 +260,10 @@ margin-bottom: 10px;
 }
 .b-game-card {
   z-index: 1;
-  width: 200px;
-  height: 260px;
+  width: 75px;
+  height: 100px;
   perspective: 1000px;
+  display: flex;
 }
 .b-game-card__cover {
   position: absolute;
@@ -1175,7 +1177,7 @@ input:nth-of-type(3):checked ~ #maincarousel {
   grid-area: B;
   border-radius: 10px;
   padding: 10px;
-  font-size: x-large;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
 }
@@ -1193,14 +1195,37 @@ input:nth-of-type(3):checked ~ #maincarousel {
   margin-top: 10px;
 }
 
-.team-game-jams-container {
+/* .team-games-box {
   margin-top: 10px;
   margin-left: 10px;
   margin-right: 10px
-}
+} */
 
 .team-info-box-main {
   margin-left: 10px;
+}
+
+.team-games-container {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+}
+
+.team-game-card-box {
+display: flex;
+flex-direction: column;
+position: relative;
+margin-left: 10px;
+margin-top: 10px;
+margin-bottom: 10px;
+}
+
+.team-users-title {
+  display: flex;
+  justify-content: center;
+  font-size: x-large;
 }
 
 

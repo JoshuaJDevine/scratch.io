@@ -1,7 +1,7 @@
 import React from "react";
 import TeamInfoBox from "./TeamInfoBox"
 import TeamInfoBoxTwo from "./TeamInfoBoxTwo"
-import TeamGameJams from "./TeamGameJams"
+import TeamGames from "./TeamGames"
 
 
 
@@ -25,7 +25,7 @@ export default function TeamProfile({ team }) {
                 <TeamInfoBoxTwo team={team}/>
             </Flex>
             <Box className="team-game-jams-container">
-                <TeamGameJams team={team}/>
+                <TeamGames team={team}/>
             </Box>
         </Box>
     )
