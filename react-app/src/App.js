@@ -46,7 +46,7 @@ function App() {
 
       //Examples of api thinks
 
-      // await dispatch(getOneTeam(1));
+      // await dispatch(getOneTeam(11));
       // await dispatch(getAllTeams(teamQuery()));
 
       await dispatch(getAllSkills());
@@ -139,9 +139,12 @@ function App() {
         <Route path="/winner-podium">
             <Podium />
         </Route>
-        <Route path="/teams">
+        <Route path="/teams/:teamId">
           <TeamProfile />
         </Route> 
+        {/* <Route path="/teams">
+          <TeamProfile />
+        </Route> */}
 
 
         {/*HANDLE ERRORS*/}

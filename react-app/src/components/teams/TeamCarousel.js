@@ -7,33 +7,44 @@ import UserProfileInfoBox from "./TeamUserProfileInfoBox"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { getOneTeam } from "../../store/team"
+import TeamGameJams from "./TeamGameJams"
 
 export default function Carousel (){
     const [carouselPos, setCarouselPos] = useState(1);
 
     // const { id } = useParams()
-    const teamId = 11
+    const { teamId } = useParams()
+    // const { id } = useParams()
+    // const teamId = parseInt(id)
+    // const teamId = 11
 
+    // console.log("TEAM ID ----------->",typeof(teamId), teamId)
     const dispatch = useDispatch()
     const teamArr = useSelector(state => Object.values(state.teams))
     const team = teamArr[0]
+    // const team = useSelector(state => (state.teams[teamId]))
     useEffect(() => {
         if (teamId) {
+            // console.log("INSIDE USE EFFECT ----->", teamId)
             dispatch(getOneTeam(teamId))
         }
     }, [dispatch, teamId])
     
-    if (!teamArr.length) {
+    // useEffect(async () => {
+    //         dispatch(getOneTeam(teamId))
+    // }, [dispatch])
+        
+    if (!team) {
         return null;
     }
-
-    console.log("TEAM ---------->", team?.users)
+        
+        // console.log("TEAM ---------->", team?.gamejams)
 
     function handleCarouselPosition(newPos){
         console.log("clicked", newPos)
         document.getElementById("maincarousel").style.setProperty("--position", newPos)
     }
-    // console.log("CAROUSEL PROPS ------->", team?.users[0])
+    // console.log("CAROUSEL PROPS ------->", team?.name)
     return(
          <div className="mainCarouselWrapper">
              {/*<input type="radio" name="position" id="CarouselRadio1" />*/}
@@ -41,7 +52,7 @@ export default function Carousel (){
              {/*<input type="radio" name="position" id="CarouselRadio3"/>*/}
             <main id="maincarousel">
               <div className="maincarousel-item" onClick={() => handleCarouselPosition(1)}>
-
+                    <TeamGameJams gameJams={team?.gamejams} />
                   {/* <FloatinCardSimple imageUrl="https://andrewhawkes.github.io/codepen-assets/steam-game-cards/game_3.jpg" />
                   <FloatinCardSimple imageUrl="https://andrewhawkes.github.io/codepen-assets/steam-game-cards/game_3.jpg" />
                   <FloatinCardSimple imageUrl="https://andrewhawkes.github.io/codepen-assets/steam-game-cards/game_3.jpg" />

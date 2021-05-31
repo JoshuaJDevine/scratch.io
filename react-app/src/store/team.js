@@ -88,12 +88,12 @@ export const getAllTeams = query => async (dispatch) => {
 
 /******************** GET INDIVIDUAL TEAM *****************/
 export const getOneTeam = (id) => async (dispatch) => {
-    const response = await fetch(`api/teams/${id}`, {
+    const response = await fetch(`/api/teams/${id}`, {
         headers: {
             'Content-Type': 'application/json',
         }
     });
-    const data = await response.json();
+    const data = await response.json()
     if (data.errors) {
         return data;
     }

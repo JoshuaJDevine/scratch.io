@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function TeamGameCard({ game }){
-    console.log("GAME CARD GAME ------->", game?.name)
+    // console.log("GAME CARD GAME ------->", game?.name)
     return(
         <div className="l-container">
             <h1>{game?.name}</h1>

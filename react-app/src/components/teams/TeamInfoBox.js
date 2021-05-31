@@ -1,4 +1,7 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux"
+import { useHistory } from "react-router-dom"
+import { addNewTeamMember } from "../../store/team";
 
 
 import {
@@ -17,11 +20,24 @@ import {
 export default function TeamInfoBox({ team }) {
     // const teamInfo = team.team.team
     // if (teamInfo != null) {
-    console.log("TEAM INFO ------>", team?.gamejams)
+    // console.log("TEAM INFO ------>", team?.gamejams)
     // }
+    const sessionUser = useSelector(state => state.session.user);
     const numberOfGameJams = team?.gamejams.length
     const numberOfGames =team?.games.length
+    const userId = 37
+    // const userId = sessionUser.id
+    const teamId = team?.id
 
+    const dispatch = useDispatch()
+    const history = useHistory()
+    // console.log("SESSION IN TEAM INFO BOX ---->", sessionUser.id)
+    let userIsCaptain = false;
+    if (userId === team.captainId) {
+        userIsCaptain = true;
+    }
+    // console.log("USERID IN TEAM INFO BOX ---->", userIsCaptain)
+    
     const path = process.env.PUBLIC_URL;
     return (
         <Box
@@ -101,8 +117,13 @@ export default function TeamInfoBox({ team }) {
                     _hover={{
                         transform: 'translateY(-2px)',
                         boxShadow: 'lg',
+                    }}
+                    onClick={() => {
+                        dispatch(addNewTeamMember(teamId, userId))
+                        // console.log("TEAM ID IN ADD MEMBER ---->", teamId)
+                        history.push(`/`)
                     }}>
-                    Apply
+                    Join
             </Button>
             </Box>
         </Box>
