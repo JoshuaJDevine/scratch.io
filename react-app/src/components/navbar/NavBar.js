@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Button, Flex, Square, Stack, Icon} from "@chakra-ui/react";
@@ -60,6 +60,7 @@ export default function NavBar(){
               </Button>
             }
             { user && <LogoutButton/> }
+            <SearchBar />
           </Stack>
         </Square>
       </Flex>

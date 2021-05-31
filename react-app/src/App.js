@@ -18,6 +18,7 @@ import Homepage from "./components/Homepage";
 import GameJamPage from "./components/gamejams/GameJamPage";
 import GameJamSample from "./components/chakra_lib/gj-page-sample";
 import GamePage from "./components/games/GamePage";
+import Homepage from "./components/Homepage"
 
 //***********
 //Test imports
@@ -31,7 +32,10 @@ import Podium from "./components/chakra_lib/podium";
 import SocialProfileWithImage from "./components/chakra_lib/sample-profile";
 import GameJamPageSample from "./components/chakra_lib/gj-page-sample";
 import TeamProfile from "./components/teams/TeamProfile";
+import TeamProfilePage from "./components/teams/TeamProfilePage";
 import ProfilePage from "./components/Profile";
+import GameJamPageRedesign from "./components/chakra_lib/GameJamPageRedesign";
+import GamePage from "./components/games/gamesPage";
 import UserProfileInfoBox from "./components/teams/TeamUserProfileInfoBox"
 
 
@@ -39,7 +43,12 @@ function App() {
   const user = useSelector(state => state.session.user)
   const games = useSelector(state => state.session.games)
   const [loaded, setLoaded] = useState(false);
+  const [teamId, setTeamId] = useState(null);
+
   const dispatch = useDispatch();
+
+
+
 
   useEffect(() => {
     (async() => {
@@ -55,7 +64,8 @@ function App() {
       // await dispatch(ChangeWantedSkills(11, [2]))
 
       // await dispatch(getAllSkills());
-      // await dispatch(GetGames(gameQuery({searchTerm: 'c', getJoinedTags: true})));
+      await dispatch(GetGames(gameQuery({searchTerm: 'c', getJoinedTags: true})));
+      // await dispatch(GetGame(1,gameQuery({getJoinedTags: true})));
 
 
       // await dispatch(GetTeam(1));
@@ -74,6 +84,7 @@ function App() {
       // await  dispatch(UpdateGame(14, "MyTestUpdate"))
 
       // await dispatch(GetTeams(gameJamQuery({getJoinedUsers: true})))
+     await dispatch(getGameJams)
 
 
       // await dispatch(getGameJams({
@@ -100,10 +111,13 @@ function App() {
           <Homepage />
         </Route>
         <Route path="/gj-page">
-            <GameJamPage/>
+            <GameJamPageRedesign/>
         </Route>
-        <Route path="/gj-page2">
-            <GameJamPageSample/>
+        <Route path="/gj-page">
+            <GameJamPageRedesign/>
+        </Route>
+        <Route path="/games">
+            <GamePage/>
         </Route>
         <Route path="/games-page">
           <GamePage />

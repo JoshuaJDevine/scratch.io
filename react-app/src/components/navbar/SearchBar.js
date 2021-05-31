@@ -18,7 +18,7 @@ export default function SearchBar() {
 
     return (
     <>
-        <Box>
+        <Box className="MainSeachBar">
             <Flex flexDirection='row'>
                 <InputGroup>
                     <Input
