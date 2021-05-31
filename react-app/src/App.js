@@ -15,8 +15,6 @@ import UsersList from "./components/user/UsersList";
 import User from "./components/user/User";
 import NavBar from "./components/navbar/NavBar";
 import Homepage from "./components/Homepage"
-import GameJamPage from "./components/gamejams/GameJamPage"
-import GameJamSample from "./components/chakra_lib/gj-page-sample"
 
 //***********
 //Test imports
@@ -28,16 +26,21 @@ import AnimatedGrid2 from "./components/chakra_lib/test-anime-grid2"
 import FloatingCard from "./components/chakra_lib/floating-card";
 import Podium from "./components/chakra_lib/podium";
 import SocialProfileWithImage from "./components/chakra_lib/sample-profile";
-import GameJamPageSample from "./components/chakra_lib/gj-page-sample";
 import TeamProfilePage from "./components/teams/TeamProfilePage";
 import ProfilePage from "./components/Profile";
+import GameJamPageRedesign from "./components/chakra_lib/GameJamPageRedesign";
 
 
 function App() {
   const user = useSelector(state => state.session.user)
   const games = useSelector(state => state.session.games)
   const [loaded, setLoaded] = useState(false);
+  const [teamId, setTeamId] = useState(null);
+
   const dispatch = useDispatch();
+
+
+
 
   useEffect(() => {
     (async() => {
@@ -99,10 +102,10 @@ function App() {
           <Homepage />
         </Route>
         <Route path="/gj-page">
-            <GameJamPage/>
+            <GameJamPageRedesign/>
         </Route>
         <Route path="/gj-page2">
-            <GameJamPageSample/>
+            <GameJamPageRedesign/>
         </Route>
         <Route path="/profile">
           <ProfilePage />
