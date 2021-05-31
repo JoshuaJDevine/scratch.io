@@ -26,7 +26,8 @@ export default function Carousel (){
     if (!teamArr.length) {
         return null;
     }
-    console.log("TEAM ---------->", team)
+
+    console.log("TEAM ---------->", team?.users)
 
     function handleCarouselPosition(newPos){
         console.log("clicked", newPos)
