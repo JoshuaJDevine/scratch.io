@@ -12,7 +12,7 @@ def users():
     teams = True if args["getJoinedTeams"] == 'true' else False
 
     users = User.query.all()
-    return [user.to_dict(skills=skills, teams=teams) for user in users]
+    return {user.id: user.to_dict(skills=skills, teams=teams) for user in users}
 
 # /api/users/:id
 @user_routes.route('/<int:id>')

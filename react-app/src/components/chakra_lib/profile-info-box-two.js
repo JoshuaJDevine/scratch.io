@@ -13,7 +13,6 @@ import {
     Heading,
     Box,
     useColorModeValue,
-    Container
   } from '@chakra-ui/react';
 
 
@@ -24,18 +23,21 @@ import {
 export default function ProfileInfoBoxTwo() {
 
     const dispatch = useDispatch()
-    const skills = useSelector(state => state.skillsReducer)
-    const user = useSelector(state => state.userReducer)
+    const skills = useSelector(state => state.skillsReducer.skills.skills)
+    const users = useSelector(state => state.userReducer.users)
 
-    console.log(skills);
-    console.log("CHECK THIS OUT", user);
+    console.log("I'VE THE SKILLS", skills);
+
+    // console.log(skills);
+    console.log("CHECK THIS OUT", users);
+
 
 
     const { id } = useParams()
 
     useEffect(() => {
-
         dispatch(getUser(id, usersQuery({getJoinedSkills: true})))
+        // dispatch(getUsers(usersQuery({getJoinedSkills: true})))
 
     }, [dispatch])
 
@@ -63,10 +65,16 @@ return (
             Skills
         </p>
 </Heading>
-{
-  Object.values(skills).map((skill, idx) => {
-    return <Box key={idx}>{skill.username}</Box>
-  })
+{ users ?
+  <>
+  <Box>
+    {users.username}
+  </Box>
+  </>
+  :
+  <>
+  <Box>Loading...</Box>
+  </>
 }
 </Box>
 )

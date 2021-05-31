@@ -31,7 +31,7 @@ export default function TeamInfoBox(){
 
   // console.log("REDUX IS A PAIN", users.email);
 
-  // console.log("MAKE IT CRAZY", users);
+  console.log("MAKE IT CRAZY", users);
 
   const { id } = useParams()
 

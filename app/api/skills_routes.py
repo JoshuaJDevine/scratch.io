@@ -19,11 +19,12 @@ def validation_errors_to_error_messages(validation_errors):
 def skills():
     skills = Skill.query.all()
     return {"skills": [skill.to_dict(users=True) for skill in skills]}
+    # return {skills.id: skill.to_dict() for skill in skills}
 
 @skills_routes.route('/<int:id>')
-def skill():
+def skill(id):
     args = request.args
     users = True if args["getJoinedUsers"] == 'true' else False
 
-    skills_of_user = Skill.query.join(skills_users).join(User).all()
-    return {'skills_of_user': [skills.to_dict(users=users) for skills in skills_of_user]}
+    skill = Skill.query.get(id)
+    return skill.to_dict(users=users)
