@@ -95,7 +95,10 @@ function App() {
         <Route path="/games-page">
           <GamePage />
         </Route>
-        <Route path="/profile">
+        {/* <Route path="/profile">
+          <ProfilePage />
+        </Route> */}
+        <Route path="/profile/:id" >
           <ProfilePage />
         </Route>
 

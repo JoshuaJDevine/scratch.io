@@ -10,6 +10,28 @@
   --font-op: 'Open Sans', sans-serif;
 }
 
+/* ================= SCROLL BAR CSS =============== */
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 body {
   background: var(--silver-chalice)!important;
 }
@@ -26,9 +48,13 @@ body {
   border-bottom: 5px solid rgba(4, 5, 10, 0.100);
 }
 
-#navbar .navbar.buttons:last-of-type {
+/* #navbar .navbar.buttons:last-of-type {
   position: relative;
-  left: 135%;
+  left: 20%;
+} */
+
+#navbar-main-box {
+  z-index: 1;
 }
 
 .navbar.buttons {
@@ -52,19 +78,103 @@ body {
 
 /* ================= PROFILE GAME JAM PORTION ===============*/
 /* FROM THE CAROUSEL */
+.maincarousel-item.left-most-panel {
+  border-radius: 5px;
+  box-shadow: 0px 0px 12px 0 black;
+  border: 3px solid var(--rich-black-fogra-39);
+}
+
+.maincarousel-item.profile-info {
+  border-radius: 5px;
+  box-shadow: 0px 0px 12px 0 black;
+  border: 3px solid var(--rich-black-fogra-39);
+}
+
 .maincarousel-item.gamejam-info {
   border-radius: 5px;
-  box-shadow: 0 0 8px 0 black;
+  box-shadow: 0px 0px 12px 0 black;
+  border: 3px solid var(--rich-black-fogra-39);
+}
+
+.your-gamejams {
+  font-size: 1.5rem;
+  font-family: var(--font-op);
+  margin-bottom: 15px;
+  text-align: center;
+  color: var(--rich-black-fogra-39);
 }
 
 .gamejam-box-profile {
   margin: 10px 15px;
+  border: 3px solid var(--rich-black-fogra-39);
+  border-radius: 3px;
+  box-shadow: 0px 0px 12px 0 black;
 }
 
 .profile-gj-boxes {
-  margin: 10px 15px!important;
+  margin: 10px 3px;
 }
 
+.gj-intro-info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0px 8px;
+  border-bottom: 2px solid black;
+}
+
+/* == The GJ Entries CSS ==*/
+.gj-info-entries {
+  font-size: 1.05rem;
+  font-family: var(--font-op);
+  margin: 5px 8px;
+  color: var(--rich-black-fogra-39)
+}
+
+.gj-info-entries.theme {
+font-size: 0.8rem;
+font-weight: 700;
+}
+
+.gj-info-entries.titles {
+  font-size: 0.95rem;
+font-weight: 700;
+}
+
+.gj-info-entries.blurb {
+  font-weight: 500;
+  font-size: 0.9rem;
+  border: 1px solid rgb(46, 46, 46);
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.gj-info-entries.userLimit {
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin: 0px 8px;
+  border-bottom: 1px solid grey;
+}
+
+
+.gj-info-entries.sites {
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: 1px solid rgb(46, 46, 46);
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.gj-info-entries.dates {
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: 1px solid rgb(46, 46, 46);
+  border-radius: 3px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+/*======= OTHER CSS =======*/
 .animated-grid {
     height: 85vh;
     margin-bottom: 200px;

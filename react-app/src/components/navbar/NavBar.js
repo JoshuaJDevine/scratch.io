@@ -27,6 +27,13 @@ export default function NavBar(){
     //console.log(`pathName`, pathName)
   }, [pathName])
 
+  // let [profileIndex, setProfileIndex] = useState(52)
+
+  // let demoUserPageLoader = () => {
+  //     setProfileIndex(profileIndex++)
+  //     history.push(`/profile/${profileIndex}`)
+  // }
+
   return(
     <Box bg="black" w="100%" h="60px"  spacing={4} p={4} color="white" id="navbar">
       <Flex color="white">
@@ -55,7 +62,11 @@ export default function NavBar(){
             { user && /*pathName === paths.teams*/ <CreateTeam /> }
             { !user && <Login /> }
             { !user && <SignUp /> }
-            { user && <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push("/profile")}>
+            <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push("/profile/1")}>
+              Demo Login
+            </Button>
+            <SearchBar />
+            { user && <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push(`/profile/${user.id}`)}>
                 Profile
               </Button>
             }
