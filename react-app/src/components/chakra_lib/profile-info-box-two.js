@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux"
 
-// import { useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 
-import { getUserSkills } from "../../store/skills"
-import { authenticate } from "../../store/session"
+// import { getUserSkills } from "../../store/skills"
+import { getUsers, getUser } from "../../store/user"
 
-import { skillsQuery } from "../../utils/queryFunctions"
+import { skillsQuery, usersQuery } from "../../utils/queryFunctions"
 
 import {
     Heading,
@@ -20,22 +20,23 @@ import {
 
 
 
+
 export default function ProfileInfoBoxTwo() {
 
     const dispatch = useDispatch()
     const skills = useSelector(state => state.skillsReducer)
-    const { user } = useSelector(state => state.session)
+    const user = useSelector(state => state.userReducer)
 
     console.log(skills);
-    console.log(user);
+    console.log("CHECK THIS OUT", user);
 
 
-    // const { id } = useParams()
+    const { id } = useParams()
 
     useEffect(() => {
 
-        dispatch(getUserSkills(skillsQuery({getJoinedUsers: true})))
-        dispatch(authenticate())
+        dispatch(getUser(id, usersQuery({getJoinedSkills: true})))
+
     }, [dispatch])
 
 return (
@@ -64,7 +65,7 @@ return (
 </Heading>
 {
   Object.values(skills).map((skill, idx) => {
-    return <Box key={idx}>{skill.name}</Box>
+    return <Box key={idx}>{skill.username}</Box>
   })
 }
 </Box>

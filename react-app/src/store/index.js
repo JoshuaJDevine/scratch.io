@@ -5,13 +5,15 @@ import games from "./game"
 import skillsReducer from "./skills";
 import teams from "./team"; //CHECK SYNTAX
 import gameJamReducer from "./game_jam";
+import userReducer from "./user"
 
 const rootReducer = combineReducers({
     session,
     skillsReducer,
     games,
     teams,
-    gameJams: gameJamReducer
+    gameJams: gameJamReducer,
+    userReducer
 });
 
 

@@ -1,7 +1,7 @@
 import React from "react"
 
 
-import { Box, Flex, Image } from "@chakra-ui/react"
+import { Box, Image } from "@chakra-ui/react"
 
 export default function GameJamInfoCard({ game }) {
 // console.log(game);
@@ -25,7 +25,7 @@ export default function GameJamInfoCard({ game }) {
                             <div className="gj-info-entries blurb">{game.blurb}</div>
 
                             <div className="gj-info-entries userLimit">{`User limit: ${game.userLimit}`}</div>
-                            
+
                         <div className="gj-info-entries titles">Sites:</div>
                         <div className="gj-info-entries sites">
                             <div>{`The game: ${game?.website}`}</div>

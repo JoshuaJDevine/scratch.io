@@ -27,5 +27,3 @@ def skill():
 
     skills_of_user = Skill.query.join(skills_users).join(User).all()
     return {'skills_of_user': [skills.to_dict(users=users) for skills in skills_of_user]}
-
-

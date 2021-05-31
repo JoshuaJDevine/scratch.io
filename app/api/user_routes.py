@@ -12,15 +12,15 @@ def users():
     teams = True if args["getJoinedTeams"] == 'true' else False
 
     users = User.query.all()
-    return {"users": [user.to_dict(skills=skills, teams=teams) for user in users]}
+    return [user.to_dict(skills=skills, teams=teams) for user in users]
 
 # /api/users/:id
 @user_routes.route('/<int:id>')
-@login_required
+# @login_required
 def user(id):
     args = request.args
     teams = True if args["getJoinedTeams"] == 'true' else False
     skills = True if args["getJoinedSkills"] == 'true' else False
 
     user = User.query.get(id)
-    return user.to_dict(teams=teams, skills=skills)
+    return user.to_dict(skills=skills, teams=teams)
