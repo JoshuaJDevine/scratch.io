@@ -14,10 +14,8 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/user/UsersList";
 import User from "./components/user/User";
 import NavBar from "./components/navbar/NavBar";
-import Homepage from "./components/Homepage";
 import GameJamPage from "./components/gamejams/GameJamPage";
 import GameJamSample from "./components/chakra_lib/gj-page-sample";
-import GamePage from "./components/games/GamePage";
 import Homepage from "./components/Homepage"
 
 //***********

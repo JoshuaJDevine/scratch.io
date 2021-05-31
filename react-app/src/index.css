@@ -1146,7 +1146,8 @@ input:nth-of-type(3):checked ~ #maincarousel {
 }
 
 .BrainhubCarousel__dots.BrainhubCarousel__dots--isRTL {
-	direction: rtl
+  direction: rtl
+}
 /*JAMES'S TEAM COMPONENTS NO TOUCHY!!*/
 
 .user-profile-info-box {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Button, Flex, Square, Stack, Icon} from "@chakra-ui/react";
@@ -18,7 +18,7 @@ export default function NavBar(){
   const [pathName, setPathName] = useState(history.location.pathname);
   const paths = {
     home: "/",
-    gameJams: "/gj-page2",
+    gameJams: "/gj-page",
     games: "/games-page",
     teams: undefined
   }
@@ -60,7 +60,6 @@ export default function NavBar(){
               </Button>
             }
             { user && <LogoutButton/> }
-            <SearchBar />
           </Stack>
         </Square>
       </Flex>

@@ -33,11 +33,7 @@ export default function GameJamPageRedesign() {
 
     return (
         <>
-        <Box className="CreateGameJamWrapper">
-            <Box className="CreateGameJamButton" width="200px">
-                <CreateNewGameJam/>
-            </Box>
-        </Box>
+
         <Box>
             {<CarouselV3 gameJams={gameJams} setSlide={setCurrentSlide} currentSlide={currentSlide}  />}
         </Box>
