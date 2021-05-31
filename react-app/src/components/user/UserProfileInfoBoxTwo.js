@@ -13,54 +13,40 @@ import {
     Button,
     useColorModeValue,
     Container
-} from '@chakra-ui/react';
+  } from '@chakra-ui/react';
 
 
 
 
 
-export default function TeamInfoBoxTwo({ team }) {
-    return (
-        <Box>
-          {/* <Box>
-            <p> This is a blurb that has a lot of info on the team</p>
-          </Box> */}
-          <Box
-              maxW={'270px'}
-              w={'full'}
-              h="250px"
-              bg={useColorModeValue('white', 'gray.800')}
-              pos={"relative"}
-              top={"25px"}
-              boxShadow={'2xl'}
-              rounded={'md'}
-              overflow={'hidden'}
-              marginRight={'10px'}
-              padding={'6px'}
-              className="team-info-box-two-card">
-              <p> 
-                {team?.blurb}
-              </p>
+export default function ProfileInfoBoxTwo() {
+return (
 
-              <Heading
-                  padding="5px"
-                  margin="5px"
-                  borderBottom="solid 2px black"
-                  fontSize="lg"
-                  >
-                  <p>
-                      Wanted Skills
-                  </p>
-              </Heading>
-              {team?.skills.map((skill) => {
-                return (
-                  `${skill.name} `
-                )
-              })}
+<Box
+    maxW={'270px'}
+    w={'full'}
+    h="250px"
+    bg={useColorModeValue('white', 'gray.800')}
+    pos={"relative"}
+    top={"25px"}
+    boxShadow={'2xl'}
+    rounded={'md'}
+    overflow={'hidden'}
+    className="boxes-for-days">
 
-          </Box>
-        </Box>
-    )
+    <Heading
+    padding="5px"
+    margin="5px"
+    borderBottom="solid 2px black"
+    fontSize="lg"
+    >
+        <p>
+            Skills
+        </p>
+</Heading>
+
+</Box>
+)
 }
 
 

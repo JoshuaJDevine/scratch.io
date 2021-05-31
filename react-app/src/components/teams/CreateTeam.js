@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSkills, skills } from "../../store/skills";
-import { PostTeam } from "../../store/team"
+import { createTeam } from "../../store/team"
 
 import {Field, FieldArray, Form, Formik} from "formik";
 import {
@@ -105,7 +105,7 @@ export default function CreateTeam() {
                       captainId: user && user.id
                     }}
                     onSubmit={async (values) => {
-                        await dispatch(PostTeam(values));
+                        await dispatch(createTeam(values));
                         onClose();
                     }}
                   >
