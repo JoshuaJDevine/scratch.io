@@ -14,9 +14,10 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/user/UsersList";
 import User from "./components/user/User";
 import NavBar from "./components/navbar/NavBar";
-import Homepage from "./components/Homepage"
-import GameJamPage from "./components/gamejams/GameJamPage"
-import GameJamSample from "./components/chakra_lib/gj-page-sample"
+import Homepage from "./components/Homepage";
+import GameJamPage from "./components/gamejams/GameJamPage";
+import GameJamSample from "./components/chakra_lib/gj-page-sample";
+import GamePage from "./components/games/GamePage";
 
 //***********
 //Test imports
@@ -73,7 +74,6 @@ function App() {
       // await  dispatch(UpdateGame(14, "MyTestUpdate"))
 
       // await dispatch(GetTeams(gameJamQuery({getJoinedUsers: true})))
-     await dispatch(getGameJams)
 
 
       // await dispatch(getGameJams({
@@ -104,6 +104,9 @@ function App() {
         </Route>
         <Route path="/gj-page2">
             <GameJamPageSample/>
+        </Route>
+        <Route path="/games-page">
+          <GamePage />
         </Route>
         <Route path="/profile">
           <ProfilePage />
@@ -141,7 +144,7 @@ function App() {
         </Route>
         <Route path="/teams">
           <TeamProfile />
-        </Route> 
+        </Route>
 
 
         {/*HANDLE ERRORS*/}

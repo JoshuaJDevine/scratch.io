@@ -5,6 +5,16 @@ from datetime import datetime, time, timedelta
 
 bp = Blueprint('gamejams', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f"{field} : {error}")
+    return errorMessages
+
 # GET all game jams.
 @bp.route('/')
 def get_game_jams():
@@ -32,8 +42,8 @@ def get_game_jams():
             Tag.name.ilike(f"%{args['searchTerm']}%")
         ) \
         .filter((date_now != None), (GameJam.startDate > date_now), (GameJam.startDate < date_later)) \
-        .limit(int(args['resultLimit'])) \
-        .all()
+        .all()[:int(args['resultLimit'])]
+
     return {"game_jams": [game_jam.to_dict(games=games, teams=teams, tags=tags) for game_jam in game_jams]}
 
 # GET game jam data for a single game jam.
@@ -46,10 +56,10 @@ def get_game_jam(id):
 @bp.route('/', methods=['POST'])
 def post_game_jam():
     form = GameJamForm()
-    form['csrf_token'].data = request.cookies['crsf_token']
-
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
+        print('data',data)
         new_game_jam = GameJam(
             name = data["name"],
             theme = data["theme"],
@@ -60,10 +70,15 @@ def post_game_jam():
             userLimit = data["userLimit"],
             startDate = data["startDate"],
             endDate = data["endDate"],
+            ownerId = data["ownerId"]
         )
         db.session.add(new_game_jam)
+
+        new_game_jam.tags.append(Tag.query.get(1))
+
         db.session.commit()
         return new_game_jam.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 # PATCH a game jam.
