@@ -1,16 +1,19 @@
 import React, {useEffect} from "react";
 import Carousel, {Dots, slidesToShowPlugin} from '@brainhubeu/react-carousel';
 import {Box} from "@chakra-ui/react";
+import FloatinCardSimple from "./floatin-card-simple";
 
-export default function CarouselV3({gameJams, setSlide, currentSlide}) {
+export default function CarouselV3Games({games, setSlide, currentSlide}) {
 
 
   function handleSlideClick(e) {
       setSlide(e)
   }
   useEffect(()=> {
-      setSlide(gameJams[0])
+      setSlide(games[0])
   }, [])
+
+    console.log(games.games[0])
 
   return (
     <div>
@@ -27,9 +30,10 @@ export default function CarouselV3({gameJams, setSlide, currentSlide}) {
 
         ]}
         >
-           {Object.keys(gameJams).map(function(key) {
-              return <Box className="test"  onClick={() => {handleSlideClick(gameJams[key])}} key={key}>
-                    <img src={gameJams[key].avatar} />
+           {Object.keys(games.games).map(function(key) {
+              return <Box className="test"  onClick={() => {handleSlideClick(games.games[key])}} key={key}>
+                  {console.log("MAPPING " + games.games[key])}
+                   <FloatinCardSimple/>
               </Box>;
             })}
         </Carousel>
@@ -41,15 +45,11 @@ export default function CarouselV3({gameJams, setSlide, currentSlide}) {
                 <Box className="carousel__slide">
                     <figure>
                       <div>
-                        <img src={currentSlide.avatar} alt="" />
+                        <img src={currentSlide.avatarUrl} alt="" />
                       </div>
                       <figcaption>
                         {currentSlide.name}
-                        <span className="credit">{currentSlide.blurb}</span>
-                        <h1>START:</h1>
-                        <h2>{currentSlide.startDate}</h2>
-                        <h1>END:</h1>
-                        <h2>{currentSlide.endDate}</h2>
+                        <span className="credit">{currentSlide.name}</span>
 
                       </figcaption>
                     </figure>

@@ -14,17 +14,6 @@ import {GetTeams} from "../../store/team";
 
 
 export default function GameJamPageRedesign() {
-    const podiumData = {
-        goldImageUrl: "http://www.digitiser2000.com/uploads/4/0/6/6/40667199/published/doom_1.jpg?1516607707",
-        goldTeam: "The Crazy Eights",
-        goldDescription: "A game very much like Doom",
-        silverImageUrl: "https://www.mobygames.com/images/covers/l/290440-destiny-playstation-3-front-cover.jpg",
-        silverTeam: "Jungie",
-        silverDescription: "Fate! Like Destiny but with more microtransactions and ice skating",
-        bronzeImageUrl: "https://xboxaddict.com/images/box_art/4450.jpg",
-        bronzeTeam: "Jingle Jangle",
-        bronzeDescription: "Rocky Racoons Revenge",
-    }
 
     const dispatch = useDispatch()
     const [searchTerm, setSearchTerm] = useState("")
@@ -33,12 +22,12 @@ export default function GameJamPageRedesign() {
 
     useEffect( () => {
         dispatch(getGameJams(gameJamQuery()))
-    }, [dispatch])
+    },[dispatch] )
     const gameJams = useSelector(state => state.gameJams)
     const [currentSlide, setCurrentSlide] = useState(gameJams[0])
 
 
-    useEffect(()=>{
+    useEffect(async ()=>{
         console.log(currentSlide);
     }, [currentSlide])
 
@@ -46,40 +35,14 @@ export default function GameJamPageRedesign() {
         <>
         <Box className="CreateGameJamWrapper">
             <Box className="CreateGameJamButton" width="200px">
-                {/*Move this to nav bar */}
                 <CreateNewGameJam/>
             </Box>
         </Box>
         <Box>
-            {gameJams ? <CarouselV3 gameJams={gameJams} setSlide={setCurrentSlide}  /> : <p>loading</p>}
-
+            {<CarouselV3 gameJams={gameJams} setSlide={setCurrentSlide} currentSlide={currentSlide}  />}
         </Box>
-        <Box>
-            {currentSlide ?
-                <>
-                <Box className="carousel__slide">
-                    <figure>
-                      <div>
-                        <img src={currentSlide.avatar} alt="" />
-                      </div>
-                      <figcaption>
-                        {currentSlide.name}
-                        <span className="credit">{currentSlide.blurb}</span>
-                        <h1>START:</h1>
-                        <h2>{currentSlide.startDate}</h2>
-                        <h1>END:</h1>
-                        <h2>{currentSlide.endDate}</h2>
 
-                      </figcaption>
-                    </figure>
-                </Box>
-                </>
-                :
-                <>
-                <p>placeholder</p>
-                </>}
-        </Box>
-        <Grid templateRows="repeat(2, 1fr)" gap={6}>
+        <Grid templateRows="repeat(2, 1fr)" gap={6} mt="500px">
             <Box>
                 <CardSample2 gameJams={gameJams} />
             </Box>

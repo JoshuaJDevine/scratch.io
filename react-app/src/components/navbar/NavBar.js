@@ -23,10 +23,10 @@ export default function NavBar(){
             <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push("/")}>
               Home
             </Button>
-            <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push("/gj-page2")}>
+            <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push("/gj-page")}>
               Gamejams
             </Button>
-            <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push("/")}>
+            <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push("/games")}>
               Games
             </Button>
             <CreateTeam />

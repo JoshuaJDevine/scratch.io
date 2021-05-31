@@ -21,13 +21,13 @@ export default function Homepage() {
     return (
         <Flex h="100vh" w="100vw" direction="column">
         <Box
-        w="100%"
-        minH="450px"
-        h="35%"
-        bgImg="https://i.ytimg.com/vi/hyJf0k2s59g/maxresdefault.jpg"
         className="hp-main-img"
         >
-            This is a test message
+             <img src={path + image}/>
+             <img src={path + image2}/>
+             <img src={path + image3}/>
+             <img src={path + image4}/>
+             <img src={path + image5}/>
         </Box>
         <Box>
             <Heading>
@@ -45,13 +45,7 @@ export default function Homepage() {
             </Heading>
             <GameBox />
         </Box>
-        <Box >
-             <img src={path + image}/>
-             <img src={path + image2}/>
-             <img src={path + image3}/>
-             <img src={path + image4}/>
-             <img src={path + image5}/>
-        </Box>
+
         </Flex>
     )
 }

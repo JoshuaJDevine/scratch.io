@@ -29,6 +29,7 @@ import SocialProfileWithImage from "./components/chakra_lib/sample-profile";
 import TeamProfilePage from "./components/teams/TeamProfilePage";
 import ProfilePage from "./components/Profile";
 import GameJamPageRedesign from "./components/chakra_lib/GameJamPageRedesign";
+import GamePage from "./components/games/gamesPage";
 
 
 function App() {
@@ -56,7 +57,8 @@ function App() {
       // await dispatch(ChangeWantedSkills(11, [2]))
 
       // await dispatch(getAllSkills());
-      // await dispatch(GetGames(gameQuery({searchTerm: 'c', getJoinedTags: true})));
+      await dispatch(GetGames(gameQuery({searchTerm: 'c', getJoinedTags: true})));
+      // await dispatch(GetGame(1,gameQuery({getJoinedTags: true})));
 
 
       // await dispatch(GetTeam(1));
@@ -104,8 +106,11 @@ function App() {
         <Route path="/gj-page">
             <GameJamPageRedesign/>
         </Route>
-        <Route path="/gj-page2">
+        <Route path="/gj-page">
             <GameJamPageRedesign/>
+        </Route>
+        <Route path="/games">
+            <GamePage/>
         </Route>
         <Route path="/profile">
           <ProfilePage />

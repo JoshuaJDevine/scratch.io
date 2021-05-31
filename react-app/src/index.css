@@ -1207,3 +1207,20 @@ input:nth-of-type(3):checked ~ #maincarousel {
 .BrainhubCarousel--isRTL+.BrainhubCarousel__dots {
 	direction: rtl
 }
+
+
+
+
+
+/*Homepage && Navbar*/
+.hp-main-img{
+  margin-top: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.hp-main-img img {
+  width: 100px;
+  height: 100px;
+}
+
