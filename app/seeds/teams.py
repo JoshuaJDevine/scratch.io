@@ -5,7 +5,7 @@ import random
 faker = Faker()
 
 def seed_teams():
-    team_list = ["The Wellermen", "The Budiasattvas of Chaos" "The Deamon Demons", 
+    team_list = ["The Wellermen", "The Budiasattvas of Chaos", "The Deamon Demons", 
                 "Appitite for Abstraction", "The Mac Hackers", "BitRealm", 
                 "Need for Git", "Byte Me", "The Errors", "No Band Limit",
                 "Zero Ping", "Access Denied", "Smash Hack Gremlins"

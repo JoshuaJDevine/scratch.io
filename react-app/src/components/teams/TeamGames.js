@@ -1,6 +1,7 @@
 import React from "react";
 import GameJamInfoCard from "../gamejams/GameJamInfoCard"
-
+import TeamGameCard from "./TeamGamesCard"
+import FloatinCardSimple from "../chakra_lib/floatin-card-simple"
 
 import {
     Heading,
@@ -22,7 +23,7 @@ import {
 
 export default function TeamGameJams({ team }) {
 
-    console.log("TEAM GAME JAM BOX ------>", team?.gamejams)
+    console.log("TEAM GAMES --------->", team?.games)    
     return (
         <Box>
           <Box
@@ -36,18 +37,28 @@ export default function TeamGameJams({ team }) {
               rounded={'md'}
               overflow={'hidden'}
               padding={'6px'}
-              className="team-game-jams">
+              className="team-games-box">
               <Heading
                   padding="5px"
-                  margin="5px"
+                  margin="5px, 5px,0px, 5px"
                   borderBottom="solid 2px black"
                   fontSize="lg"
                   >
                   <p>
-                    {`${team?.name}'s Game Jams`}
+                    {`${team?.name}'s games`}
                   </p>
               </Heading>
               {/* <GameJamInfoCard /> */}
+              <Box className="team-games-container">
+            {team?.games.map((game) => {
+              return (
+                <TeamGameCard game={ game } />
+              )
+            })}
+                {/* <FloatinCardSimple imageUrl="https://andrewhawkes.github.io/codepen-assets/steam-game-cards/game_3.jpg" />
+                <FloatinCardSimple imageUrl="https://andrewhawkes.github.io/codepen-assets/steam-game-cards/game_3.jpg" />
+                <FloatinCardSimple imageUrl="https://andrewhawkes.github.io/codepen-assets/steam-game-cards/game_3.jpg" /> */}
+            </Box>
           </Box>
         </Box>
     )
