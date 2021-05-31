@@ -1333,6 +1333,7 @@ margin-top: 10px;
 margin-bottom: 10px;
 }
 
+.team-game-jams-title,
 .team-users-title {
   display: flex;
   justify-content: center;

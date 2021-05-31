@@ -16,7 +16,7 @@ import {
 
 
 export default function TeamProfile({ team }) {
-    console.log("TEAM PROFILE PAGE ------>", team?.name)
+    // console.log("TEAM PROFILE PAGE ------>", team?.name)
     return (
 
         <Box className="team-profile-container">
