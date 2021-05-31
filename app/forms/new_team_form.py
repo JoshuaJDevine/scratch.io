@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, TextAreaField
+from wtforms import StringField, BooleanField, TextAreaField, IntegerField
 from wtforms.validators import DataRequired, ValidationError
 from app.models import Team
 
@@ -19,3 +19,4 @@ class NewTeamForm(FlaskForm):
     website = StringField('website')
     github = StringField('github')
     recruiting = BooleanField('recruiting')
+    captainId = IntegerField("captainId", validators=[DataRequired()])
