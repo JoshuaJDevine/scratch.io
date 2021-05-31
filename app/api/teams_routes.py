@@ -24,14 +24,14 @@ def teams():
 ############################ GET ONE TEAM ###############################
 @teams_routes.route('/<int:id>')
 def team(id):
-    args = request.args
-    games = True if args["getJoinedGames"] == 'true' else False
-    users = True if args["getJoinedUsers"] == 'true' else False
-    gamejams = True if args["getJoinedGameJams"] == 'true' else False
-    skills = True if args["getJoinedSkills"] == 'true' else False
+    # args = request.args
+    # games = True if args["getJoinedGames"] == 'true' else False
+    # users = True if args["getJoinedUsers"] == 'true' else False
+    # gamejams = True if args["getJoinedGameJams"] == 'true' else False
+    # skills = True if args["getJoinedSkills"] == 'true' else False
 
     team = Team.query.get(id)
-    return team.to_dict(games=games, users=users, gamejams=gamejams, skills=skills)
+    return team.to_dict(games=True, users=True, gamejams=True, skills=True)
 
 
 ########################## POST NEW TEAM ################################

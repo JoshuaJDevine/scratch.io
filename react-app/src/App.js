@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { authenticate } from "./store/session";
 import { GetGames, PostGame, GetGame, DeleteGame, UpdateGame } from "./store/game"
 import { getAllSkills, skills } from "./store/skills"
-import { GetTeams, PostTeam, GetTeam, UpdateTeam, DeleteTeam, AddNewMember, ChangeWantedSkills } from "./store/team"
+import teams, { getAllTeams, createTeam, getOneTeam, updateCurrentTeam, deleteCurrentTeam, addNewTeamMember } from "./store/team"
 import { getGameJams, getGameJam, postGameJam, patchGameJam, deleteGameJam } from "./store/game_jam";
-import { gameJamQuery, gameQuery } from "./utils/queryFunctions"
+import { gameJamQuery, gameQuery, teamQuery } from "./utils/queryFunctions"
 
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
@@ -29,8 +29,9 @@ import FloatingCard from "./components/chakra_lib/floating-card";
 import Podium from "./components/chakra_lib/podium";
 import SocialProfileWithImage from "./components/chakra_lib/sample-profile";
 import GameJamPageSample from "./components/chakra_lib/gj-page-sample";
-import TeamProfilePage from "./components/teams/TeamProfilePage";
+import TeamProfile from "./components/teams/TeamProfile";
 import ProfilePage from "./components/Profile";
+import UserProfileInfoBox from "./components/teams/TeamUserProfileInfoBox"
 
 
 function App() {
@@ -45,8 +46,8 @@ function App() {
 
       //Examples of api thinks
 
-      // await dispatch(getTeam(1));
-      // await dispatch(getTeams());
+      // await dispatch(getOneTeam(1));
+      // await dispatch(getAllTeams(teamQuery()));
 
       await dispatch(getAllSkills());
       // await dispatch(GetGames());
@@ -139,8 +140,8 @@ function App() {
             <Podium />
         </Route>
         <Route path="/teams">
-          <TeamProfilePage />
-        </Route>
+          <TeamProfile />
+        </Route> 
 
 
         {/*HANDLE ERRORS*/}

@@ -1,12 +1,15 @@
-import React from "react";
-import {Flex} from "@chakra-ui/react";
-import ProfileInfoBox from "../chakra_lib/profile-info-box";
-import ProfileInfoBoxTwo from "../chakra_lib/profile-info-box-two";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux"
+import { useParams } from "react-router-dom"
+import { getOneTeam } from "../../store/team"
 
-export default function TeamProfile(){
-    return(
-        <Flex justify="space-between" align="center">
-            <ProfileInfoBox />
-        </Flex>
+import { Box } from "@chakra-ui/react";
+import TeamCarousel from "./TeamCarousel";
+
+export default function ProfilePage() {
+    return (
+        <Box>
+            <TeamCarousel />
+        </Box>
     )
 }

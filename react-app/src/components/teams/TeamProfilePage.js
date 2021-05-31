@@ -1,6 +1,9 @@
 import React from "react";
-import ProfileInfoBox from "./TeamInfoBox"
-import ProfileInfoBoxTwo from "./TeamInfoBoxTwo"
+import TeamInfoBox from "./TeamInfoBox"
+import TeamInfoBoxTwo from "./TeamInfoBoxTwo"
+import TeamGameJams from "./TeamGameJams"
+
+
 
 
 import {
@@ -11,27 +14,19 @@ import {
     Container
 } from '@chakra-ui/react';
 
-export default function teamProfilePage() {
+
+export default function TeamProfile({ team }) {
+    console.log("TEAM PROFILE PAGE ------>", team?.name)
     return (
-        <Box
-            w="100vw"
-            h="100vh"
-            bg="#693c72"
-        >
-            <Center py={6}>
-                <Container
-                    w="3000px"
-                    h={"600px"}
-                    bgColor="#a1cae2"
-                    borderRadius="10px"
-                    paddingX="10px"
-                >
-                    <Flex justify="space-between" align="center">
-                        <ProfileInfoBox />
-                        <ProfileInfoBoxTwo />
-                    </Flex>
-                </Container>
-            </Center>
+
+        <Box className="team-profile-container">
+            <Flex justify="space-between" align="center">
+                <TeamInfoBox team={team}/>
+                <TeamInfoBoxTwo team={team}/>
+            </Flex>
+            <Box className="team-game-jams-container">
+                <TeamGameJams team={team}/>
+            </Box>
         </Box>
-    );
+    )
 }
