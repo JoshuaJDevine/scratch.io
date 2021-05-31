@@ -32,6 +32,7 @@ import GameJamPageSample from "./components/chakra_lib/gj-page-sample";
 import TeamProfile from "./components/teams/TeamProfile";
 import ProfilePage from "./components/Profile";
 import UserProfileInfoBox from "./components/teams/TeamUserProfileInfoBox"
+import GameBox from "./components/games/GameBox"
 
 
 function App() {
@@ -145,6 +146,9 @@ function App() {
         {/* <Route path="/teams">
           <TeamProfile />
         </Route> */}
+        <Route>
+          <GameBox path="/games"/>
+        </Route>
 
 
         {/*HANDLE ERRORS*/}
