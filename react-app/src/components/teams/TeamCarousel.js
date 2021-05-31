@@ -12,13 +12,14 @@ export default function Carousel (){
     const [carouselPos, setCarouselPos] = useState(1);
 
     // const { id } = useParams()
-    const teamId = 1
+    const teamId = 3
+
     const dispatch = useDispatch()
     const teamArr = useSelector(state => Object.values(state.teams))
     const team = teamArr[0]
     useEffect(() => {
         if (teamId) {
-            dispatch(getOneTeam(1))
+            dispatch(getOneTeam(teamId))
         }
     }, [dispatch, teamId])
     

@@ -17,8 +17,11 @@ import {
 export default function TeamInfoBox({ team }) {
     // const teamInfo = team.team.team
     // if (teamInfo != null) {
-    console.log("TEAM INFO ------>", team?.name)
+    console.log("TEAM INFO ------>", team?.gamejams)
     // }
+    const numberOfGameJams = team?.gamejams.length
+    const numberOfGames =team?.games.length
+
     const path = process.env.PUBLIC_URL;
     return (
         <Box
@@ -67,7 +70,7 @@ export default function TeamInfoBox({ team }) {
                         <Text fontSize={'sm'} color={'gray.500'}>
                             Participated In
                         </Text>
-                        <Text fontWeight={600}>100</Text>
+                        <Text fontWeight={600}>{numberOfGameJams}</Text>
                         <Text fontSize={'sm'} color={'gray.500'}>
                             Game Jams
                         </Text>
@@ -76,7 +79,7 @@ export default function TeamInfoBox({ team }) {
                         <Text fontSize={'sm'} color={'gray.500'}>
                             Created
                         </Text>
-                        <Text fontWeight={600}>100</Text>
+                        <Text fontWeight={600}>{numberOfGames}</Text>
                         <Text fontSize={'sm'} color={'gray.500'}>
                             Games
                         </Text>
