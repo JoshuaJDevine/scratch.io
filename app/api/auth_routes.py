@@ -34,7 +34,7 @@ def login():
     Logs a user in
     """
     form = LoginForm()
-    print(request.get_json())
+    print('logging in',request.get_json())
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -66,11 +66,11 @@ def sign_up():
         user = User(
             username=form.data['username'],
             email=form.data['email'],
-            # first_name=form.data['first_name'],
-            # last_name=form.data['last_name'],
-            # avatar=form.data['avatar'],
-            # website=form.data['website'],
-            # github=form.data['github'],
+            first_namge=form.data['first_name'],
+            last_name=form.data['last_name'],
+            avatar=form.data['avatar'],
+            website=form.data['website'],
+            github=form.data['github'],
             password=form.data['password']
         )
         db.session.add(user)

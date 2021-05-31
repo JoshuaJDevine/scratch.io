@@ -44,7 +44,7 @@ class Team(db.Model):
     )
 
     def get_joined_users(self):
-        return [user.to_dict() for user in self.users]
+        return [user.to_dict(skills=True) for user in self.users]
 
     def get_joined_gamejams(self):
         return [gamejam.to_dict() for gamejam in self.gamejams]

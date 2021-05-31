@@ -19,32 +19,46 @@ import {
 
 
 
-export default function ProfileInfoBoxTwo() {
+export default function TeamInfoBoxTwo({ team }) {
     return (
+        <Box>
+          {/* <Box>
+            <p> This is a blurb that has a lot of info on the team</p>
+          </Box> */}
+          <Box
+              maxW={'270px'}
+              w={'full'}
+              h="250px"
+              bg={useColorModeValue('white', 'gray.800')}
+              pos={"relative"}
+              top={"25px"}
+              boxShadow={'2xl'}
+              rounded={'md'}
+              overflow={'hidden'}
+              marginRight={'10px'}
+              padding={'6px'}
+              className="team-info-box-two-card">
+              <p> 
+                {team?.blurb}
+              </p>
 
-        <Box
-            maxW={'270px'}
-            w={'full'}
-            h="250px"
-            bg={useColorModeValue('white', 'gray.800')}
-            pos={"relative"}
-            top={"25px"}
-            boxShadow={'2xl'}
-            rounded={'md'}
-            overflow={'hidden'}
-            className="boxes-for-days">
+              <Heading
+                  padding="5px"
+                  margin="5px"
+                  borderBottom="solid 2px black"
+                  fontSize="lg"
+                  >
+                  <p>
+                      Wanted Skills
+                  </p>
+              </Heading>
+              {team?.skills.map((skill) => {
+                return (
+                  `${skill.name} `
+                )
+              })}
 
-            <Heading
-                padding="5px"
-                margin="5px"
-                borderBottom="solid 2px black"
-                fontSize="lg"
-            >
-                <h4>
-                    Skills
-        </h4>
-            </Heading>
-
+          </Box>
         </Box>
     )
 }

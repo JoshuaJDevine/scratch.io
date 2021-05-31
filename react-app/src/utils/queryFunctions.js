@@ -34,6 +34,7 @@ export function teamQuery(obj = {}) {
         searchTerm: "",
         resultLimit: 25,
         getJoinedUsers: false,
+        getJoinedSkills: false,
         getJoinedGames: false,
         getJoinedGameJams: false
     }

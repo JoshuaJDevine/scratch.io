@@ -12,4 +12,5 @@ class GameJamForm(FlaskForm):
     userLimit = StringField("userLimit", validators=[DataRequired()])
     startDate = StringField("startDate", validators=[DataRequired()])
     endDate = StringField("endDate", validators=[DataRequired()])
+    ownerId = IntegerField("ownerId", validators=[DataRequired()])
     submit = SubmitField('Submit')

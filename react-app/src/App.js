@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { authenticate } from "./store/session";
 import { GetGames, PostGame, GetGame, DeleteGame, UpdateGame } from "./store/game"
 import { getAllSkills, skills } from "./store/skills"
-import { GetTeams, PostTeam, GetTeam, UpdateTeam, DeleteTeam, AddNewMember, ChangeWantedSkills } from "./store/team"
+import teams, { getAllTeams, createTeam, getOneTeam, updateCurrentTeam, deleteCurrentTeam, addNewTeamMember } from "./store/team"
 import { getGameJams, getGameJam, postGameJam, patchGameJam, deleteGameJam } from "./store/game_jam";
-import { gameJamQuery, gameQuery } from "./utils/queryFunctions"
+import { gameJamQuery, gameQuery, teamQuery } from "./utils/queryFunctions"
 
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
@@ -15,8 +15,6 @@ import UsersList from "./components/user/UsersList";
 import User from "./components/user/User";
 import NavBar from "./components/navbar/NavBar";
 import Homepage from "./components/Homepage"
-import GameJamPage from "./components/gamejams/GameJamPage"
-import GameJamSample from "./components/chakra_lib/gj-page-sample"
 
 //***********
 //Test imports
@@ -28,15 +26,16 @@ import AnimatedGrid2 from "./components/chakra_lib/test-anime-grid2"
 import FloatingCard from "./components/chakra_lib/floating-card";
 import Podium from "./components/chakra_lib/podium";
 import SocialProfileWithImage from "./components/chakra_lib/sample-profile";
-import GameJamPageSample from "./components/chakra_lib/gj-page-sample";
+import TeamProfile from "./components/teams/TeamProfile";
 import TeamProfilePage from "./components/teams/TeamProfilePage";
 import ProfilePage from "./components/Profile";
+import GameJamPageRedesign from "./components/chakra_lib/GameJamPageRedesign";
+import GamePage from "./components/games/gamesPage";
 
 
 function App() {
-  const user = useSelector(state => state.session.user)
-  const games = useSelector(state => state.session.games)
   const [loaded, setLoaded] = useState(false);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -45,15 +44,16 @@ function App() {
 
       //Examples of api thinks
 
-      // await dispatch(getTeam(1));
-      // await dispatch(getTeams());
+      // await dispatch(getOneTeam(1));
+      // await dispatch(getAllTeams(teamQuery()));
 
       await dispatch(getAllSkills());
       // await dispatch(GetGames());
       // await dispatch(ChangeWantedSkills(11, [2]))
 
       // await dispatch(getAllSkills());
-      // await dispatch(GetGames(gameQuery({searchTerm: 'c', getJoinedTags: true})));
+      await dispatch(GetGames(gameQuery({searchTerm: 'c', getJoinedTags: true})));
+      // await dispatch(GetGame(1,gameQuery({getJoinedTags: true})));
 
 
       // await dispatch(GetTeam(1));
@@ -72,16 +72,7 @@ function App() {
       // await  dispatch(UpdateGame(14, "MyTestUpdate"))
 
       // await dispatch(GetTeams(gameJamQuery({getJoinedUsers: true})))
-     await dispatch(getGameJams)
-
-
-      // await dispatch(getGameJams({
-      //   searchTerm: "n",
-      //   getJoinedGames: true,
-      //   getJoinedTeams: true,
-      //   getJoinedTags: false
-      // }));
-
+      await dispatch(getGameJams)
 
       setLoaded(true);
     })();
@@ -99,10 +90,10 @@ function App() {
           <Homepage />
         </Route>
         <Route path="/gj-page">
-            <GameJamPage/>
+            <GameJamPageRedesign/>
         </Route>
-        <Route path="/gj-page2">
-            <GameJamPageSample/>
+        <Route path="/games-page">
+          <GamePage />
         </Route>
         {/* <Route path="/profile">
           <ProfilePage />
@@ -142,7 +133,7 @@ function App() {
             <Podium />
         </Route>
         <Route path="/teams">
-          <TeamProfilePage />
+          <TeamProfile />
         </Route>
 
 

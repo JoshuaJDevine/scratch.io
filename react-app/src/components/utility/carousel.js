@@ -29,7 +29,6 @@ export default function Carousel (){
               <div className="maincarousel-item profile-info" onClick={() => handleCarouselPosition(2)} >
                   <UserProfile />
               </div>
-
               <div className="maincarousel-item gamejam-info" onClick={() => handleCarouselPosition(3)}>
                     <TeamInfoBox/>
               </div>

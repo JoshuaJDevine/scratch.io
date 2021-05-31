@@ -1,26 +1,28 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { signUp } from "../../store/session";
+
+import { Field, Form, Formik } from "formik";
 import {
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    useDisclosure,
-    Button,
-    FormControl,
-    FormLabel,
-    Input,
-    FormHelperText,
-    InputGroup,
-    InputRightElement,
-    FormErrorMessage
-  } from "@chakra-ui/react"
-import {login, signUp} from "../../store/session";
-import {Field, Form, Formik} from "formik";
-import {useDispatch} from "react-redux";
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  FormHelperText,
+  InputGroup,
+  InputRightElement,
+  FormErrorMessage
+} from "@chakra-ui/react"
+
 
 export default function SignUp() {
   const dispatch = useDispatch();
@@ -29,9 +31,9 @@ export default function SignUp() {
   function validateUsername(value) {
     let error;
     if (!value)
-      error = "Required"
+      error = "Required";
     else if (value.length < 3)
-      error = "Invalid username"
+      error = "Invalid username";
     return error;
   }
 
@@ -63,7 +65,9 @@ export default function SignUp() {
 
   return (
     <>
-      <Button onClick={onOpen} colorScheme="white" variant="link" className="navbar buttons">Sign Up</Button>
+      <Button onClick={onOpen} colorScheme="white" variant="link" className="navbar buttons">
+        Sign Up
+      </Button>
 
       <Modal closeOnOverlayClick={true} size="sm" isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -131,12 +135,6 @@ export default function SignUp() {
                 )}
               </Formik>
           </ModalBody>
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button variant="ghost">Sign Up</Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </>
