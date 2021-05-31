@@ -956,7 +956,7 @@ input:nth-of-type(3):checked ~ #maincarousel {
   border-radius: 10px;
 }
 
-.user-profile-info-box-avatar {
+.team-user-profile-info-box-avatar {
   grid-area: A;
   border-radius: 10px;
   display: flex;
@@ -965,7 +965,7 @@ input:nth-of-type(3):checked ~ #maincarousel {
 
 }
 
-.user-profile-info-box-text1 {
+.team-user-profile-info-box-username {
   grid-area: B;
   border-radius: 10px;
   padding: 10px;
@@ -974,10 +974,11 @@ input:nth-of-type(3):checked ~ #maincarousel {
   align-items: center;
 }
 
-.user-profile-info-box-text2 {
+.team-user-profile-info-box-skills {
   grid-area: C;
   border-radius: 10px;
   padding: 10px;
+  margin-bottom: 10px;
 }
 
 .team-info-box-recruiting {

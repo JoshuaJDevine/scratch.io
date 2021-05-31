@@ -46,7 +46,7 @@ const initialState = { teams: null };
 
 /********************** CHANGE WANTED SKILLS FUNCTION *****************/
 const changeWantedSkills = async (teamId, skills) => {
-    console.log('SKILLS------->', skills)
+    // console.log('SKILLS------->', skills)
     const response = await fetch(`/api/teams/${teamId}/change_wanted_skills`, {
         method: "POST",
         headers: {
@@ -249,7 +249,7 @@ export const removeCurrentTeamMember = (teamId, userId) => async (dispatch) => {
 /*
 ============================== REDUCER =================================
 */
-export default function teams(state=initialState, action) {
+export default function teamReducer(state=initialState, action) {
     // const newState = {...state};
     switch (action.type) {
         case GET_TEAMS:

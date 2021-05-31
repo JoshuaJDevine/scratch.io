@@ -19,7 +19,7 @@ import {
 
 
 
-export default function TeamInfoBoxTwo() {
+export default function TeamInfoBoxTwo({ team }) {
     return (
         <Box>
           {/* <Box>
@@ -38,10 +38,8 @@ export default function TeamInfoBoxTwo() {
               marginRight={'10px'}
               padding={'6px'}
               className="team-info-box-two-card">
-              <p> this is a blurb that has a lot of info on the team.
-                It might actually be really long. Or really short. We don't know.
-                But then, do we ever really know anything? Who are we? Why are we here?
-                What IS existance?
+              <p> 
+                {team?.blurb}
               </p>
 
               <Heading
@@ -54,6 +52,11 @@ export default function TeamInfoBoxTwo() {
                       Wanted Skills
                   </p>
               </Heading>
+              {team?.skills.map((skill) => {
+                return (
+                  `${skill.name} `
+                )
+              })}
 
           </Box>
         </Box>

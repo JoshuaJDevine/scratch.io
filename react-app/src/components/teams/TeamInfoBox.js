@@ -14,7 +14,11 @@ import {
 } from '@chakra-ui/react';
 
 
-export default function TeamInfoBox() {
+export default function TeamInfoBox({ team }) {
+    // const teamInfo = team.team.team
+    // if (teamInfo != null) {
+    console.log("TEAM INFO ------>", team?.name)
+    // }
     const path = process.env.PUBLIC_URL;
     return (
         <Box
@@ -41,7 +45,7 @@ export default function TeamInfoBox() {
                 <Avatar
                     size={'xl'}
                     src={
-                        `${path}/images/teamAvatars/UnrealMotor.png`
+                        `${path}${team?.avatar}`
                     }
                     alt={'Author'}
                     css={{
@@ -53,7 +57,7 @@ export default function TeamInfoBox() {
             <Box p={6}>
                 <Stack spacing={0} align={'center'} mb={5}>
                     <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
-                        Unreal Motor
+                        {team?.name}
               </Heading>
                     <Text color={'gray.500'}>Gam Jam Team</Text>
                 </Stack>
@@ -79,7 +83,7 @@ export default function TeamInfoBox() {
                     </Stack>
                 </Stack>
                 <Text className="team-info-box-recruiting">
-                    Recruiting: Yes!
+                    Recruiting: {team?.recruiting ? "Yes!" : "No"}
                 </Text>
                 <Button
                     w={'full'}

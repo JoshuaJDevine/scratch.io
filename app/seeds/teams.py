@@ -20,7 +20,7 @@ def seed_teams():
 
         new_team = Team(name=team_name,
         blurb = faker.text(255),
-        avatar = f"/images/teamAvatars/{domain}",
+        avatar = f"/images/teamAvatars/{domain}.jpg",
         website = f"www.{domain}.com",
         github = f"www.github.com/{domain}",
         recruiting = random.choice([True, False]),

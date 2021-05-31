@@ -20,7 +20,9 @@ import {
 
 
 
-export default function TeamGameJams() {
+export default function TeamGameJams({ team }) {
+
+    console.log("TEAM GAME JAM BOX ------>", team?.gamejams)
     return (
         <Box>
           <Box
@@ -42,7 +44,7 @@ export default function TeamGameJams() {
                   fontSize="lg"
                   >
                   <p>
-                    Unreal Motor's Game Jams
+                    {`${team?.name}'s Game Jams`}
                   </p>
               </Heading>
               {/* <GameJamInfoCard /> */}

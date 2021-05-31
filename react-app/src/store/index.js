@@ -3,14 +3,14 @@ import thunk from "redux-thunk";
 import session from "./session"
 import games from "./game"
 import skillsReducer from "./skills";
-import teams from "./team"; //CHECK SYNTAX
+import teamReducer from "./team"; //CHECK SYNTAX
 import gameJamReducer from "./game_jam";
 
 const rootReducer = combineReducers({
     session,
     skillsReducer,
     games,
-    teams,
+    teams: teamReducer,
     gameJams: gameJamReducer
 });
 

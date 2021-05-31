@@ -1,5 +1,5 @@
 import React from "react";
-
+import { useDispatch, useSelector } from "react-redux"
 
 import {
     Heading,
@@ -14,7 +14,9 @@ import {
   } from '@chakra-ui/react';
 
 
-export default function ProfileInfoBox() {
+export default function ProfileInfoBox({ users }) {
+  console.log("USERS BOX ------->", users?.avatar)
+  const dispatch = useDispatch()
 return (
         <Box 
           w={'full'}
@@ -25,20 +27,20 @@ return (
           rounded={'md'}
           overflow={'hidden'}
           className="user-profile-info-box">
-          <Box className="user-profile-info-box-avatar">
+          <Box className="team-user-profile-info-box-avatar">
             <Avatar
-              className="user-profile-info-boc-avatar"
+              className="team-user-profile-info-box-avatar"
               size={'xl'}
               src={
-                "https://musicweek.ua/wp-content/uploads/2020/12/76.-Blob-Opera.png"
+                users?.avatar
               }
               alt={'User-Avatar'}
             />
           </Box>
-          <Box className="user-profile-info-box-text1">
-            <p>UserName42069</p>
+          <Box className="team-user-profile-info-box-username">
+            {users?.username}
           </Box>
-          <Box className="user-profile-info-box-text2">
+          <Box className="team-user-profile-info-box-skills">
             <p>Skills:</p>
             <p>list of skills here and stuff</p>
           </Box>

@@ -1,5 +1,8 @@
-import React from "react";
-// import MainCarousel from "./chakra_lib/mainCarousel";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux"
+import { useParams } from "react-router-dom"
+import { getOneTeam } from "../../store/team"
+
 import { Box } from "@chakra-ui/react";
 import TeamCarousel from "./TeamCarousel";
 

@@ -1,10 +1,9 @@
-import React, { useEffect }from "react";
-import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import React from "react";
 import TeamInfoBox from "./TeamInfoBox"
 import TeamInfoBoxTwo from "./TeamInfoBoxTwo"
 import TeamGameJams from "./TeamGameJams"
-import { getOneTeam } from "../../store/team"
+
+
 
 
 import {
@@ -16,27 +15,17 @@ import {
 } from '@chakra-ui/react';
 
 
-export default function TeamProfile() {
-    const dispatch = useDispatch()
-    const team = useSelector(state => state.teams)
-    const { id } = useParams()
-
-    useEffect(() => {
-
-        dispatch(getOneTeam(id))
-
-    }, [dispatch])
-    console.log("TEAM ---------->", team)
-
+export default function TeamProfile({ team }) {
+    console.log("TEAM PROFILE PAGE ------>", team?.name)
     return (
 
         <Box className="team-profile-container">
             <Flex justify="space-between" align="center">
-                <TeamInfoBox />
-                <TeamInfoBoxTwo />
+                <TeamInfoBox team={team}/>
+                <TeamInfoBoxTwo team={team}/>
             </Flex>
             <Box className="team-game-jams-container">
-                <TeamGameJams />
+                <TeamGameJams team={team}/>
             </Box>
         </Box>
     )
