@@ -95,7 +95,7 @@ export default function CreateNewGameJam() {
                   name: "",
                   theme: "",
                   blurb: "",
-                  avatar: "",
+                  avatar: "https://cdn.pixabay.com/photo/2016/12/23/07/00/game-1926905_1280.png",
                   website: "",
                   github: "",
                   userLimit: 10,

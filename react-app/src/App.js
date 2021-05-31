@@ -14,8 +14,6 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/user/UsersList";
 import User from "./components/user/User";
 import NavBar from "./components/navbar/NavBar";
-import GameJamPage from "./components/gamejams/GameJamPage";
-import GameJamSample from "./components/chakra_lib/gj-page-sample";
 import Homepage from "./components/Homepage"
 
 //***********
@@ -28,25 +26,17 @@ import AnimatedGrid2 from "./components/chakra_lib/test-anime-grid2"
 import FloatingCard from "./components/chakra_lib/floating-card";
 import Podium from "./components/chakra_lib/podium";
 import SocialProfileWithImage from "./components/chakra_lib/sample-profile";
-import GameJamPageSample from "./components/chakra_lib/gj-page-sample";
 import TeamProfile from "./components/teams/TeamProfile";
 import TeamProfilePage from "./components/teams/TeamProfilePage";
 import ProfilePage from "./components/Profile";
 import GameJamPageRedesign from "./components/chakra_lib/GameJamPageRedesign";
 import GamePage from "./components/games/gamesPage";
-import UserProfileInfoBox from "./components/teams/TeamUserProfileInfoBox"
 
 
 function App() {
-  const user = useSelector(state => state.session.user)
-  const games = useSelector(state => state.session.games)
   const [loaded, setLoaded] = useState(false);
-  const [teamId, setTeamId] = useState(null);
 
   const dispatch = useDispatch();
-
-
-
 
   useEffect(() => {
     (async() => {
@@ -82,16 +72,7 @@ function App() {
       // await  dispatch(UpdateGame(14, "MyTestUpdate"))
 
       // await dispatch(GetTeams(gameJamQuery({getJoinedUsers: true})))
-     await dispatch(getGameJams)
-
-
-      // await dispatch(getGameJams({
-      //   searchTerm: "n",
-      //   getJoinedGames: true,
-      //   getJoinedTeams: true,
-      //   getJoinedTags: false
-      // }));
-
+      await dispatch(getGameJams)
 
       setLoaded(true);
     })();
@@ -110,12 +91,6 @@ function App() {
         </Route>
         <Route path="/gj-page">
             <GameJamPageRedesign/>
-        </Route>
-        <Route path="/gj-page">
-            <GameJamPageRedesign/>
-        </Route>
-        <Route path="/games">
-            <GamePage/>
         </Route>
         <Route path="/games-page">
           <GamePage />
