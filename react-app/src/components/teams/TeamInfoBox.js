@@ -1,179 +1,131 @@
-import React, { useEffect, useState } from "react";
-
-import { useSelector, useDispatch } from "react-redux"
-import { useParams } from "react-router-dom"
-
-import {Box, useColorModeValue, Container, Image, Flex} from "@chakra-ui/react";
-
-import GameJamInfoCard from "../gamejams/GameJamInfoCard"
-
-import { getGameJams } from "../../store/game_jam"
-
-import { gameJamQuery } from "../../utils/queryFunctions"
+import React from "react";
+import { useDispatch, useSelector } from "react-redux"
+import { useHistory } from "react-router-dom"
+import { addNewTeamMember } from "../../store/team";
 
 
+import {
+    Heading,
+    Avatar,
+    Box,
+    Image,
+    Flex,
+    Text,
+    Stack,
+    Button,
+    useColorModeValue
+} from '@chakra-ui/react';
 
 
+export default function TeamInfoBox({ team }) {
+    // const teamInfo = team.team.team
+    // if (teamInfo != null) {
+    // console.log("TEAM INFO ------>", team?.gamejams)
+    // }
+    const sessionUser = useSelector(state => state.session.user);
+    const numberOfGameJams = team?.gamejams.length
+    const numberOfGames =team?.games.length
+    const userId = 37
+    // const userId = sessionUser.id
+    const teamId = team?.id
 
-
-export default function TeamInfoBox(){
-
-  const dispatch = useDispatch()
-  const anotherUserState = useSelector(state => state.userReducer.users)
-  const { id } = useParams()
-  const [usersGj, setUsersGj] = useState(null)
-
-
-
-  useEffect(() => {
-
-    if (!anotherUserState) {
-      return null
-    } else {
-      for (let key in anotherUserState) {
-        if (key === id) {
-          setUsersGj(anotherUserState[key])
-        }
-      }
-    }
-  })
-
-
-
-  // useEffect(() => {
-
-      // dispatch(getGameJams(gameJamQuery({})))
-      // dispatch(getUsers(usersQuery({})))
-      // dispatch(getUser(id, usersQuery({getJoinedGameJams: true})))
-
-
-  // }, [dispatch, id])
-
-return(
-<>
-        { usersGj ?
-          <Box className="your-gamejams">
-
-                <Box> Your gamejams: {usersGj.username}</Box>
-
-          </Box>
-          :
-
-          <Box className="your-gamejams">Loading...</Box>
-        }
-
-
+    const dispatch = useDispatch()
+    const history = useHistory()
+    // console.log("SESSION IN TEAM INFO BOX ---->", sessionUser.id)
+    let userIsCaptain = false;
+    // if (userId === team.captainId) {
+    //     userIsCaptain = true;
+    // }
+    // console.log("USERID IN TEAM INFO BOX ---->", userIsCaptain)
+    
+    const path = process.env.PUBLIC_URL;
+    return (
         <Box
-          maxW={'350px'}
-          w="50%"
-          bg={useColorModeValue('white', 'gray.800')}
-          pos={"relative"}
-          // top={"25px"}
-          boxShadow={'2xl'}
-          rounded={'md'}
-          overflow={'auto'}
-          className="gamejam-box-profile"
-          >
-            <Container>
-            { usersGj ?
+            maxW={'270px'}
+            w={'full'}
+            bg={useColorModeValue('white', 'gray.800')}
+            pos={"relative"}
+            top={"5px"}
+            boxShadow={'2xl'}
+            rounded={'md'}
+            overflow={'hidden'}
+            className="team-info-box-main"
+        //paddingX="10px"
+        >
+            <Image
+                h={'120px'}
+                w={'full'}
+                src={
+                    'https://images.unsplash.com/photo-1612865547334-09cb8cb455da?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
+                }
+                objectFit={'cover'}
+            />
+            <Flex justify={'center'} mt={-12}>
+                <Image
+                    // size={'sm'}
+                    // className="team-avatar"
+                    h={'100px'}
+                    w={'100px'}
+                    // w={'200px'}
+                    src={
+                        `${path}${team?.avatar}`
+                    }
+                    alt={'Author'}
+                    css={{
+                        border: '2px solid white',
+                    }}
+                />
+            </Flex>
 
-            <Box>
-            {Object.keys(usersGj.owned_gamejams).map((key) => {
-                return <Box key={key}>
-                  <Flex align="center" justify="flex-start">
-                  <Image
-                  src={usersGj.owned_gamejams[key]?.avatar}
-                  alt="img-gamejam"
-                  h="50px"
-                  />
-                  <Box>{usersGj.owned_gamejams[key].name}</Box>
-                  </Flex>
-              </Box>
-              })}
+            <Box p={6}>
+                <Stack spacing={0} align={'center'} mb={5}>
+                    <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
+                        {team?.name}
+              </Heading>
+                    <Text color={'gray.500'}>Gam Jam Team</Text>
+                </Stack>
+
+                <Stack direction={'row'} justify={'center'} spacing={6}>
+                    <Stack spacing={0} align={'center'}>
+                        <Text fontSize={'sm'} color={'gray.500'}>
+                            Participated In
+                        </Text>
+                        <Text fontWeight={600}>{numberOfGameJams}</Text>
+                        <Text fontSize={'sm'} color={'gray.500'}>
+                            Game Jams
+                        </Text>
+                    </Stack>
+                    <Stack spacing={0} align={'center'}>
+                        <Text fontSize={'sm'} color={'gray.500'}>
+                            Created
+                        </Text>
+                        <Text fontWeight={600}>{numberOfGames}</Text>
+                        <Text fontSize={'sm'} color={'gray.500'}>
+                            Games
+                        </Text>
+                    </Stack>
+                </Stack>
+                <Text className="team-info-box-recruiting">
+                    Recruiting: {team?.recruiting ? "Yes!" : "No"}
+                </Text>
+                <Button
+                    w={'full'}
+                    mt={8}
+                    bg={useColorModeValue('#151f21', 'gray.900')}
+                    color={'white'}
+                    rounded={'md'}
+                    _hover={{
+                        transform: 'translateY(-2px)',
+                        boxShadow: 'lg',
+                    }}
+                    onClick={() => {
+                        dispatch(addNewTeamMember(teamId, userId))
+                        // console.log("TEAM ID IN ADD MEMBER ---->", teamId)
+                        history.push(`/`)
+                    }}>
+                    Join
+            </Button>
             </Box>
-            :
-          <Box>Loading...</Box>
-        }
-        </Container>
         </Box>
-</>
     )
-            }
-
-//  {/* {
-//                 usersGj ?
-//                 <>
-//                 {Object.values(usersGj).map((game, idx) => {
-//                   console.log("WHAT IS THIS", idx, "------", game)
-//                     return <Box key={idx}>{game.owned_gamejams.name}</Box>
-//                 })}
-//                 </>
-//                   :
-//                 <>
-//                   <Box>Loading...</Box>
-//                 </>
-//               } */}
-
-// {
-// //   <>
-//   {/* {console.log("THIS IS IT", usersGj)} */}
-//   {/* {console.log("ACCESSING A PROP", usersGj.owned_gamejams)} */}
-//     {/* Object.values(usersGj).map((game, idx) =>
-
-//      <GameJamInfoCard key={idx} game={game}  /> ) */}
-//   </>
-// }
-// {/* { usersGj ?
-// <>
-// {console.log(usersGj)}
-// <Box>
-// {Object.keys(usersGj.owned_gamejams).map((key) => {
-// return <Box key={key}>{userGj.owned_gamejams[key].name}</Box>
-// })}
-// </Box>
-// </>
-// :
-// <>
-// <Box>Loading...</Box>
-// </>
-// } */}
-
-
-// {
-//   usersGj ?
-//     <>
-//         {Object.keys(usersGj.owned_gamejams).map(key => {
-//         <Box className="profile-gj-boxes" h="300px">
-//               <Box className="gj-intro-info">
-//                   <Image
-//                     src={usersGj.owned_gamejams[key].avatar}
-//                     alt="img-gamejam"
-//                     h="50px"
-//                     />
-//                   <div className="gj-info-entries">{usersGj.owned_gamejams[key].name}</div>
-//               </Box>
-//                   <div className="gj-info-entries theme">{`#${usersGj.owned_gamejams[key].theme}`}</div>
-
-//                   <div className="gj-info-entries titles">A bit of info:</div>
-//                   <div className="gj-info-entries blurb">{usersGj.owned_gamejams[key].blurb}</div>
-
-//                   <div className="gj-info-entries userLimit">{`User limit: ${usersGj.owned_gamejams[key].userLimit}`}</div>
-
-//               <div className="gj-info-entries titles">Sites:</div>
-//               <div className="gj-info-entries sites">
-//                   <div>{`The game: ${usersGj.owned_gamejams[key].website}`}</div>
-//                   <div>{`Github: ${usersGj.owned_gamejams[key].github}`}</div>
-//               </div>
-
-//               <div className="gj-info-entries titles">Dates:</div>
-//               <div className="gj-info-entries dates">
-//                   <div>{`Start date: ${usersGj.owned_gamejams[key].startDate}`}</div>
-//                   <div>{`End date: ${usersGj.owned_gamejams[key].endDate}`}</div>
-//               </div>
-//               <hr />
-//   </Box>
-//         })}
-//   </>
-//       :
-//         <Box>Loading...</Box>
-//     }
+}

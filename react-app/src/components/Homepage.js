@@ -19,7 +19,8 @@ export default function Homepage() {
         var image4 = "logo_S.png";
         var image5 = "logo_K.png";
     return (
-        <Flex h="100vh" w="100vw" direction="column">
+
+        <Flex h="100vh" w="100vw" direction="column" classname="hp-main-body">
         <Box
         className="hp-main-img"
         >
@@ -29,21 +30,16 @@ export default function Homepage() {
              <img src={path + image4}/>
              <img src={path + image5}/>
         </Box>
-        <Box>
-            <Heading>
+        {/* <Box>
+            <Heading className="hp-heading">
             <h1>
-                Genre
+            Sample Gamjams
             </h1>
             </Heading>
             <GameJamBox />
-        </Box>
+        </Box> */}
         <Box>
-        {/* <Heading>
-            <h1>
-                Genre
-            </h1>
-            </Heading> */}
-            <GameBox />
+            {/* <GameBox /> */}
         </Box>
 
         </Flex>
