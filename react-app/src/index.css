@@ -14,7 +14,6 @@
 /* width */
 ::-webkit-scrollbar {
   width: 15px;
-
 }
 
 /* Track */
@@ -30,6 +29,10 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+*{
+  color: var(--rich-black-fogra-39)
 }
 
 body {
@@ -1387,6 +1390,11 @@ input:nth-of-type(3):checked ~ #maincarousel {
   margin-top: 10px;
 }
 
+.team-info-box-two-card{
+      overflow-y : scroll !important;
+  height: 400px !important;
+}
+
 .team-avatar {
   object-fit: contain;
   background-color: white;
@@ -1427,21 +1435,22 @@ margin-bottom: 10px;
 }
 
 .team-users-card-container {
-  overflow: scroll;
+  overflow-y: scroll;
   height: 600px;
 }
 
 
 .team-game-jams-box {
-  overflow: scroll;
+  overflow-y: scroll;
   height: 600px;
   padding: 6px;
 }
 
 .team-game-jam-info-card {
+  margin-top: 10px;
+  margin-bottom: 25px;
   display: grid;
   grid-template-columns: 100px 1fr 1fr;
-  height: 2px;
   width: 500px;
 }
 
