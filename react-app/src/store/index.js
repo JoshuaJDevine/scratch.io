@@ -11,7 +11,6 @@ const rootReducer = combineReducers({
     session,
     skillsReducer,
     games,
-    teams,
     gameJams: gameJamReducer,
     userReducer,
     teams: teamReducer,
