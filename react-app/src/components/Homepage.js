@@ -17,16 +17,17 @@ import {
 
 
 export default function Homepage() {
-        var path = process.env.PUBLIC_URL;
-        var image = "logo_W.png";
-        var image2 = "logo_H.png";
-        var image3 = "logo_I.png";
-        var image4 = "logo_S.png";
-        var image5 = "logo_K.png";
+        const path = process.env.PUBLIC_URL;
+        var image = `${path}${'logo_W.png'}`;
+        var image2 = `${path}${'logo_H.png'}`;
+        var image3 = `${path}${'logo_I.png'}`;
+        var image4 = `${path}${'logo_S.png'}`;
+        var image5 = `${path}${'logo_K.png'}`;
 
         const dispatch = useDispatch();
 
         const history = useHistory();
+
 
         let demoUserPageLoader = () => {
             dispatch(login('chad@aa.io', 'password'))
