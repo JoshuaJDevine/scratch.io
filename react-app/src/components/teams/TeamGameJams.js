@@ -13,8 +13,12 @@ import {
     useColorModeValue
 } from '@chakra-ui/react';
 
-export default function TeamGameJams({ gameJams }) {
-    // console.log("GAME JAMS -------->", gameJams?.name)
+export default function TeamGameJams({ team }) {
+    console.log("GAME JAMS -------->", team)
+    const { gamejams } = team
+    console.log("GAME JAMS GAME JAMS -------->", team)
+    console.log("GAME JAMS VARIABLE ------->")
+    const gameJams = []
     return (
         <Box className="team-game-jams-page">
             <Box className="team-game-jams-title">
@@ -22,6 +26,7 @@ export default function TeamGameJams({ gameJams }) {
             </Box>
             <Box className="team-game-jams-box">
                 {gameJams?.map((gameJam) => {
+                    console.log("GAME JAM -------->", gameJam)
                     return (
                         <Box className="team-game-jam-info-card"
                             w={'full'}

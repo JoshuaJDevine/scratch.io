@@ -8,7 +8,7 @@ def seed_teams():
     team_list = ["The Wellermen", "The Budiasattvas of Chaos", "The Deamon Demons", 
                 "Appitite for Abstraction", "The Mac Hackers", "BitRealm", 
                 "Need for Git", "Byte Me", "The Errors", "No Band Limit",
-                "Zero Ping", "Access Denied", "Smash Hack Gremlins"
+                "Zero Ping", "Access Denied", "Smash Hack Gremlins",
                 "Unreal Motor", "RPGremlins", "The Furniture", "Code Monkeys",
                 "The Bit Offenders", "The Nvidiots", "Game Smiths"]
 

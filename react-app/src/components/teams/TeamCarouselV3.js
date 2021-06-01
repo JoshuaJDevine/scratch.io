@@ -10,9 +10,9 @@ export default function TeamCarouselV3({ teams, setSlide, currentSlide }) {
     useEffect(() => {
         setSlide(teams[1])
     }, [])
-    console.log("TEAM CAROUSEL V3 TEAMS ------->", teams?.lenght)
-    console.log("TEAM CAROUSEL V3 TEAMS ------->", setSlide)
-    console.log("TEAM CAROUSEL V3 TEAMS ------->", currentSlide)
+    // console.log("TEAM CAROUSEL V3 TEAMS ------->", teams?.lenght)
+    // console.log("TEAM CAROUSEL V3 TEAMS ------->", setSlide)
+    // console.log("TEAM CAROUSEL V3 TEAMS ------->", currentSlide)
     
     return (
         <div>
