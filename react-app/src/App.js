@@ -35,6 +35,7 @@ import GameBox from "./components/games/GameBox"
 
 import GameJamPageRedesign from "./components/chakra_lib/GameJamPageRedesign";
 import GamePage from "./components/games/gamesPage";
+import TeamsBrowsingPage from "./components/teams/TeamsBrowsingPage"
 
 
 
@@ -140,9 +141,9 @@ function App() {
         <Route path="/teams/:teamId">
           <TeamProfile />
         </Route> 
-        {/* <Route path="/teams">
-          <TeamProfile />
-        </Route> */}
+        <Route path="/teams">
+          <TeamsBrowsingPage />
+        </Route>
         <Route>
           <GameBox path="/games"/>
 

@@ -34,7 +34,7 @@ return (
                       rounded={'md'}
                       overflow={'hidden'}
                       className="user-profile-info-box"
-                      key={user}>
+                      key={user.id}>
                     <Box className="team-members-title-box">
                     </Box>
                       <Box className="team-user-profile-info-box-avatar">
