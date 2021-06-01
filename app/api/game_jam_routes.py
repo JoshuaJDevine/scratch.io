@@ -17,7 +17,7 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 # GET all game jams.
-@bp.route('/')
+@bp.route('')
 def get_game_jams():
     args = request.args
     date_now = datetime.now()
@@ -54,7 +54,7 @@ def get_game_jam(id):
     return game_jam.to_dict()
 
 # POST a new game jam.
-@bp.route('/', methods=['POST'])
+@bp.route('', methods=['POST'])
 # @login_required
 def post_game_jam():
     form = GameJamForm()

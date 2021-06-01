@@ -16,7 +16,7 @@ def validation_errors_to_error_messages(validation_errors):
 
 # Is login required to access any of the games api?
 # GET /api/games/   ---------  Get all games
-@game_routes.route('/')
+@game_routes.route('')
 def games():
     args = request.args
     tags = True if args["getJoinedTags"] == 'true' else False

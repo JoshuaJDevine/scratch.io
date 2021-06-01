@@ -48,7 +48,7 @@ export const GetGames = query => async (dispatch) => {
 }
 
 export const PostGame = (name) => async (dispatch)  => {
-    const response = await fetch("/api/games/", {
+    const response = await fetch("/api/games", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

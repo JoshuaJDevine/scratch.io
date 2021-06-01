@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { getOneTeam } from "../../store/team"
 import TeamGameJams from "./TeamGameJams"
+import {useEditable} from "@chakra-ui/react";
 
 export default function Carousel (){
     const [carouselPos, setCarouselPos] = useState(1);
@@ -33,7 +34,7 @@ export default function Carousel (){
     // useEffect(async () => {
     //         dispatch(getOneTeam(teamId))
     // }, [dispatch])
-        
+
     if (!team) {
         return null;
     }
