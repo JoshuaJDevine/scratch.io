@@ -58,6 +58,7 @@ export default function NavBar(){
             }}>
               Games
             </Button>
+            <SearchBar />
             { user && pathName === paths.gameJams && <CreateNewGameJam /> }
             { user && /*pathName === paths.teams*/ <CreateTeam /> }
             { !user && <Login /> }

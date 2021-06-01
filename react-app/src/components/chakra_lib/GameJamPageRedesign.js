@@ -11,15 +11,15 @@ export default function GameJamPageRedesign() {
 
     const dispatch = useDispatch()
     useEffect( () => {
-        dispatch(getGameJams(gameJamQuery()))
+        dispatch(getGameJams(gameJamQuery({})))
     },[dispatch] )
 
     const gameJams = useSelector(state => state.gameJams)
-    const [currentSlide, setCurrentSlide] = useState(gameJams[0])
+    const [currentSlide, setCurrentSlide] = useState(gameJams[1])
 
 
     useEffect(async ()=>{
-        setCurrentSlide(gameJams[0])
+        setCurrentSlide(gameJams[1])
     }, [gameJams])
 
     return (

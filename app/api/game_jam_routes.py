@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from app.models import GameJam, tags_gamejams, Tag, db
 from app.forms import GameJamForm
 from datetime import datetime, time, timedelta
+from flask_login import current_user, login_user, logout_user, login_required
 
 bp = Blueprint('gamejams', __name__)
 
@@ -29,8 +30,8 @@ def get_game_jams():
     elif args['date'] == "year":
         date_later = datetime.now()+ timedelta(days=365)
     else:
-        date_now = datetime.now() - timedelta(days=(365*100))
-        date_later = datetime.now() + timedelta(days=(365*100))
+        date_now = datetime.now() - timedelta(days=(365*1000))
+        date_later = datetime.now() + timedelta(days=(365*1000))
 
     games = True if args["getJoinedGames"] == 'true' else False
     teams = True if args["getJoinedTeams"] == 'true' else False
@@ -54,6 +55,7 @@ def get_game_jam(id):
 
 # POST a new game jam.
 @bp.route('/', methods=['POST'])
+# @login_required
 def post_game_jam():
     form = GameJamForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -98,8 +100,12 @@ def patch_game_jam(id):
 
 # DELETE a game jam.
 @bp.route('/<int:id>', methods=['DELETE'])
+@login_required
 def delete_game_jam(id):
     game_jam_to_delete = GameJam.query.get(id)
-    db.session.delete(game_jam_to_delete)
-    db.session.commit()
-    return game_jam_to_delete.to_dict()
+    if (current_user.id == game_jam_to_delete.ownerId):
+        db.session.delete(game_jam_to_delete)
+        db.session.commit()
+        return game_jam_to_delete.to_dict()
+    else:
+        print(f'\nError: User Id:{current_user.id} did not match Owner Id:{game_jam_to_delete.ownerId}\n',)
