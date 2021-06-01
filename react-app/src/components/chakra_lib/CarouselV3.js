@@ -42,12 +42,14 @@ export default function CarouselV3({gameJams, setSlide, currentSlide}) {
         <Box>
             {currentSlide ?
                 <>
-                <Box className="carousel__slide">
+                <Box className="carousel__slide"
+                 color="black"
+                >
                     <figure>
                       <div>
                         <img src={currentSlide.avatar} alt="" />
                       </div>
-                      <figcaption>
+                      <figcaption className="figcaption">
                         {currentSlide.name}
                         <span className="credit">{currentSlide.blurb}</span>
                         <h1>START:</h1>
