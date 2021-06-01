@@ -18,7 +18,7 @@ def seed_game_jams():
         "Jam It!",
         "Wear Your Pa-JAM-as",
         "Battle Royal!!!",
-        "Portnight"
+        "Local Portnight"
     ]
 
     users = User.query.all()
