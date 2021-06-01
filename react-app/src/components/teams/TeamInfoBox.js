@@ -63,7 +63,7 @@ export default function TeamInfoBox({ team }) {
             <Flex justify={'center'} mt={-12}>
                 <Image
                     // size={'sm'}
-                    // className="team-avatar"
+                    className="team-avatar"
                     h={'100px'}
                     w={'100px'}
                     // w={'200px'}

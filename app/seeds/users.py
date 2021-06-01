@@ -9,15 +9,18 @@ faker = Faker()
 def seed_users():
 
     demo = User(username='DemoGoBoom42', first_name='Demo', last_name='Lition', 
-                email='demo@aa.io', password='password')
+                email='demo@aa.io', avatar=f'https://avatars.dicebear.com/api/human/DemoGoBoom42.svg', 
+                website=f'www.DemoGoBoom42com', github=f'www.github.com/DemoGoBoom42', password='password')
     db.session.add(demo)
 
     user2 = User(username='ChaoticBudda1984', first_name='Bubba', last_name='Hotep', 
-                email='bubba@aa.io', password='password')
+                email='bubba@aa.io', avatar=f'https://avatars.dicebear.com/api/human/ChaoticBudda1984.svg', 
+                website=f'www.ChaoticBudda1984.com', github=f'www.github.com/ChaoticBudda1984', password='password')
     db.session.add(user2)
 
     user3 = User(username='GigaChad9001', first_name='Chad', last_name='Chadington',
-                email='chad@aa.io', password='password')
+                email='chad@aa.io', avatar=f'https://avatars.dicebear.com/api/male/GigaChad9001.svg', 
+                website=f'www.GigaChad9001.com', github=f'www.github.com/GigaChad9001', password='password')
     db.session.add(user3)
 
     avatar_types = ["male", "female", "human", "bottts", "inittials", "avataaars", "micah"]
