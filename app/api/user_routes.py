@@ -5,7 +5,7 @@ from app.models import User
 user_routes = Blueprint('users', __name__)
 
 # /api/users?query
-@user_routes.route('/')
+@user_routes.route('')
 def users():
     args = request.args
     skills = True if args["getJoinedSkills"] == 'true' else False

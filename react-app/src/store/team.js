@@ -107,7 +107,7 @@ export const getOneTeam = (id) => async (dispatch) => {
 /******************* CREATE NEW TEAM ********************/
 export const createTeam = payload => async (dispatch) => {
     const { wantedSkillsCollection } = payload;
-    const res = await fetch('/api/teams/', {
+    const res = await fetch('/api/teams', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

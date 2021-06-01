@@ -52,7 +52,7 @@ export const getGameJam = id => async (dispatch) => {
 }
 
 export const postGameJam = payload => async (dispatch) => {
-    const res = await fetch(`/api/gamejams/`, {
+    const res = await fetch(`/api/gamejams`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

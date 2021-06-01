@@ -7,7 +7,7 @@ teams_routes = Blueprint('teams', __name__)
 
 
 ############################# GET ALL TEAMS #############################
-@teams_routes.route('/')
+@teams_routes.route('')
 def teams():
     args = request.args
     games = True if args["getJoinedGames"] == 'true' else False
@@ -35,7 +35,7 @@ def team(id):
 
 
 ########################## POST NEW TEAM ################################
-@teams_routes.route('/', methods=['POST'])
+@teams_routes.route('', methods=['POST'])
 def new_team():
     form = NewTeamForm()
     form['csrf_token'].data = request.cookies['csrf_token']

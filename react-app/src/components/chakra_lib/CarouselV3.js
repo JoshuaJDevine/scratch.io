@@ -29,7 +29,6 @@ export default function CarouselV3({gameJams, setSlide, currentSlide}) {
         ]}
         >
           {Object.keys(gameJams).map(function(key) {
-            console.log(`keyyyyyyyyyyyyyyyyyy`, typeof(key), key, gameJams[key])
             return (<>
               <Box className="test" onClick={() => {handleSlideClick(gameJams[key])}} key={key}>
                 <img src={gameJams[key].avatar} />
@@ -71,7 +70,5 @@ export default function CarouselV3({gameJams, setSlide, currentSlide}) {
                 </>}
         </Box>
     </div>
-
     );
-
 }

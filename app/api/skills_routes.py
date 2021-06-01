@@ -15,7 +15,7 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f"{field} : {error}")
     return errorMessages
 
-@skills_routes.route("/")
+@skills_routes.route("")
 def skills():
     skills = Skill.query.all()
     return {"skills": [skill.to_dict(users=True) for skill in skills]}
