@@ -18,11 +18,11 @@ import {
 
 export default function Homepage() {
         const path = process.env.PUBLIC_URL;
-        var image = `${path}${'logo_W.png'}`;
-        var image2 = `${path}${'logo_H.png'}`;
-        var image3 = `${path}${'logo_I.png'}`;
-        var image4 = `${path}${'logo_S.png'}`;
-        var image5 = `${path}${'logo_K.png'}`;
+        let image = `${path}logo_W.png`;
+        let image2 = `${path}logo_H.png`;
+        let image3 = `${path}logo_I.png`;
+        let image4 = `${path}logo_S.png`;
+        let image5 = `${path}logo_K.png`;
 
         const dispatch = useDispatch();
 
@@ -40,11 +40,11 @@ export default function Homepage() {
         <Box
         className="hp-main-img"
         >
-             <img src={path + image}/>
-             <img src={path + image2}/>
-             <img src={path + image3}/>
-             <img src={path + image4}/>
-             <img src={path + image5}/>
+             <img src={image}/>
+             <img src={image2}/>
+             <img src={image3}/>
+             <img src={image4}/>
+             <img src={image5}/>
         </Box>
 
         <Box>
