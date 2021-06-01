@@ -1362,6 +1362,29 @@ margin-bottom: 10px;
 }
 
 
+.team-game-jams-box {
+  overflow: scroll;
+  max-height: 600px;
+  padding: 6px;
+}
+
+.team-game-jam-info-card {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr;
+  height: 250px;
+  width: 500px;
+}
+
+.team-game-jam-avatar {
+  height: 100px;
+  width: 100px;
+}
+
+.team-game-jam-name-blurb {
+  /* width: %;
+  height: ; */
+}
+
 
 
 

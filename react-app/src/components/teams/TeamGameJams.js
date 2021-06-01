@@ -23,8 +23,34 @@ export default function TeamGameJams({ gameJams }) {
             <Box className="team-game-jams-box">
                 {gameJams?.map((gameJam) => {
                     return (
-                        <Box className="game-jam-info-card">
-                        {gameJam.name}
+                        <Box className="team-game-jam-info-card"
+                            w={'full'}
+                            // bg={useColorModeValue('white', 'gray.800')}
+                            pos={"relative"}
+                            top={"15px"}
+                            boxShadow={'2xl'}
+                            rounded={'md'}
+                            overflow={'hidden'}
+                            // className="user-profile-info-box"
+                            key={gameJam.id}>
+                                <div className="team-game-jam-avatar">
+                                    <img src={gameJam.avatar} alt="" />
+                                </div>
+                                
+                                <div className="team-game-jam-name-blurb">
+                                    <div className="team-game-jam-name">
+                                    {gameJam.name}
+                                    </div>
+                                    <div>
+                                        <span className="credit">{gameJam.blurb}</span>
+                                    </div>
+                                </div>
+                                <div className="team-game-jam-dates">
+                                    <h1>START:</h1>
+                                    <h2>{gameJam.startDate}</h2>
+                                     <h1>END:</h1>
+                                    <h2>{gameJam.endDate}</h2>
+                                </div>
                         </Box>
                     )
                 })}
