@@ -17,6 +17,8 @@ export default function GameJamBox() {
             textAlign="center"
             rounded="lg"
             color="gray.400"
+            w="100vw"
+            h="100vh"
         >
             {Object.keys(games).map(key => {
                 return (<GameCard props={games[key]}/>)

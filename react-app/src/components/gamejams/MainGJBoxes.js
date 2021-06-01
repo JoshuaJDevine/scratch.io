@@ -9,20 +9,20 @@ export default function MainGJBoxes() {
 
     return (
         <>
-        {Object.keys(gameJams).map(function(key) {
-            return<Box
-                w="200px"
-                h="200px"
-                boxShadow="md"
-                p="6" rounded="md"
-                bg="white"
-                border="solid 3px black"
-                key={key}
-                padding="1rem">
-                {gameJams[key].name}
-                </Box>
-            })}
 
+        {Object.keys(gameJams).map(function(key) {
+        return<Box
+        w="200px"
+        h="200px"
+        boxShadow="md"
+        p="6" rounded="md"
+        bg="white"
+        border="solid 3px black"
+        key={key}
+        padding="1rem">
+        {gameJams[key].name}
+        </Box>
+    })}
     </>
     )
 }
