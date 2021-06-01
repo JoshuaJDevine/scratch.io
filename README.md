@@ -77,20 +77,20 @@ This is the backend for the Flask React project.
    This will build the dockerfile and push the image to your heroku container registry
 
    ```bash
-   heroku container:push web -a project-whisk
+   heroku container:push web -a whisk-project
    ```
 
 8. Release your docker container to heroku
 
    ```bash
-   heroku container:release web -a project-whisk
+   heroku container:release web -a whisk-project
    ```
 
 9. set up your database:
 
    ```bash
-   heroku run -a project-whisk flask db upgrade
-   heroku run -a project-whisk flask seed all
+   heroku run -a whisk-project flask db upgrade
+   heroku run -a whisk-project flask seed all
    ```
 
 10. Under Settings find "Config Vars" and add any additional/secret .env variables.
