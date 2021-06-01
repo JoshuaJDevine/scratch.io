@@ -30,8 +30,8 @@ def get_game_jams():
     elif args['date'] == "year":
         date_later = datetime.now()+ timedelta(days=365)
     else:
-        date_now = datetime.now() - timedelta(days=(365*100))
-        date_later = datetime.now() + timedelta(days=(365*100))
+        date_now = datetime.now() - timedelta(days=(365*1000))
+        date_later = datetime.now() + timedelta(days=(365*1000))
 
     games = True if args["getJoinedGames"] == 'true' else False
     teams = True if args["getJoinedTeams"] == 'true' else False

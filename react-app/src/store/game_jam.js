@@ -98,7 +98,11 @@ const gameJamReducer = (state = initialState, action) => {
     const newState = { ...state };
     switch (action.type) {
         case GET_GAME_JAMS:
-            return { ...action.payload['game_jams'] };
+            let o = {}
+            for (let obj of action.payload['game_jams'])
+                o[obj.id] = obj;
+            return o;
+            //return { ...action.payload['game_jams'] };
         case GET_GAME_JAM:
             newState[action.payload.id] = action.payload;
             return newState;
