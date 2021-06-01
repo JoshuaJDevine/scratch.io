@@ -33,7 +33,7 @@
 }
 
 body {
-  background: var(--silver-chalice)!important;
+  background: rgb(79, 0, 108)!important;
 }
 
 .hp-main-img {
@@ -1413,4 +1413,3 @@ margin-bottom: 10px;
   width: 100px;
   height: 100px;
 }
-
