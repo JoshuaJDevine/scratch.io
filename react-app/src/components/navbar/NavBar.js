@@ -65,7 +65,6 @@ export default function NavBar(){
             <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push("/profile/1")}>
               Demo Login
             </Button>
-            <SearchBar />
             { user && <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push(`/profile/${user.id}`)}>
                 Profile
               </Button>

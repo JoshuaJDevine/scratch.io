@@ -88,6 +88,7 @@ export const deleteGameJam = id => async (dispatch) => {
     });
     if (res.ok) {
         dispatch(deleteGameJamAction(id));
+        return res;
     }
 }
 
@@ -108,7 +109,12 @@ const gameJamReducer = (state = initialState, action) => {
             newState[action.payload.id] = action.payload;
             return newState;
         case DELETE_GAME_JAM:
-            delete newState[action.payload];
+            for (let key in newState){
+                if (newState[key].id === action.payload) {
+                    delete newState[key];
+                    break;
+                }
+            }
             return newState;
         default:
             return state;

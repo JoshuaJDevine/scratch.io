@@ -1,9 +1,11 @@
 import React, {useEffect} from "react";
 import Carousel, {Dots, slidesToShowPlugin} from '@brainhubeu/react-carousel';
-import {Box} from "@chakra-ui/react";
+import {Box, Button} from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteGameJam } from "../../store/game_jam";
 
 export default function CarouselV3({gameJams, setSlide, currentSlide}) {
-
+  const dispatch = useDispatch();
 
   function handleSlideClick(e) {
       setSlide(e)
@@ -53,6 +55,14 @@ export default function CarouselV3({gameJams, setSlide, currentSlide}) {
 
                       </figcaption>
                     </figure>
+                    <Button onClick={async ()=>{
+
+                      const res = await dispatch(deleteGameJam(currentSlide.id));
+
+                      console.log(`res AAAAAAAAAAAAAAAA`, currentSlide.id, res)
+                    }}>
+                      Delete
+                    </Button>
                 </Box>
                 </>
                 :
