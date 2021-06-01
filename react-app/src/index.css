@@ -1345,6 +1345,15 @@ margin-bottom: 10px;
   font-size: x-large;
 }
 
+.team-users-card-container {
+  overflow: scroll;
+  max-height: 600px;
+}
+
+
+
+
+
 
 .react-datepicker__day:hover {
   background: #edf2f7;

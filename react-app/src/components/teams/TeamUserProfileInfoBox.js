@@ -22,6 +22,7 @@ return (
           <Box className="team-users-title">
             <h2>Team Members</h2>
           </Box>
+          <Box className="team-users-card-container">
           {users?.map((user) => {
             return (
                     <Box 
@@ -33,7 +34,7 @@ return (
                       rounded={'md'}
                       overflow={'hidden'}
                       className="user-profile-info-box"
-                      key={user.id}>
+                      key={user}>
                     <Box className="team-members-title-box">
                     </Box>
                       <Box className="team-user-profile-info-box-avatar">
@@ -60,6 +61,7 @@ return (
             </Box>
             )
           })}
+          </Box>
       </Box>
         )
 }
