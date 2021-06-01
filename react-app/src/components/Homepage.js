@@ -30,16 +30,16 @@ export default function Homepage() {
              <img src={path + image4}/>
              <img src={path + image5}/>
         </Box>
-        <Box>
-            <Heading>
+        {/* <Box>
+            <Heading className="hp-heading">
             <h1>
             Sample Gamjams
             </h1>
             </Heading>
             <GameJamBox />
-        </Box>
+        </Box> */}
         <Box>
-            <GameBox />
+            {/* <GameBox /> */}
         </Box>
 
         </Flex>

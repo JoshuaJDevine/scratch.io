@@ -33,7 +33,16 @@
 }
 
 body {
-  background: rgb(79, 0, 108)!important;
+  /* background: rgb(79, 0, 108)!important; */
+  background: linear-gradient(0.55turn, #3F87A6, #EBF8E1, #F69D3C)!important;
+}
+
+/* ================ HOMEPAGE STYLES =============== */
+
+.hp-heading {
+  font-family: var(--font-op);
+  font-weight: 300;
+  color: #4F006C;
 }
 
 .hp-main-img {
@@ -791,6 +800,8 @@ svg {
 
 /*3d Carousel Styles*/
 #maincarousel {
+  /* background: )!important; */
+  background: linear-gradient(0.35turn, #4F006C, #a4a4a4, #0b3280);
   grid-row: 1 / 2;
   grid-column: 1 / 8;
   width: 100vw;
