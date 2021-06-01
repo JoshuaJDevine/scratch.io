@@ -33,9 +33,9 @@ export default function TeamInfoBox({ team }) {
     const history = useHistory()
     // console.log("SESSION IN TEAM INFO BOX ---->", sessionUser.id)
     let userIsCaptain = false;
-    if (userId === team.captainId) {
-        userIsCaptain = true;
-    }
+    // if (userId === team.captainId) {
+    //     userIsCaptain = true;
+    // }
     // console.log("USERID IN TEAM INFO BOX ---->", userIsCaptain)
     
     const path = process.env.PUBLIC_URL;
