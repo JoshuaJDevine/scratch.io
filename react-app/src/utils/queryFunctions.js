@@ -45,3 +45,30 @@ export function teamQuery(obj = {}) {
 
     return defaultObj;
 }
+
+export function skillsQuery(obj = {}) {
+    const defaultObj = {
+        getJoinedUsers: false
+    }
+
+    for (let key in obj) {
+        defaultObj[key] = obj[key]
+    }
+
+    return defaultObj
+}
+
+export function usersQuery(obj = {}) {
+    const defaultObj = {
+        searchTerm: "",
+        resultLimit: 25,
+        getJoinedSkills: false,
+        getJoinedTeams: false,
+        getJoinedGameJams: false
+    }
+
+    for (let key in obj) {
+        defaultObj[key] = obj[key]
+    }
+    return defaultObj
+}

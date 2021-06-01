@@ -21,9 +21,9 @@ import {
 
 
 
-export default function TeamGameJams({ team }) {
+export default function TeamGames({ team }) {
 
-    console.log("TEAM GAMES --------->", team?.games)    
+    // console.log("TEAM GAMES --------->", team?.games)    
     return (
         <Box>
           <Box

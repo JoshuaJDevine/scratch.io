@@ -42,6 +42,20 @@ export const skillGet = (id) => async dispatch => {
     dispatch(getSkill(data))
 }
 
+export const getUserSkills = query => async (dispatch) => {
+    let url = await fetch(`/api/skills?`)
+
+    for (let property in query) {
+        url += `${property}=${query[property]}&`
+    }
+
+    const res = await fetch(url);
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(getSkills(data))
+    }
+}
+
 export default function skillsReducer(state=initialState, action) {
     switch (action.type) {
         case GET_SKILLS:

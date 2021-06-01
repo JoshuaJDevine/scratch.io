@@ -1,26 +1,71 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
+import { useSelector, useDispatch } from "react-redux"
+
+import { useParams } from "react-router-dom"
+
+// import { getUserSkills } from "../../store/skills"
+import { getUsers, getUser } from "../../store/user"
+
+import { skillsQuery, usersQuery } from "../../utils/queryFunctions"
 
 import {
     Heading,
-    Avatar,
     Box,
-    Center,
-    Image,
-    Flex,
-    Text,
-    Stack,
-    Button,
     useColorModeValue,
-    Container
   } from '@chakra-ui/react';
 
 
 
 
 
+
 export default function ProfileInfoBoxTwo() {
-return (
+
+    const dispatch = useDispatch()
+    const skills = useSelector(state => state.skillsReducer.skills.skills)
+    const users = useSelector(state => state.userReducer.users)
+    const { id } = useParams()
+    const [userSkills, setUserSkills] = useState(null)
+
+    // console.log("I'VE THE SKILLS", skills);
+
+    // console.log(skills);
+    // console.log("CHECK THIS OUT", users);
+
+
+    // console.log('CURRENT USER', user);
+    useEffect(() => {
+
+      if(!users) {
+        return null
+      } else {
+        // console.log('CURRENT USER', user?.skills);
+        for (let key in users) {
+          // console.log("THIS IS THE ID", id);
+          if (key === id) {
+            setUserSkills(users[key])
+          }
+        }
+      }
+
+    },[users])
+
+    // {Object.keys(users.skills).map(function(key) {
+      //   return <Box className={users.skills[key].myprop}
+      //   </Box>;
+      // })}
+
+      useEffect(() => {
+        // dispatch(getUser(id, usersQuery({getJoinedSkills: true})))
+        // dispatch(getUser(id))
+
+        dispatch(getUsers(usersQuery({getJoinedSkills: true, getJoinedGameJams: true})))
+
+      }, [dispatch])
+
+      // console.log("THIS IS THE TYPE", Object.values(users));
+      return (
 
 <Box
     maxW={'270px'}
@@ -44,7 +89,19 @@ return (
             Skills
         </p>
 </Heading>
-
+{ userSkills ?
+  <>
+  <Box>
+   {Object.keys(userSkills.skills).map((key) => {
+     return <Box key={key}>{userSkills.skills[key].name}</Box>
+   })}
+  </Box>
+  </>
+  :
+  <>
+  <Box>Loading...</Box>
+  </>
+}
 </Box>
 )
 }

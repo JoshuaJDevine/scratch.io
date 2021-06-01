@@ -29,8 +29,13 @@ import SocialProfileWithImage from "./components/chakra_lib/sample-profile";
 import TeamProfile from "./components/teams/TeamProfile";
 import TeamProfilePage from "./components/teams/TeamProfilePage";
 import ProfilePage from "./components/Profile";
+
+import UserProfileInfoBox from "./components/teams/TeamUserProfileInfoBox"
+import GameBox from "./components/games/GameBox"
+
 import GameJamPageRedesign from "./components/chakra_lib/GameJamPageRedesign";
 import GamePage from "./components/games/gamesPage";
+
 
 
 function App() {
@@ -44,7 +49,7 @@ function App() {
 
       //Examples of api thinks
 
-      // await dispatch(getOneTeam(1));
+      // await dispatch(getOneTeam(11));
       // await dispatch(getAllTeams(teamQuery()));
 
       await dispatch(getAllSkills());
@@ -95,7 +100,10 @@ function App() {
         <Route path="/games-page">
           <GamePage />
         </Route>
-        <Route path="/profile">
+        {/* <Route path="/profile">
+          <ProfilePage />
+        </Route> */}
+        <Route path="/profile/:id" >
           <ProfilePage />
         </Route>
 
@@ -129,8 +137,15 @@ function App() {
         <Route path="/winner-podium">
             <Podium />
         </Route>
-        <Route path="/teams">
+        <Route path="/teams/:teamId">
           <TeamProfile />
+        </Route> 
+        {/* <Route path="/teams">
+          <TeamProfile />
+        </Route> */}
+        <Route>
+          <GameBox path="/games"/>
+
         </Route>
 
 
