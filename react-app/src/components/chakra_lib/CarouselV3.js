@@ -31,7 +31,8 @@ export default function CarouselV3({gameJams, setSlide, currentSlide}) {
         >
           {Object.keys(gameJams).map(function(key) {
             return (<>
-              <Box className="test" onClick={() => {handleSlideClick(gameJams[key])}} key={key}>
+              <Box className="test"
+              onClick={() => {handleSlideClick(gameJams[key])}} key={key}>
                 <img src={gameJams[key].avatar} />
               </Box>
             </>);
