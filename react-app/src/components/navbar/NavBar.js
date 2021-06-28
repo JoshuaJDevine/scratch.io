@@ -68,7 +68,7 @@ export default function NavBar(){
               Demo Login
             </Button>
             <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push(`/teams/${randNum}`)}>
-              View Team
+              Teams Page
             </Button>
             { user && <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push(`/profile/${user.id}`)}>
                 Profile
