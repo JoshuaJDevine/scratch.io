@@ -16,7 +16,7 @@ export default function GameJamPage() {
     }, [dispatch]);
 
     useEffect(()=>{
-        setCurrentSlide(gameJams[2]);
+        setCurrentSlide(Object.values(gameJams)[0]);
     }, [gameJams]);
 
     return (
