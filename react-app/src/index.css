@@ -1,5 +1,6 @@
 /* TODO Add site wide styles */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 :root{
   --russian-violet: #320e3bff;
@@ -52,6 +53,9 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 4rem;
+
 }
 
 #welcome-div {
@@ -69,7 +73,7 @@ body {
   font-size: 3.4rem;
   font-family: var(--font-op);
   position: relative;
-  top: 2.2rem;
+  top: 1.8rem;
 }
 
 #welcome-msg-p {
@@ -108,7 +112,7 @@ body {
 
 .chakra-button.css-4gg6g9:hover {
   background-color: #1f2022;
-  
+
   transition: ease-in-out;
   transition-duration: 100ms;
   cursor: pointer;
