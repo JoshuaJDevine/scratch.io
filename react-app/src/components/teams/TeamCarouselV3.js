@@ -59,7 +59,7 @@ export default function TeamCarouselV3({ teams, setSlide, currentSlide }) {
                     </>
                     :
                     <>
-                        <p> </p>
+                        <p>testing</p>
                     </>}
             </Box>
         </div>
