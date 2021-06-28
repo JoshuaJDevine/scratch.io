@@ -13,11 +13,12 @@ export default function TeamCarouselV3({ teams, setSlide, currentSlide }) {
     // console.log("TEAM CAROUSEL V3 TEAMS ------->", teams?.lenght)
     // console.log("TEAM CAROUSEL V3 TEAMS ------->", setSlide)
     // console.log("TEAM CAROUSEL V3 TEAMS ------->", currentSlide)
-    
+
     return (
         <div>
             <Carousel
                 plugins={[
+                    'centered',
                     {
                         resolve: slidesToShowPlugin,
                         options: {
