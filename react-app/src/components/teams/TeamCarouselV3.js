@@ -8,16 +8,17 @@ export default function TeamCarouselV3({ teams, setSlide, currentSlide }) {
         setSlide(e)
     }
     useEffect(() => {
-        setSlide(teams[1])
+        setSlide(teams[0])
     }, [])
     // console.log("TEAM CAROUSEL V3 TEAMS ------->", teams?.lenght)
     // console.log("TEAM CAROUSEL V3 TEAMS ------->", setSlide)
     // console.log("TEAM CAROUSEL V3 TEAMS ------->", currentSlide)
-    
+
     return (
         <div>
             <Carousel
                 plugins={[
+                    'centered',
                     {
                         resolve: slidesToShowPlugin,
                         options: {
@@ -29,9 +30,12 @@ export default function TeamCarouselV3({ teams, setSlide, currentSlide }) {
                 ]}
             >
                 {Object.keys(teams).map(function (key) {
-                    return <Box className="test" onClick={() => { handleSlideClick(teams[key]) }} key={key}>
+                    return ( <>
+                    <Box className="test"
+                    onClick={() => { handleSlideClick(teams[key]) }} key={key}>
                         <img src={teams[key].avatar} />
-                    </Box>;
+                    </Box>
+                    </>)
                 })}
             </Carousel>
 
@@ -58,7 +62,7 @@ export default function TeamCarouselV3({ teams, setSlide, currentSlide }) {
                     </>
                     :
                     <>
-                        <p> </p>
+                        <p>testing</p>
                     </>}
             </Box>
         </div>
