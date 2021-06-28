@@ -1,5 +1,6 @@
 /* TODO Add site wide styles */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 :root{
   --russian-violet: #320e3bff;
@@ -14,7 +15,6 @@
 /* width */
 ::-webkit-scrollbar {
   width: 15px;
-
 }
 
 /* Track */
@@ -30,6 +30,10 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+*{
+  color: var(--rich-black-fogra-39)
 }
 
 body {
@@ -49,6 +53,9 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 4rem;
+
 }
 
 #welcome-div {
@@ -66,7 +73,7 @@ body {
   font-size: 3.4rem;
   font-family: var(--font-op);
   position: relative;
-  top: 2.2rem;
+  top: 1.8rem;
 }
 
 #welcome-msg-p {
@@ -105,7 +112,7 @@ body {
 
 .chakra-button.css-4gg6g9:hover {
   background-color: #1f2022;
-  
+
   transition: ease-in-out;
   transition-duration: 100ms;
   cursor: pointer;
@@ -471,18 +478,18 @@ margin-bottom: 10px;
 
 
 .b-game-card__cover::after {
-  display: block;
-  content: "";
-  position: absolute;
-  z-index: 100;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 120%;
-  background: linear-gradient(226deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.2) 42%, rgba(255, 255, 255, 0) 60%);
-  transform: translateY(-20%);
-  will-change: transform;
-  transition: transform 0.65s cubic-bezier(0.18, 0.9, 0.58, 1);
+  /*display: block;*/
+  /*content: "";*/
+  /*position: absolute;*/
+  /*z-index: 100;*/
+  /*top: 0;*/
+  /*left: 0;*/
+  /*width: 100%;*/
+  /*height: 120%;*/
+  /*background: linear-gradient(226deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.2) 42%, rgba(255, 255, 255, 0) 60%);*/
+  /*transform: translateY(-20%);*/
+  /*will-change: transform;*/
+  /*transition: transform 0.65s cubic-bezier(0.18, 0.9, 0.58, 1);*/
 }
 .b-game-card:hover .b-game-card__cover {
   transform: rotateX(5deg) translateY(-6px);
@@ -1137,6 +1144,9 @@ input:nth-of-type(3):checked ~ #maincarousel {
 }
 
 .BrainhubCarouselItem {
+    width: 222px !important;
+    max-width: none !important;
+    min-width: 100px !important;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -1144,8 +1154,15 @@ input:nth-of-type(3):checked ~ #maincarousel {
     margin: 25px;
 }
 .BrainhubCarouselItem--active {
-    border: 2px solid #bb9420;
-    border-radius: 10px;
+    /*border: 2px solid #bb9420;*/
+    /*border-radius: 10px;*/
+/*-webkit-box-shadow: 0px 0px 50px 25px rgba(0,0,0,0.56);*/
+/*box-shadow: 0px 0px 50px 25px rgba(0,0,0,0.56);*/
+/*border-radius: 150px;*/
+
+  transform: translateY(-5%);
+  will-change: transform;
+  transition: transform 0.65s cubic-bezier(0.18, 0.9, 0.58, 1);
 }
 .BrainhubCarouselItem img{
     max-height: 270px;
@@ -1387,6 +1404,11 @@ input:nth-of-type(3):checked ~ #maincarousel {
   margin-top: 10px;
 }
 
+.team-info-box-two-card{
+      overflow-y : scroll !important;
+  height: 400px !important;
+}
+
 .team-avatar {
   object-fit: contain;
   background-color: white;
@@ -1427,21 +1449,22 @@ margin-bottom: 10px;
 }
 
 .team-users-card-container {
-  overflow: scroll;
+  overflow-y: scroll;
   height: 600px;
 }
 
 
 .team-game-jams-box {
-  overflow: scroll;
+  overflow-y: scroll;
   height: 600px;
   padding: 6px;
 }
 
 .team-game-jam-info-card {
+  margin-top: 10px;
+  margin-bottom: 25px;
   display: grid;
   grid-template-columns: 100px 1fr 1fr;
-  height: 2px;
   width: 500px;
 }
 
@@ -1531,4 +1554,9 @@ margin-bottom: 10px;
 .hp-main-img img {
   width: 100px;
   height: 100px;
+}
+
+
+.Wh__SearchInput{
+  margin-right: 10px;
 }

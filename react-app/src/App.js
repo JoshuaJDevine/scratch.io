@@ -34,6 +34,7 @@ import ProfilePage from "./components/Profile";
 import UserProfileInfoBox from "./components/teams/TeamUserProfileInfoBox"
 import GameBox from "./components/games/GameBox"
 
+import GameJamPage from "./components/gamejams/GameJamPage";
 import GameJamPageRedesign from "./components/chakra_lib/GameJamPageRedesign";
 import GamePage from "./components/games/gamesPage";
 import TeamsBrowsingPage from "./components/teams/TeamsBrowsingPage"
@@ -97,7 +98,7 @@ function App() {
           <Homepage />
         </Route>
         <Route path="/gj-page">
-            <GameJamPageRedesign/>
+            <GameJamPage />
         </Route>
         <Route path="/games-page">
           <GamePage />
@@ -141,7 +142,7 @@ function App() {
         </Route>
         <Route path="/teams/:teamId">
           <TeamProfile />
-        </Route> 
+        </Route>
         <Route path="/teams">
           <BrowseTeams />
         </Route>

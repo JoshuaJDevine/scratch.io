@@ -17,6 +17,7 @@ export default function NavBar(){
   const user = useSelector(state => state.session.user);
   const history = useHistory();
   const [pathName, setPathName] = useState(history.location.pathname);
+  const [randNum, setRandNum] = useState(getRandomInt(19)+1)
   const paths = {
     home: "/",
     gameJams: "/gj-page",
@@ -24,19 +25,19 @@ export default function NavBar(){
     teams: undefined
   }
 
-  useEffect(() => {
-    //console.log(`pathName`, pathName)
-  }, [pathName])
-
   // let [profileIndex, setProfileIndex] = useState(52)
 
   let demoUserPageLoader = () => {
       dispatch(login('chad@aa.io', 'password'))
       history.push(`/profile/${3}`)
   }
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
 
   return(
-    <Box bg="black" w="100%" h="60px"  spacing={4} p={4} color="white" id="navbar">
+    <Box bg="black" w="100%" h="100%"  spacing={4} p={4} color="white" id="navbar">
       <Flex color="white">
         <Square size="100x">
           <Stack direction="row" spacing={4} align="center">
@@ -58,6 +59,9 @@ export default function NavBar(){
             }}>
               Games
             </Button>
+            <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push(`/teams/${randNum}`)}>
+              Teams
+            </Button>
             <SearchBar />
             { user && pathName === paths.gameJams && <CreateNewGameJam /> }
             { user && /*pathName === paths.teams*/ <CreateTeam /> }
@@ -65,6 +69,9 @@ export default function NavBar(){
             { !user && <SignUp /> }
             <Button colorScheme="white" variant="link" className="navbar buttons" onClick={demoUserPageLoader}>
               Demo Login
+            </Button>
+            <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push(`/teams`)}>
+              Teams Page
             </Button>
             { user && <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push(`/profile/${user.id}`)}>
                 Profile

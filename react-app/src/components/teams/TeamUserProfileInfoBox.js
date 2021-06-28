@@ -15,8 +15,6 @@ import {
 
 
 export default function ProfileInfoBox({ users }) {
-  // console.log("USERS BOX ------->", users?.avatar)
-  // const dispatch = useDispatch()
 return (
         <Box className="team-users-page">
           <Box className="team-users-title">

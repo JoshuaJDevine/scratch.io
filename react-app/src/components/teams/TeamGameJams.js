@@ -14,28 +14,20 @@ import {
 } from '@chakra-ui/react';
 
 export default function TeamGameJams({ team }) {
-    console.log("GAME JAMS -------->", team)
-    const { gamejams } = team
-    console.log("GAME JAMS GAME JAMS -------->", team)
-    console.log("GAME JAMS VARIABLE ------->")
-    const gameJams = []
     return (
         <Box className="team-game-jams-page">
             <Box className="team-game-jams-title">
                 <h2>Game Jams</h2>
             </Box>
             <Box className="team-game-jams-box">
-                {gameJams?.map((gameJam) => {
+                {team.gamejams.map((gameJam) => {
                     console.log("GAME JAM -------->", gameJam)
                     return (
                         <Box className="team-game-jam-info-card"
-                            w={'full'}
                             // bg={useColorModeValue('white', 'gray.800')}
                             pos={"relative"}
-                            top={"15px"}
                             boxShadow={'2xl'}
                             rounded={'md'}
-                            overflow={'hidden'}
                             // className="user-profile-info-box"
                             key={gameJam.id}>
                                 <div className="team-game-jam-avatar">
