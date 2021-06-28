@@ -81,7 +81,7 @@ export default function CreateNewGameJam() {
   return (
     <>
       <Button onClick={onOpen} colorScheme="white" variant="link" className="navbar buttons">
-        Host a Game Jam
+        Create Game Jam
       </Button>
 
       <Modal closeOnOverlayClick={true} size="sm" isOpen={isOpen} onClose={onClose}>

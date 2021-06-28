@@ -20,7 +20,7 @@ export default function SearchBar() {
     <>
         <Box id="navbar-main-box">
             <Flex flexDirection='row'>
-                <InputGroup>
+                <InputGroup className="Wh__SearchInput">
                     <Input
                         placeholder="Search"
                         variant="filled"
@@ -32,7 +32,7 @@ export default function SearchBar() {
                         <IconButton aria-label="Search database" icon={<SearchIcon />}  onClick={handleClick} bgColor="white" color="black" />
                     </InputRightElement>
                 </InputGroup>
-                <Select placeholder="Sort by date"  w="65%" onChange={(e) => setDate(e.target.value)} bgColor="white" color="black">
+                <Select placeholder="Sort by date"  w="65%" onChange={(e) => setDate(e.target.value)} className="Wh__SearchFilter" bgColor="white" color="black">
                     <option value="day">Next Day</option>
                     <option value="week">Next Week</option>
                     <option value="month">Next Month</option>

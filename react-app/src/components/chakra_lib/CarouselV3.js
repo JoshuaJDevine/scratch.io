@@ -13,15 +13,16 @@ export default function CarouselV3({ gameJams, setSlide, currentSlide }) {
 
   return (
     <div>
-      <Carousel
-        plugins={[
-          {
-            resolve: slidesToShowPlugin,
-            options: {
-              numberOfSlides: 5
-            }
-          },
-          'clickToChange'
+       <Carousel
+          plugins={[
+            'centered',
+            {
+              resolve: slidesToShowPlugin,
+              options: {
+               numberOfSlides: 5
+              }
+            },
+            'clickToChange',
         ]}
       >
         {Object.keys(gameJams).map((key) => {
