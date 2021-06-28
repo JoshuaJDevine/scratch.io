@@ -17,12 +17,12 @@ import {
 
 
 export default function Homepage() {
-        const path = process.env.PUBLIC_URL;
-        let image = `${path}logo_W.png`;
-        let image2 = `${path}logo_H.png`;
-        let image3 = `${path}logo_I.png`;
-        let image4 = `${path}logo_S.png`;
-        let image5 = `${path}logo_K.png`;
+        // const path = process.env.PUBLIC_URL;
+        // let image = `${path}logo_W.png`;
+        // let image2 = `${path}logo_H.png`;
+        // let image3 = `${path}logo_I.png`;
+        // let image4 = `${path}logo_S.png`;
+        // let image5 = `${path}logo_K.png`;
 
         const dispatch = useDispatch();
 
@@ -40,20 +40,21 @@ export default function Homepage() {
         <Box
         className="hp-main-img"
         >
-             <img src={image}/>
+             {/* <img src={image}/>
              <img src={image2}/>
              <img src={image3}/>
              <img src={image4}/>
-             <img src={image5}/>
+             <img src={image5}/> */}
+             <h1>Scratch.io</h1>
         </Box>
 
         <Box>
                 <Box id="welcome-div">
-                <h1 id="welcome-msg">Welcome to Whisk!</h1>
+                <h1 id="welcome-msg">Welcome to Scratch.io!</h1>
                 <p id="welcome-msg-p"><div className="action-call">Fuel your creativity.</div>
-                <br /> — Join the Whisk community —
+                <br /> — Join the Scratch.io community —
                 <br />A home to all game developers.
-                <br />Join us and share your story.</p>
+                <br />Create and share your game jams.</p>
         </Box>
         </Box>
                 <Box  className="h-pg__sign-up-btn" ><Button variant="link" onClick={demoUserPageLoader}>Demo Login</Button></Box>

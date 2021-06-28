@@ -70,7 +70,9 @@ export default function NavBar(){
             <Button colorScheme="white" variant="link" className="navbar buttons" onClick={demoUserPageLoader}>
               Demo Login
             </Button>
-
+            <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push(`/teams`)}>
+              Teams Page
+            </Button>
             { user && <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push(`/profile/${user.id}`)}>
                 Profile
               </Button>
