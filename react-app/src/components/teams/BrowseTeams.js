@@ -1,4 +1,4 @@
-import React, { useEffect, } from "react";
+import React, { useEffect, useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
 import { teamQuery } from "../../utils/queryFunctions";
@@ -21,6 +21,8 @@ export default function ProfileInfoBox() {
     const teams = useSelector(state => state.teams.teams)
     const dispatch = useDispatch()
     const history = useHistory()
+    const [pathName, setPathName] = useState(history.location.pathname);
+
     
     useEffect(() => {
         dispatch(getAllTeams(teamQuery({getJoinedSkills: true})))
@@ -46,6 +48,11 @@ export default function ProfileInfoBox() {
                             className="user-profile-info-box"
                             key={team.id}
                             to={`/teams/${team.id}`}
+                            onClick={() => {
+                                let path = `/teams/${team.id}`;
+                                history.push(path);
+                                setPathName(path);
+                            }}
                             >
                             <Box className="team-members-title-box" >
                             </Box>
