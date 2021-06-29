@@ -111,7 +111,18 @@ margin-bottom: 10px;
   width: 100px;
 }
 
-.team-game-jam-name-blurb {
-  /* width: %;
-  height: ; */
+.teams-page {
+    background-color: white;
+    max-width: 600px;
+    max-height: 825px;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    overflow-y: scroll;
+    border-radius: 4px;
+    box-shadow: 4px 4px 8px;
+}
+
+.teams-card-container {
+    background-color: white;
 }

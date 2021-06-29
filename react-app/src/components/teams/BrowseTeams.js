@@ -14,6 +14,7 @@ import {
     Button,
     useColorModeValue
 } from '@chakra-ui/react';
+import "./TeamComponents.css";
 
 
 export default function ProfileInfoBox() {
@@ -31,10 +32,10 @@ export default function ProfileInfoBox() {
             <Box className="team-users-title">
                 <h2>Browse Teams</h2>
             </Box>
-            <nav className="team-users-card-container">
+            <nav className="teams-card-container">
                 {teams?.teams.map((team) => {
                     return (
-                        <NavLink
+                        <Box
                             w={'full'}
                             // bg={useColorModeValue('white', 'gray.800')}
                             pos={"relative"}
@@ -45,7 +46,6 @@ export default function ProfileInfoBox() {
                             className="user-profile-info-box"
                             key={team.id}
                             to={`/teams/${team.id}`}
-                            // onClick={handleClick()}
                             >
                             <Box className="team-members-title-box" >
                             </Box>
@@ -74,7 +74,7 @@ export default function ProfileInfoBox() {
                                     )
                                 })}
                             </Box>
-                        </NavLink>
+                        </Box>
                     )
                 })}
             </nav>
