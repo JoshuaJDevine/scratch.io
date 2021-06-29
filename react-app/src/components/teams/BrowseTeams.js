@@ -1,6 +1,8 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux"
-
+import React, { useEffect, } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { teamQuery } from "../../utils/queryFunctions";
+import { getAllTeams } from "../../store/team";
 import {
     Heading,
     Avatar,
@@ -15,20 +17,21 @@ import {
 
 
 export default function ProfileInfoBox() {
+    const teams = useSelector(state => state.teams.teams)
     const dispatch = useDispatch()
+    const history = useHistory()
+    
     useEffect(() => {
-        dispatch(getAllTeams(teamQuery()))
+        dispatch(getAllTeams(teamQuery({getJoinedSkills: true})))
     }, [dispatch])
 
-    const teams = useSelector(state => state.teams)
-    
     return (
         <Box className="team-users-page">
             <Box className="team-users-title">
                 <h2>Teams</h2>
             </Box>
             <Box className="team-users-card-container">
-                {teams?.map((team) => {
+                {teams?.teams.map((team) => {
                     return (
                         <Box
                             w={'full'}
@@ -39,8 +42,10 @@ export default function ProfileInfoBox() {
                             rounded={'md'}
                             overflow={'hidden'}
                             className="user-profile-info-box"
-                            key={user.id}>
-                            <Box className="team-members-title-box">
+                            key={team.id}
+                            onClick={() => history.push(`/teams/${team.id}`)}
+                            >
+                            <Box className="team-members-title-box" >
                             </Box>
                             <Box className="team-user-profile-info-box-avatar">
                                 <Avatar
@@ -56,7 +61,7 @@ export default function ProfileInfoBox() {
                                 {team?.name}
                             </Box>
                             <Box className="team-user-profile-info-box-skills">
-                                <p>Skills:</p>
+                                <p>Wanted Skills:</p>
                                 {team?.skills.map((skill) => {
                                     return (
                                         `${skill.name} `
