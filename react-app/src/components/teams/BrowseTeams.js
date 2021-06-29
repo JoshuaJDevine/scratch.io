@@ -27,9 +27,9 @@ export default function ProfileInfoBox() {
 
 
     return (
-        <Box className="team-users-page">
+        <Box className="teams-page">
             <Box className="team-users-title">
-                <h2>Teams</h2>
+                <h2>Browse Teams</h2>
             </Box>
             <nav className="team-users-card-container">
                 {teams?.teams.map((team) => {
@@ -50,13 +50,17 @@ export default function ProfileInfoBox() {
                             <Box className="team-members-title-box" >
                             </Box>
                             <Box className="team-user-profile-info-box-avatar">
-                                <Avatar
-                                    className="team-user-profile-info-box-avatar"
-                                    size={'xl'}
-                                    src={
-                                        team?.avatar
-                                    }
-                                    alt={'User-Avatar'}
+                                <Image
+                                    // size={'sm'}
+                                    className="team-avatar"
+                                    h={'100px'}
+                                    w={'100px'}
+                                    // w={'200px'}
+                                    src={team?.avatar}
+                                    alt={'Author'}
+                                    css={{
+                                        border: '2px solid white',
+                                    }}
                                 />
                             </Box>
                             <Box className="team-user-profile-info-box-username">

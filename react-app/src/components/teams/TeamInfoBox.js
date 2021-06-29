@@ -67,9 +67,7 @@ export default function TeamInfoBox({ team }) {
                     h={'100px'}
                     w={'100px'}
                     // w={'200px'}
-                    src={
-                        `${path}${team?.avatar}`
-                    }
+                    src={ team?.avatar }
                     alt={'Author'}
                     css={{
                         border: '2px solid white',
