@@ -1,8 +1,8 @@
 import React, { useEffect, } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import { teamQuery } from "../../utils/queryFunctions";
-import { getAllTeams } from "../../store/team";
+import { getAllTeams, getOneTeam } from "../../store/team";
 import {
     Heading,
     Avatar,
@@ -25,15 +25,16 @@ export default function ProfileInfoBox() {
         dispatch(getAllTeams(teamQuery({getJoinedSkills: true})))
     }, [dispatch])
 
+
     return (
         <Box className="team-users-page">
             <Box className="team-users-title">
                 <h2>Teams</h2>
             </Box>
-            <Box className="team-users-card-container">
+            <nav className="team-users-card-container">
                 {teams?.teams.map((team) => {
                     return (
-                        <Box
+                        <NavLink
                             w={'full'}
                             // bg={useColorModeValue('white', 'gray.800')}
                             pos={"relative"}
@@ -43,7 +44,8 @@ export default function ProfileInfoBox() {
                             overflow={'hidden'}
                             className="user-profile-info-box"
                             key={team.id}
-                            onClick={() => history.push(`/teams/${team.id}`)}
+                            to={`/teams/${team.id}`}
+                            // onClick={handleClick()}
                             >
                             <Box className="team-members-title-box" >
                             </Box>
@@ -68,10 +70,10 @@ export default function ProfileInfoBox() {
                                     )
                                 })}
                             </Box>
-                        </Box>
+                        </NavLink>
                     )
                 })}
-            </Box>
+            </nav>
         </Box>
     )
 }

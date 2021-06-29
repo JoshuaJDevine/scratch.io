@@ -25,7 +25,7 @@ export default function TeamInfoBox({ team }) {
     const sessionUser = useSelector(state => state.session.user);
     const numberOfGameJams = team?.gamejams.length
     const numberOfGames =team?.games.length
-    const userId = 37
+    const userId = sessionUser
     // const userId = sessionUser.id
     const teamId = team?.id
 

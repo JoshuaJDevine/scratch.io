@@ -48,9 +48,9 @@ export default function TeamInfoBoxTwo({ team }) {
                   borderBottom="solid 2px black"
                   fontSize="lg"
                   >
-                  <p>
+                  {/* <p>
                       Wanted Skills
-                  </p>
+                  </p> */}
               </Heading>
               {team?.skills.map((skill) => {
                 return (
