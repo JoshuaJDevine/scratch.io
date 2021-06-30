@@ -29,7 +29,7 @@ export default function NavBar(){
 
   let demoUserPageLoader = () => {
       dispatch(login('chad@aa.io', 'password'))
-      history.push(`/profile/${3}`)
+      history.push(`/gj-page`)
   }
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -63,8 +63,9 @@ export default function NavBar(){
               history.push(paths.teams);
               setPathName(paths.teams);
             }}>
+
               Teams
-            </Button>
+            </Button> */}
             <SearchBar />
             { user && pathName === paths.gameJams && <CreateNewGameJam /> }
             { user && /*pathName === paths.teams*/ <CreateTeam /> }

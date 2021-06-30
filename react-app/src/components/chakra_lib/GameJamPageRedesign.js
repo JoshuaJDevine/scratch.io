@@ -25,7 +25,9 @@ export default function GameJamPageRedesign() {
     return (
         <>
         <Box>
-            {gameJams&&<CarouselV3 gameJams={gameJams} setSlide={setCurrentSlide} currentSlide={currentSlide}  />}
+            {gameJams && <CarouselV3 gameJams={gameJams}
+            setSlide={setCurrentSlide}
+            currentSlide={currentSlide}  />}
         </Box>
         </>
     )

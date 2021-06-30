@@ -18,25 +18,27 @@ export default function TeamsBrowsingPage() {
 
     const teams = useSelector(state => state.teams)
     // const teams = useSelector(state => Object.values(state.teams))
-    const [currentSlide, setCurrentSlide] = useState(teams[1])
-    
+    const [currentSlide, setCurrentSlide] = useState(teams[0])
+
     useEffect(async () => {
         if (!teams){
             return
         }
-        setCurrentSlide(teams[1])
+        setCurrentSlide(teams[0])
         console.log("TEAMS BROWSER TEAMS ------>", teams.teams)
     }, [teams])
-    
+
 
     if (!teams.length) {
         return null;
     }
-    
+
     return (
         <>
             <Box>
-                {teams && <TeamCarouselV3 teams={teams.teams.teams} setSlide={setCurrentSlide} currentSlide={currentSlide} />}
+                {teams && <TeamCarouselV3 teams={teams.teams.teams}
+                setSlide={setCurrentSlide}
+                currentSlide={currentSlide} />}
             </Box>
         </>
     )
