@@ -9,6 +9,7 @@
   height: 120px;
   margin-left: 40px;
   border-radius: 10px;
+  margin-top: 15px;
 }
 
 .team-user-profile-info-box-avatar {
@@ -112,6 +113,9 @@ margin-bottom: 10px;
 }
 
 .teams-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: white;
     max-width: 600px;
     max-height: 825px;
@@ -125,4 +129,13 @@ margin-bottom: 10px;
 
 .teams-card-container {
     background-color: white;
+}
+
+.team-nfo-box-teamname {
+  grid-area: B;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 1.35rem;
+  display: flex;
+  align-items: center;
 }

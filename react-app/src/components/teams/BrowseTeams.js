@@ -25,7 +25,7 @@ export default function ProfileInfoBox() {
 
     
     useEffect(() => {
-        dispatch(getAllTeams(teamQuery({getJoinedSkills: true})))
+        dispatch(getAllTeams(teamQuery({getJoinedSkills: true, getJoinedGameJams: true})))
     }, [dispatch])
 
 
@@ -35,7 +35,7 @@ export default function ProfileInfoBox() {
                 <h2>Browse Teams</h2>
             </Box>
             <nav className="teams-card-container">
-                {teams?.teams.map((team) => {
+                {teams?.teams?.map((team) => {
                     return (
                         <Box
                             w={'full'}
@@ -47,7 +47,7 @@ export default function ProfileInfoBox() {
                             overflow={'hidden'}
                             className="user-profile-info-box"
                             key={team.id}
-                            to={`/teams/${team.id}`}
+                            cursor={ "pointer"}
                             onClick={() => {
                                 let path = `/teams/${team.id}`;
                                 history.push(path);
@@ -70,7 +70,7 @@ export default function ProfileInfoBox() {
                                     }}
                                 />
                             </Box>
-                            <Box className="team-user-profile-info-box-username">
+                            <Box className="team-nfo-box-teamname">
                                 {team?.name}
                             </Box>
                             <Box className="team-user-profile-info-box-skills">
