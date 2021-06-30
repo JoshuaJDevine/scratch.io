@@ -37,7 +37,7 @@ export default function CarouselV3({ gameJams, setSlide, currentSlide }) {
         </Carousel>
 
 
-//       >
+{/* //       >
 //         {Object.keys(gameJams).map((key) => {
 //           return (
 //             <Box className="test" onClick={() => {handleSlideClick(gameJams[key])}} key={key}>
@@ -45,7 +45,7 @@ export default function CarouselV3({ gameJams, setSlide, currentSlide }) {
 //             </Box>
 //           );
 //         })}
-//       </Carousel>
+//       </Carousel> */}
 
 
       <Box>
