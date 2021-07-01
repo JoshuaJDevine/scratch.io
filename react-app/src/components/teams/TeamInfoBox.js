@@ -37,8 +37,24 @@ export default function TeamInfoBox({ team }) {
     //     userIsCaptain = true;
     // }
     // console.log("USERID IN TEAM INFO BOX ---->", userIsCaptain)
-    
-    const path = process.env.PUBLIC_URL;
+
+    const teamMembers = team?.users
+    const teamMembersIds = []
+
+    if (teamMembers) {
+        for (let member of teamMembers) {
+            teamMembersIds.push(member.id)
+        }
+    }
+
+    let onTeam = false;
+    if (teamMembersIds) {
+        if (teamMembersIds.includes(userId)) {
+            onTeam = true;
+        }
+    }
+    console.log("ON TEAM ------>", onTeam)
+    // const path = process.env.PUBLIC_URL;
     return (
         <Box
             maxW={'270px'}
@@ -106,24 +122,7 @@ export default function TeamInfoBox({ team }) {
                 <Text className="team-info-box-recruiting">
                     Recruiting: {team?.recruiting ? "Yes!" : "No"}
                 </Text>
-                {/* <Button
-                    w={'full'}
-                    mt={8}
-                    bg={useColorModeValue('#151f21', 'gray.900')}
-                    color={'white'}
-                    rounded={'md'}
-                    _hover={{
-                        transform: 'translateY(-2px)',
-                        boxShadow: 'lg',
-                    }}
-                    onClick={() => {
-                        console.log("SESSION USER ------>", userId)
-                        dispatch(addNewTeamMember(teamId, userId))
-                        // console.log("TEAM ID IN ADD MEMBER ---->", teamId)
-                    }}>
-                    Join
-            </Button> */}
-            <JoinTeamConfirmationModal team={team}/>
+                 <JoinTeamConfirmationModal team={team}/>
             </Box>
         </Box>
     )
