@@ -52,7 +52,7 @@ export default function TeamInfoBoxTwo({ team }) {
                       Wanted Skills
                   </p>
               </Heading>
-              {team?.skills.map((skill) => {
+              {team?.skills?.map((skill) => {
                 return (
                   `${skill.name} `
                 )

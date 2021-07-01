@@ -23,6 +23,7 @@ export default function TeamCarousel (){
         }
     }, [dispatch, teamId])
 
+    console.log("TEAM ---------->", team)
     function handleCarouselPosition(newPos){
         // console.log("clicked", newPos)
         document.getElementById("maincarousel").style.setProperty("--position", newPos)
