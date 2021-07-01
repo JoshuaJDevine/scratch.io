@@ -139,3 +139,16 @@ margin-bottom: 10px;
   display: flex;
   align-items: center;
 }
+
+.join-team-modal-content {
+
+}
+
+.already-on-team-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  width: 400px;
+  height: 200px;
+}

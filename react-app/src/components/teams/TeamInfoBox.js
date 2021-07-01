@@ -15,6 +15,7 @@ import {
     Button,
     useColorModeValue
 } from '@chakra-ui/react';
+import JoinTeamConfirmationModal from "./JoinTeamConfirmationModal";
 
 
 export default function TeamInfoBox({ team }) {
@@ -25,7 +26,7 @@ export default function TeamInfoBox({ team }) {
     const sessionUser = useSelector(state => state.session.user);
     const numberOfGameJams = team?.gamejams?.length
     const numberOfGames =team?.games?.length
-    const userId = sessionUser // const userId = sessionUser.id
+    const userId = sessionUser?.id // const userId = sessionUser.id
     const teamId = team?.id
 
     const dispatch = useDispatch()
@@ -105,7 +106,7 @@ export default function TeamInfoBox({ team }) {
                 <Text className="team-info-box-recruiting">
                     Recruiting: {team?.recruiting ? "Yes!" : "No"}
                 </Text>
-                <Button
+                {/* <Button
                     w={'full'}
                     mt={8}
                     bg={useColorModeValue('#151f21', 'gray.900')}
@@ -116,12 +117,13 @@ export default function TeamInfoBox({ team }) {
                         boxShadow: 'lg',
                     }}
                     onClick={() => {
+                        console.log("SESSION USER ------>", userId)
                         dispatch(addNewTeamMember(teamId, userId))
                         // console.log("TEAM ID IN ADD MEMBER ---->", teamId)
-                        history.push(`/`)
                     }}>
                     Join
-            </Button>
+            </Button> */}
+            <JoinTeamConfirmationModal team={team}/>
             </Box>
         </Box>
     )
