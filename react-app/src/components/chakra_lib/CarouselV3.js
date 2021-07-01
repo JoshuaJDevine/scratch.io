@@ -24,15 +24,29 @@ export default function CarouselV3({ gameJams, setSlide, currentSlide }) {
             },
             'clickToChange',
         ]}
-      >
-        {Object.keys(gameJams).map((key) => {
-          return (
-            <Box className="test" onClick={() => {handleSlideClick(gameJams[key])}} key={key}>
-              <img src={gameJams[key].avatar} />
-            </Box>
-          );
-        })}
-      </Carousel>
+
+        >
+          {Object.keys(gameJams).map(function(key) {
+            return (<>
+              <Box className="test"
+              onClick={() => {handleSlideClick(gameJams[key])}} key={key}>
+                <img src={gameJams[key].avatar} />
+              </Box>
+            </>);
+          })}
+        </Carousel>
+
+
+{/* //       >
+//         {Object.keys(gameJams).map((key) => {
+//           return (
+//             <Box className="test" onClick={() => {handleSlideClick(gameJams[key])}} key={key}>
+//               <img src={gameJams[key].avatar} />
+//             </Box>
+//           );
+//         })}
+//       </Carousel> */}
+
 
       <Box>
           <Box className="carousel__slide" color="black" >
