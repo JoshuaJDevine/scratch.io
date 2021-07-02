@@ -40,7 +40,7 @@ export default function JoinTeamConfirmationModal({team}) {
 
     return (
         <>
-            { !onTeam && team.recruiting && 
+            { sessionUser && !onTeam && team?.recruiting && 
             <Button 
                 colorScheme="white" 
                 variant="link" 
@@ -62,14 +62,14 @@ export default function JoinTeamConfirmationModal({team}) {
                 Join
                 </Button>
             }
-            <Modal closeOnOverlayClick={true} isOpen={isOpen} onClose={onClose} className="joined-team-modal">
+            <Modal closeOnOverlayClick={true} isOpen={isOpen} onClose={onClose} className="joined-team-modal" isCentered>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalCloseButton />
                     <ModalBody>
                         <div className="join-team-modal-content">
-                            <h1>Congratulations!</h1>
-                            <h2>Check it out! You're on the team!</h2>
+                            <h1 className="join-team-congratulations">Congratulations!</h1>
+                            <h2 className="join-team-on-the-team">Check it out! You're on the team!</h2>
                         </div>
                     </ModalBody>
                 </ModalContent>

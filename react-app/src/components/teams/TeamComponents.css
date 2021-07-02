@@ -140,15 +140,25 @@ margin-bottom: 10px;
   align-items: center;
 }
 
-.join-team-modal-content {
-
+.joined-team-modal {
+  margin-top: 200px;
+  position: relative;
 }
 
-.already-on-team-message {
+.join-team-modal-content {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 2em;
   width: 400px;
   height: 200px;
+}
+
+.join-team-congratulations {
+  font-size: 2em;
+}
+
+.join-team-on-the-team {
+  margin-top: 15px;
+  font-size: 1em;
 }

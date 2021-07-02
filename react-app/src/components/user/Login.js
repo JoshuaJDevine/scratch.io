@@ -53,7 +53,7 @@ export default function Login() {
     <>
       <Button colorScheme="white" variant="link" onClick={onOpen} className="navbar buttons">Log In</Button>
 
-      <Modal closeOnOverlayClick={true} isOpen={isOpen} onClose={onClose}>
+      <Modal closeOnOverlayClick={true} isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Log In</ModalHeader>

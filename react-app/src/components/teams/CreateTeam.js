@@ -87,7 +87,7 @@ export default function CreateTeam() {
         Create Team
       </Button>
 
-      <Modal closeOnOverlayClick={true} size="sm" isOpen={isOpen} onClose={onClose}>
+      <Modal closeOnOverlayClick={true} size="sm" isOpen={isOpen} onClose={onClose} isCentered>
           <ModalOverlay />
           <ModalContent>
               <ModalHeader>Create Team</ModalHeader>

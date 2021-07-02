@@ -69,7 +69,7 @@ export default function SignUp() {
         Sign Up
       </Button>
 
-      <Modal closeOnOverlayClick={true} size="sm" isOpen={isOpen} onClose={onClose}>
+      <Modal closeOnOverlayClick={true} size="sm" isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Sign Up</ModalHeader>
