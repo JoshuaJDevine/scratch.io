@@ -1,0 +1,5 @@
+
+#game-jam__results {
+    display: flex;
+    flex-flow: row wrap;
+}
