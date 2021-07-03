@@ -3,6 +3,22 @@
 
 }
 
-.game-jam__card img {
+.game-jam__img-container {
+    background-color: black;
     height: 128px;
+}
+
+.game-jam__img-container > img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.game-jam__card-tags {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.game-jam__card-tags > div {
+    padding-right: 16px;
 }

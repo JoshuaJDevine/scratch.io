@@ -62,6 +62,7 @@ class GameJam(db.Model):
             "userLimit": self.userLimit,
             "startDate": self.startDate,
             "endDate": self.endDate,
+            "teamCount": len(self.teams),
         }
 
         if teams:

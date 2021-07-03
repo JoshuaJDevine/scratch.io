@@ -5,6 +5,8 @@ import { gameJamQuery } from "../../utils/queryFunctions"
 import '@brainhubeu/react-carousel/lib/style.css';
 import {Box, Grid} from "@chakra-ui/react"
 import CarouselV3 from "../chakra_lib/CarouselV3";
+
+import GameJamDrawer from "./GameJamDrawer";
 import GameJamResults from "./GameJamResults";
 
 export default function GameJamPage() {
@@ -14,10 +16,13 @@ export default function GameJamPage() {
     const [currentSlide, setCurrentSlide] = useState(null);
 
     useEffect(() => {
-        const query = gameJamQuery({});
+        const featuredQuery = gameJamQuery({});
+        dispatch(getGameJams(featuredQuery, "featured"));
 
-        dispatch(getGameJams(query, "featured"));
-        dispatch(getGameJams(query, "search"));
+        const searchQuery = gameJamQuery({
+            getJoinedTags: true,
+        });
+        dispatch(getGameJams(searchQuery, "search"));
 
         return () => {
             dispatch(clearGameJams("featured"));
@@ -31,10 +36,13 @@ export default function GameJamPage() {
 
     return (
         <Box>
-            {featured && currentSlide &&
-                <CarouselV3 gameJams={featured} currentSlide={currentSlide} setSlide={setCurrentSlide} />
-            }
-            {searchResults && <GameJamResults searchResults={searchResults} />}
+            <GameJamDrawer />
+            <Box>
+                {featured && currentSlide &&
+                    <CarouselV3 gameJams={featured} currentSlide={currentSlide} setSlide={setCurrentSlide} />
+                }
+                {searchResults && <GameJamResults searchResults={searchResults} />}
+            </Box>
         </Box>
     )
 }
