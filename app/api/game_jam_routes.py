@@ -20,6 +20,9 @@ def validation_errors_to_error_messages(validation_errors):
 @bp.route('')
 def get_game_jams():
     args = request.args
+
+    searchTags = args['searchTags'].split(",") if args['searchTags'] else []
+
     date_now = datetime.now()
     if args['date'] == "day":
         date_later = datetime.now() + timedelta(days=1)
@@ -33,19 +36,37 @@ def get_game_jams():
         date_now = datetime.now() - timedelta(days=(365*1000))
         date_later = datetime.now() + timedelta(days=(365*1000))
 
-    games = True if args["getJoinedGames"] == 'true' else False
-    teams = True if args["getJoinedTeams"] == 'true' else False
-    tags = True if args["getJoinedTags"] == 'true' else False
+    # Optionally add joined tables to returned game jams
+    joins = dict()
+    if args["getGames"]: joins["games"] = int(args["getGames"])
+    if args["getTeams"]: joins["teams"] = int(args["getTeams"])
+    if args["getTags"] != "": joins["tags"] = int(args["getTags"])
+    # games = True if args["getJoinedGames"] == 'true' else False
+    # teams = True if args["getJoinedTeams"] == 'true' else False
+    # tags = True if args["getJoinedTags"] == 'true' else False
 
-    game_jams = GameJam.query.join(tags_gamejams).join(Tag) \
-        .filter(
-            GameJam.name.ilike(f"%{args['searchTerm']}%") |
-            Tag.name.ilike(f"%{args['searchTerm']}%")
-        ) \
-        .filter((date_now != None), (GameJam.startDate > date_now), (GameJam.startDate < date_later)) \
-        .all()[:int(args['resultLimit'])]
+    query = GameJam.query
+    query = query.filter(
+                GameJam.name.ilike(f"%{args['searchTerm']}%") |
+                Tag.name.ilike(f"%{args['searchTerm']}%")
+            )
+    query = query.filter(
+                (date_now != None),
+                (GameJam.startDate > date_now),
+                (GameJam.startDate < date_later)
+            )
+    query = query.limit(int(args['limit']))
+    game_jams = query.all()
 
-    return {"game_jams": [game_jam.to_dict(games=games, teams=teams, tags=tags) for game_jam in game_jams]}
+    # game_jams = GameJam.query.join(tags_gamejams).join(Tag) \
+    #     .filter(
+    #         GameJam.name.ilike(f"%{args['searchTerm']}%") |
+    #         Tag.name.ilike(f"%{args['searchTerm']}%")
+    #     ) \
+    #     .filter((date_now != None), (GameJam.startDate > date_now), (GameJam.startDate < date_later)) \
+    #     .all()[:int(args['resultLimit'])]
+
+    return {"game_jams": [game_jam.to_dict(joins) for game_jam in game_jams]}
 
 # GET game jam data for a single game jam.
 @bp.route('/<int:id>')

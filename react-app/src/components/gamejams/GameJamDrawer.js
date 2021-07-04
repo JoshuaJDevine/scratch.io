@@ -2,16 +2,28 @@ import React, { useEffect, useState, useRef} from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { useDisclosure } from "@chakra-ui/hooks";
-import { Box,
+import {
+    Box,
+    Container,
     Button,
     Stack,
     Select,
     Textarea,
+    HStack,
+    Wrap,
 } from "@chakra-ui/react";
+import {
+    Tag,
+    TagLabel,
+    TagLeftIcon,
+    TagRightIcon,
+    TagCloseButton,
+} from "@chakra-ui/react"
 import {
     Input,
     InputGroup,
     InputLeftAddon,
+    InputLeftElement,
     InputRightAddon,
 } from "@chakra-ui/react";
 import {
@@ -34,16 +46,36 @@ export default function GameJamDrawer() {
     const dispatch = useDispatch();
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [searchTerm, setSearchTerm] = useState("");
+    const [currTag, setCurrTag] = useState("");
+    const [searchTags, setSearchTags] = useState(new Set());
     const [date, setDate] = useState("");
 
-    const handleClick = (e) => {
-        // e.preventDefault();
+    const handleSubmitClick = (e) => {
+        console.log(`searchTags`, [...searchTags])
         const searchQuery = gameJamQuery({
             searchTerm: searchTerm,
+            searchTags: [...searchTags],
             date: date,
-            getJoinedTags: true,
+            getTags: 100,
         });
         dispatch(getGameJams(searchQuery, "search"));
+    }
+
+    const handleTagSubmit = (e) => {
+        setSearchTags(state => {
+            const set = new Set(state);
+            set.add(currTag);
+            return set;
+        });
+        setCurrTag("");
+    }
+
+    const handleTagCancel = (e) => {
+        setSearchTags(state => {
+            const set = new Set(state);
+            set.delete(currTag);
+            return set;
+        });
     }
 
     return (
@@ -72,6 +104,37 @@ export default function GameJamDrawer() {
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                     id="game-jam__drawer-search"
                                     placeholder="Please enter a search term"
+                                />
+                            </Box>
+
+                            <Box>
+                                <FormLabel htmlFor="game-jam__drawer-tags">Tags</FormLabel>
+                                <Box>
+                                    <Wrap>
+                                        {[...searchTags].map(tag => {
+                                                return (
+                                                    <Tag>
+                                                        <TagLabel>{tag}</TagLabel>
+                                                        <TagCloseButton
+                                                            value={tag}
+                                                            onClick={e => {
+                                                                handleTagCancel()
+                                                            }}
+                                                        />
+                                                    </Tag>
+                                                )
+                                            })}
+                                    </Wrap>
+                                </Box>
+                                <Input
+                                    value={currTag}
+                                    onChange={(e) => setCurrTag(e.target.value)}
+                                    onKeyPress={e => {
+                                        if (e.key === "Enter" && currTag !== "")
+                                            handleTagSubmit();
+                                    }}
+                                    id="game-jam__drawer-tags"
+                                    placeholder="Please enter a search tag"
                                 />
                             </Box>
 
@@ -114,7 +177,7 @@ export default function GameJamDrawer() {
                         <Button variant="outline" mr={3} onClick={onClose}>
                             Cancel
                         </Button>
-                        <Button colorScheme="blue" onClick={handleClick}>
+                        <Button colorScheme="blue" onClick={handleSubmitClick}>
                             Submit
                         </Button>
                     </DrawerFooter>
