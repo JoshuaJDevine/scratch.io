@@ -20,7 +20,7 @@ export default function GameJamPage() {
         dispatch(getGameJams(featuredQuery, "featured"));
 
         const searchQuery = gameJamQuery({
-            getTags: 0,
+            getTags: 100
         });
         dispatch(getGameJams(searchQuery, "search"));
 

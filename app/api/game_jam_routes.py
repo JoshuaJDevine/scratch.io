@@ -41,30 +41,22 @@ def get_game_jams():
     if args["getGames"]: joins["games"] = int(args["getGames"])
     if args["getTeams"]: joins["teams"] = int(args["getTeams"])
     if args["getTags"] != "": joins["tags"] = int(args["getTags"])
-    # games = True if args["getJoinedGames"] == 'true' else False
-    # teams = True if args["getJoinedTeams"] == 'true' else False
-    # tags = True if args["getJoinedTags"] == 'true' else False
 
     query = GameJam.query
-    query = query.filter(
-                GameJam.name.ilike(f"%{args['searchTerm']}%") |
-                Tag.name.ilike(f"%{args['searchTerm']}%")
-            )
+    query = query.filter(GameJam.name.ilike(f"%{args['searchTerm']}%"))
     query = query.filter(
                 (date_now != None),
                 (GameJam.startDate > date_now),
                 (GameJam.startDate < date_later)
             )
+    if len(searchTags) > 0:
+        if args["tagOp"] == "or":
+            query = query.filter(GameJam.tags.any(Tag.name.in_(searchTags)))
+        elif args["tagOp"] == "and":
+            for tag in searchTags:
+                query = query.filter(GameJam.tags.any(Tag.name.like(tag)))
     query = query.limit(int(args['limit']))
     game_jams = query.all()
-
-    # game_jams = GameJam.query.join(tags_gamejams).join(Tag) \
-    #     .filter(
-    #         GameJam.name.ilike(f"%{args['searchTerm']}%") |
-    #         Tag.name.ilike(f"%{args['searchTerm']}%")
-    #     ) \
-    #     .filter((date_now != None), (GameJam.startDate > date_now), (GameJam.startDate < date_later)) \
-    #     .all()[:int(args['resultLimit'])]
 
     return {"game_jams": [game_jam.to_dict(joins) for game_jam in game_jams]}
 

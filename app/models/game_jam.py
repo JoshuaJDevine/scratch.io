@@ -65,7 +65,6 @@ class GameJam(db.Model):
         if "tags" in joins:
             dct["tags"] = self.get_joined_tags(joins)
 
-        print("       AAAAAAA", joins["tags"], dct["tags"])
         return dct
 
     def get_joined_games(self, joins):

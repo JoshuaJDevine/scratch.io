@@ -48,6 +48,7 @@ export default function GameJamDrawer() {
     const [searchTerm, setSearchTerm] = useState("");
     const [currTag, setCurrTag] = useState("");
     const [searchTags, setSearchTags] = useState(new Set());
+    const [tagOp, setTagOp] = useState("or");
     const [date, setDate] = useState("");
 
     const handleSubmitClick = (e) => {
@@ -55,6 +56,7 @@ export default function GameJamDrawer() {
         const searchQuery = gameJamQuery({
             searchTerm: searchTerm,
             searchTags: [...searchTags],
+            tagOp: tagOp,
             date: date,
             getTags: 100,
         });
@@ -64,16 +66,17 @@ export default function GameJamDrawer() {
     const handleTagSubmit = (e) => {
         setSearchTags(state => {
             const set = new Set(state);
-            set.add(currTag);
+            set.add(currTag.toLowerCase());
             return set;
         });
         setCurrTag("");
     }
 
-    const handleTagCancel = (e) => {
+    const handleTagCancel = tag => {
         setSearchTags(state => {
             const set = new Set(state);
-            set.delete(currTag);
+            set.delete(tag);
+            console.log("tag",tag)
             return set;
         });
     }
@@ -116,9 +119,8 @@ export default function GameJamDrawer() {
                                                     <Tag>
                                                         <TagLabel>{tag}</TagLabel>
                                                         <TagCloseButton
-                                                            value={tag}
                                                             onClick={e => {
-                                                                handleTagCancel()
+                                                                handleTagCancel(tag)
                                                             }}
                                                         />
                                                     </Tag>

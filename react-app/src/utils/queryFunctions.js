@@ -2,6 +2,7 @@ export function gameJamQuery(obj={}) {
     const defaultObj = {
         searchTerm: "",
         searchTags: [],
+        tagOp: "or",
         limit: 25,
         date: "all",
         getTeams: "",
