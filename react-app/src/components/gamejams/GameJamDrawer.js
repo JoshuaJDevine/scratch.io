@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useDisclosure } from "@chakra-ui/hooks";
 import {
     Box,
+    Flex,
     Container,
     Button,
     Stack,
@@ -38,6 +39,7 @@ import {
 import {
     FormLabel,
 } from "@chakra-ui/react";
+import { Switch } from "@chakra-ui/react";
 
 import { getGameJams } from "../../store/game_jam";
 import { gameJamQuery } from "../../utils/queryFunctions";
@@ -48,15 +50,24 @@ export default function GameJamDrawer() {
     const [searchTerm, setSearchTerm] = useState("");
     const [currTag, setCurrTag] = useState("");
     const [searchTags, setSearchTags] = useState(new Set());
-    const [tagOp, setTagOp] = useState("or");
-    const [date, setDate] = useState("");
+    const [tagOp, setTagOp] = useState(false);
+    const [date, setDate] = useState("all");
+
+    const closeDrawer = () => {
+        onClose();
+        setSearchTerm("");
+        setCurrTag("");
+        setSearchTags(new Set())
+        setTagOp(false);
+        setDate("all");
+    }
 
     const handleSubmitClick = (e) => {
         console.log(`searchTags`, [...searchTags])
         const searchQuery = gameJamQuery({
             searchTerm: searchTerm,
             searchTags: [...searchTags],
-            tagOp: tagOp,
+            tagOp: tagOp === true ? "and" : "or",
             date: date,
             getTags: 100,
         });
@@ -84,12 +95,12 @@ export default function GameJamDrawer() {
     return (
         <>
             <Button colorScheme="teal" onClick={onOpen}>
-                Create user
+                Search
             </Button>
             <Drawer
                 isOpen={isOpen}
                 placement="left"
-                onClose={onClose}
+                onClose={closeDrawer}
             >
                 <DrawerOverlay />
                 <DrawerContent>
@@ -112,7 +123,7 @@ export default function GameJamDrawer() {
 
                             <Box>
                                 <FormLabel htmlFor="game-jam__drawer-tags">Tags</FormLabel>
-                                <Box>
+                                {searchTags.size > 0 && <Box p="2">
                                     <Wrap>
                                         {[...searchTags].map(tag => {
                                                 return (
@@ -127,7 +138,7 @@ export default function GameJamDrawer() {
                                                 )
                                             })}
                                     </Wrap>
-                                </Box>
+                                </Box>}
                                 <Input
                                     value={currTag}
                                     onChange={(e) => setCurrTag(e.target.value)}
@@ -138,6 +149,13 @@ export default function GameJamDrawer() {
                                     id="game-jam__drawer-tags"
                                     placeholder="Please enter a search tag"
                                 />
+                                <Flex align="center">
+                                    <Box p="2">{`Include All`}</Box>
+                                    <Switch id="game-jam__tag-op" p="2"
+                                        onChange={e => {
+                                            setTagOp(e.target.checked);
+                                        }}/>
+                                </Flex>
                             </Box>
 
                             <Box>
@@ -147,36 +165,18 @@ export default function GameJamDrawer() {
                                     defaultValue="all"
                                     onChange={(e) => setDate(e.target.value)}
                                 >
+                                    <option value="all">Show All</option>
                                     <option value="day">Starts This Day</option>
                                     <option value="week">Starts This Week</option>
                                     <option value="month">Starts This Month</option>
                                     <option value="year">Starts This Year</option>
-                                    <option value="all">Show All</option>
                                 </Select>
-                            </Box>
-
-                            <Box>
-                                <FormLabel htmlFor="url">Url</FormLabel>
-                                <InputGroup>
-                                    <InputLeftAddon>http://</InputLeftAddon>
-                                    <Input
-                                        type="url"
-                                        id="url"
-                                        placeholder="Please enter domain"
-                                    />
-                                    <InputRightAddon>.com</InputRightAddon>
-                                </InputGroup>
-                            </Box>
-
-                            <Box>
-                                <FormLabel htmlFor="desc">Description</FormLabel>
-                                <Textarea id="desc" />
                             </Box>
                         </Stack>
                     </DrawerBody>
 
                     <DrawerFooter borderTopWidth="1px">
-                        <Button variant="outline" mr={3} onClick={onClose}>
+                        <Button variant="outline" mr={3} onClick={closeDrawer}>
                             Cancel
                         </Button>
                         <Button colorScheme="blue" onClick={handleSubmitClick}>
