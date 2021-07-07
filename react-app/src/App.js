@@ -28,6 +28,7 @@ import Podium from "./components/chakra_lib/podium";
 import SocialProfileWithImage from "./components/chakra_lib/sample-profile";
 import TeamProfile from "./components/teams/TeamProfile";
 import TeamProfilePage from "./components/teams/TeamProfilePage";
+import BrowseTeams from "./components/teams/BrowseTeams";
 import ProfilePage from "./components/Profile";
 
 import UserProfileInfoBox from "./components/teams/TeamUserProfileInfoBox"
@@ -143,7 +144,7 @@ function App() {
           <TeamProfile />
         </Route>
         <Route path="/teams">
-          <TeamsBrowsingPage />
+          <BrowseTeams />
         </Route>
         <Route>
           <GameBox path="/games"/>

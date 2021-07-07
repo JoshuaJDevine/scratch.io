@@ -1,0 +1,141 @@
+.user-profile-info-box {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: 50% 50%;
+  grid-template-areas:
+  "A B"
+  "A C";
+  max-width: 375px;
+  height: 120px;
+  margin-left: 40px;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+.team-user-profile-info-box-avatar {
+  grid-area: A;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.team-user-profile-info-box-username {
+  grid-area: B;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.team-user-profile-info-box-skills {
+  grid-area: C;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.team-info-box-recruiting {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.team-info-box-two-card{
+      overflow-y : scroll !important;
+  height: 400px !important;
+}
+
+.team-avatar {
+  object-fit: contain;
+  background-color: white;
+}
+
+/* .team-games-box {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px
+} */
+
+.team-info-box-main {
+  margin-left: 10px;
+}
+
+.team-games-container {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+}
+
+.team-game-card-box {
+display: flex;
+flex-direction: column;
+position: relative;
+margin-left: 10px;
+margin-top: 10px;
+margin-bottom: 10px;
+}
+
+.team-game-jams-title,
+.team-users-title {
+  display: flex;
+  justify-content: center;
+  font-size: x-large;
+}
+
+.team-users-card-container {
+  overflow-y: scroll;
+  height: 600px;
+}
+
+
+.team-game-jams-box {
+  overflow-y: scroll;
+  height: 600px;
+  padding: 6px;
+}
+
+.team-game-jam-info-card {
+  margin-top: 10px;
+  margin-bottom: 25px;
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr;
+  width: 500px;
+}
+
+.team-game-jam-avatar {
+  height: 100px;
+  width: 100px;
+}
+
+.teams-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    max-width: 600px;
+    max-height: 825px;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    overflow-y: scroll;
+    border-radius: 4px;
+    box-shadow: 4px 4px 8px;
+}
+
+.teams-card-container {
+    background-color: white;
+}
+
+.team-nfo-box-teamname {
+  grid-area: B;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 1.35rem;
+  display: flex;
+  align-items: center;
+}

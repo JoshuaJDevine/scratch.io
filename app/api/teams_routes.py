@@ -17,8 +17,7 @@ def teams():
 
     teams = Team.query\
         .filter(Team.name.ilike(f"%{args['searchTerm']}%" )) \
-        .limit(int(args['resultLimit']))\
-        .all()
+        .all()[:int(args['resultLimit'])]
     return {"teams": [team.to_dict(games=games, users=users, gamejams=gamejams, skills=skills) for team in teams]}
 
 ############################ GET ONE TEAM ###############################

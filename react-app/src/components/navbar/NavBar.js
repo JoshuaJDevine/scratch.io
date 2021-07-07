@@ -22,7 +22,7 @@ export default function NavBar(){
     home: "/",
     gameJams: "/gj-page",
     games: "/games-page",
-    teams: undefined
+    teams: "/teams"
   }
 
   // let [profileIndex, setProfileIndex] = useState(52)
@@ -59,7 +59,11 @@ export default function NavBar(){
             }}>
               Games
             </Button>
-            {/* <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push(`/teams/${randNum}`)}>
+            <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => {
+              history.push(paths.teams);
+              setPathName(paths.teams);
+            }}>
+
               Teams
             </Button> */}
             <SearchBar />
@@ -69,9 +73,6 @@ export default function NavBar(){
             { !user && <SignUp /> }
             <Button colorScheme="white" variant="link" className="navbar buttons" onClick={demoUserPageLoader}>
               Demo Login
-            </Button>
-            <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push(`/teams`)}>
-              Teams Page
             </Button>
             { user && <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push(`/profile/${user.id}`)}>
                 Profile

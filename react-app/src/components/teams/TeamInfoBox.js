@@ -23,10 +23,9 @@ export default function TeamInfoBox({ team }) {
     // console.log("TEAM INFO ------>", team?.gamejams)
     // }
     const sessionUser = useSelector(state => state.session.user);
-    const numberOfGameJams = team?.gamejams.length
-    const numberOfGames =team?.games.length
-    const userId = 37
-    // const userId = sessionUser.id
+    const numberOfGameJams = team?.gamejams?.length
+    const numberOfGames =team?.games?.length
+    const userId = sessionUser // const userId = sessionUser.id
     const teamId = team?.id
 
     const dispatch = useDispatch()
@@ -67,9 +66,7 @@ export default function TeamInfoBox({ team }) {
                     h={'100px'}
                     w={'100px'}
                     // w={'200px'}
-                    src={
-                        `${path}${team?.avatar}`
-                    }
+                    src={ team?.avatar }
                     alt={'Author'}
                     css={{
                         border: '2px solid white',
