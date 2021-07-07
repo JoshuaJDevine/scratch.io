@@ -5,7 +5,7 @@
 ### [Scratch.io](https://whisk-project.herokuapp.com/)
 ***
 ### Description
-#### **Scratch.io** is a full-stack appllication designed to help you better find teams, join game jams and share your own game jams. It was designed with a Python (**Flask, SQLAlchemy**) backend and a **React / Redux** frontend. 
+#### **Scratch.io** (formally known as Whisk) is a full-stack appllication designed to help you better find teams, join game jams and share your own game jams. It was designed with a Python (**Flask, SQLAlchemy**) backend and a **React / Redux** frontend. 
 
 
 
