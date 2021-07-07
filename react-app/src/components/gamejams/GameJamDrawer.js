@@ -72,6 +72,7 @@ export default function GameJamDrawer() {
             getTags: 100,
         });
         dispatch(getGameJams(searchQuery, "search"));
+        closeDrawer();
     }
 
     const handleTagSubmit = (e) => {
