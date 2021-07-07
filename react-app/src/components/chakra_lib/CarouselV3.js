@@ -37,6 +37,7 @@ export default function CarouselV3({ gameJams, setSlide, currentSlide }) {
         </Carousel>
 
 
+
 {/* //       >
 //         {Object.keys(gameJams).map((key) => {
 //           return (
@@ -46,6 +47,7 @@ export default function CarouselV3({ gameJams, setSlide, currentSlide }) {
 //           );
 //         })}
 //       </Carousel> */}
+
 
 
       <Box>
@@ -63,13 +65,23 @@ export default function CarouselV3({ gameJams, setSlide, currentSlide }) {
                 <h2>{currentSlide.endDate}</h2>
               </figcaption>
               <Button onClick={async ()=>{
-                const res = await dispatch(deleteGameJam(currentSlide.id));
+                await dispatch(deleteGameJam(currentSlide.id));
               }}>
                 Delete
               </Button>
             </figure>
           </Box>
       </Box>
-    </div>
+</div>
   );
 }
+
+                {/* //       >
+                //         {Object.keys(gameJams).map((key) => { */}
+                {/* //           return (
+                //             <Box className="test" onClick={() => {handleSlideClick(gameJams[key])}} key={key}>
+                //               <img src={gameJams[key].avatar} />
+                //             </Box>
+                //           );
+                //         })}
+                //       </Carousel> */}

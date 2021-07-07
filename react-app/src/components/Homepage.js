@@ -31,7 +31,7 @@ export default function Homepage() {
 
         let demoUserPageLoader = () => {
             dispatch(login('chad@aa.io', 'password'))
-            history.push(`/profile/${3}`)
+            history.push(`/gj-page`)
         }
 
     return (
