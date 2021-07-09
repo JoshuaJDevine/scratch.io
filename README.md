@@ -86,20 +86,20 @@
    This will build the dockerfile and push the image to your heroku container registry
 
    ```bash
-   heroku container:push web -a whisk-project
+   heroku container:push web -a dnd-finder
    ```
 
 8. Release your docker container to heroku
 
    ```bash
-   heroku container:release web -a whisk-project
+   heroku container:release web -a dnd-finder
    ```
 
 9. set up your database:
 
    ```bash
-   heroku run -a whisk-project flask db upgrade
-   heroku run -a whisk-project flask seed all
+   heroku run -a dnd-finder flask db upgrade
+   heroku run -a dnd-finder flask seed all
    ```
 
 10. Under Settings find "Config Vars" and add any additional/secret .env variables.

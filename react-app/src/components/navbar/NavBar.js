@@ -22,14 +22,14 @@ export default function NavBar(){
     home: "/",
     gameJams: "/gj-page",
     games: "/games-page",
-    teams: undefined
+    teams: "/teams"
   }
 
   // let [profileIndex, setProfileIndex] = useState(52)
 
   let demoUserPageLoader = () => {
       dispatch(login('chad@aa.io', 'password'))
-      history.push(`/profile/${3}`)
+      history.push(`/gj-page`)
   }
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -37,7 +37,7 @@ export default function NavBar(){
 
 
   return(
-    <Box bg="black" w="100%" h="60px"  spacing={4} p={4} color="white" id="navbar">
+    <Box bg="black" w="100%" h="100%"  spacing={4} p={4} color="white" id="navbar">
       <Flex color="white">
         <Square size="100x">
           <Stack direction="row" spacing={4} align="center">
@@ -59,6 +59,13 @@ export default function NavBar(){
             }}>
               Games
             </Button>
+            <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => {
+              history.push(paths.teams);
+              setPathName(paths.teams);
+            }}>
+
+              Teams
+            </Button>
             <SearchBar />
             { user && pathName === paths.gameJams && <CreateNewGameJam /> }
             { user && /*pathName === paths.teams*/ <CreateTeam /> }
@@ -66,9 +73,6 @@ export default function NavBar(){
             { !user && <SignUp /> }
             <Button colorScheme="white" variant="link" className="navbar buttons" onClick={demoUserPageLoader}>
               Demo Login
-            </Button>
-            <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push(`/teams/${randNum}`)}>
-              View Team
             </Button>
             { user && <Button colorScheme="white" variant="link" className="navbar buttons" onClick={() => history.push(`/profile/${user.id}`)}>
                 Profile

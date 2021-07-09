@@ -41,16 +41,7 @@ class GameJam(db.Model):
         lazy=True
     )
 
-    def get_joined_games(self):
-        return [game.to_dict() for game in self.games]
-
-    def get_joined_teams(self):
-        return [team.to_dict() for team in self.teams]
-
-    def get_joined_tags(self):
-        return [tag.to_dict() for tag in self.tags]
-
-    def to_dict(self, teams=False, tags=False, games=False):
+    def to_dict(self, joins={}):
         dct = {
             "id": self.id,
             "name": self.name,
@@ -62,15 +53,25 @@ class GameJam(db.Model):
             "userLimit": self.userLimit,
             "startDate": self.startDate,
             "endDate": self.endDate,
+            "teamCount": len(self.teams),
         }
 
-        if teams:
-            dct["teams"] = self.get_joined_teams()
+        if "teams" in joins:
+            dct["teams"] = self.get_joined_teams(joins)
 
-        if games:
-            dct["games"] = self.get_joined_games()
+        if "games" in joins:
+            dct["games"] = self.get_joined_games(joins)
 
-        if tags:
-            dct["tags"] = self.get_joined_tags()
+        if "tags" in joins:
+            dct["tags"] = self.get_joined_tags(joins)
 
         return dct
+
+    def get_joined_games(self, joins):
+        return [game.to_dict() for game in self.games][:joins["games"]]
+
+    def get_joined_tags(self, joins):
+        return [tag.to_dict() for tag in self.tags][:joins["tags"]]
+
+    def get_joined_teams(self, joins):
+        return [team.to_dict() for team in self.teams][:joins["teams"]]

@@ -50,7 +50,7 @@ export default function TeamGames({ team }) {
               </Heading>
               {/* <GameJamInfoCard /> */}
               <Box className="team-games-container">
-            {team?.games.map((game) => {
+            {team?.games?.map((game) => {
               return (
                 <TeamGameCard game={ game } />
               )
